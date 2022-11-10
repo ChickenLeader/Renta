@@ -1,0 +1,38 @@
+:root {
+    /* COLORS */
+    --color-primary: #B30A1C;
+    --color-secondary: #72A74D;
+    --color-dark: #0D0D0D;
+    --color-light: #FFFFFF;
+    --color-grey-E4: #E4E4E4;
+    --color-grey-43: #434343;
+
+    /* FONT SIZES */
+    --fs-10: clamp(10px, 2.667vw, 12px);
+    --fs-12: clamp(12px, 3.200vw, 14px);
+    --fs-14: clamp(14px, 3.733vw, 16px);
+    --fs-15: clamp(15px, 4vw, 17px);
+    --fs-16: clamp(16px, 4.267vw, 18px);
+    --fs-17: clamp(17px, 4.533vw, 19px);
+    --fs-18: clamp(18px, 4.800vw, 20px);
+    --fs-20: clamp(20px, 5.333vw, 22px);
+    --fs-21: clamp(21px, 5.600vw, 23px);
+    --fs-22: clamp(22px, 5.867vw, 24px);
+    --fs-23: clamp(23px, 6.133vw, 25px);
+    --fs-24: clamp(24px, 6.4vw, 26px);
+    --fs-26: clamp(26px, 6.933vw, 28px);
+    --fs-28: clamp(28px, 7.467vw, 30px);
+    --fs-30: clamp(30px, 8vw, 32px);
+    --fs-32: clamp(32px, 8.533vw, 34px);
+    --fs-37: clamp(37px, 9.867vw, 39px);
+    --fs-40: clamp(40px, 10.667vw, 42px);
+    --fs-48: clamp(48px, 12.800vw, 50px);
+
+    /* FONT FAMILY */
+    --ff-regular: "Poppins-Regular";
+    --ff-medium: "Poppins-Medium";
+    --ff-bold: "Poppins-Bold";
+    --ff-semi-bold: "Poppins-SemiBold";
+    --ff-black: "Poppins-Black";
+    --ff-regular2: "Audiowide-Regular";
+}
