@@ -1,10 +1,85 @@
-@import './variables/root';
-@import './variables/fonts';
-@import './variables/colors';
-
+@import "./variables/root";
+@import "./variables/fonts";
+@import "./variables/colors";
 
 * {
   font-family: var(--ff-regular);
+}
+
+:root {
+  --ff-Black: "Gilroy-Black";
+  --ff-Bold: "Gilroy-Bold";
+  --ff-ExBold: "Gilroy-ExtraBold";
+  --ff-Heavy: "Gilroy-Heavy";
+  --ff-Light: "Gilroy-Light";
+  --ff-Medium: "Gilroy-Medium";
+  --ff-Regular: "Gilroy-Regular";
+  --ff-SemiBold: "Gilroy-SemiBold";
+  --ff-Thin: "Gilroy-Thin";
+  --ff-ExThin: "Gilroy-ExtraThin";
+
+  /* colors */
+  --clr-red: #4285f4;
+  --clr-white: #ffff;
+  --clr-semiWhite: #e6e6e6;
+  --clr-gray: #5d5e60;
+  --clr-lightGray: #e7e8ef;
+  --clr-shadowColor: #00000029;
+  --clr-black: #072227;
+
+  /* font sizes */
+  --fs-9: clamp(9px, 9px, 16px);
+  --fs-14: clamp(0.8rem, 0.729vw, 16px);
+  --fs-15: clamp(0.8rem, 0.781vw, 16px);
+  --fs-16: clamp(14px, 0.833vw, 18px);
+  --fs-17: clamp(15px, 0.885vw, 20px);
+  --fs-18: clamp(16px, 0.938vw, 20px);
+  --fs-20: clamp(18px, 1.042vw, 30px);
+  --fs-21: clamp(18px, 1.094vw, 30px);
+  --fs-22: clamp(18px, 1.146vw, 34px);
+  --fs-23: clamp(18px, 1.198vw, 36px);
+  --fs-26: clamp(19px, 1.354vw, 37px);
+  --fs-28: clamp(20px, 1.458vw, 38px);
+  --fs-30: clamp(25px, 1.563vw, 40px);
+  --fs-32: clamp(28px, 1.667vw, 45px);
+  --fs-37: clamp(28px, 1.927vw, 45px);
+  --fs-40: clamp(30px, 2.083vw, 50px);
+  --fs-48: clamp(34px, 2.5vw, 54px);
+  --fs-52: clamp(40px, 2.708vw, 60px);
+  --fs-54: clamp(42px, 2.813vw, 62px);
+  --fs-60: clamp(50px, 3.125vw, 65px);
+  --fs-64: clamp(50px, 3.333vw, 70px);
+  --fs-70: clamp(60px, 3.646vw, 75px);
+  --fs-80: clamp(70px, 4.167vw, 85px);
+}
+
+@media (max-width: 600px) {
+  :root {
+    /* font sizes */
+    --fs-9: clamp(9px, 9px, 16px);
+    --fs-14: clamp(14px, 0.729vw, 16px);
+    --fs-15: clamp(9px, 0.781vw, 16px);
+    --fs-16: clamp(9px, 0.833vw, 18px);
+    --fs-17: clamp(9px, 0.885vw, 20px);
+    --fs-18: clamp(9px, 0.938vw, 20px);
+    --fs-20: clamp(12px, 1.042vw, 30px);
+    --fs-21: clamp(12px, 1.094vw, 30px);
+    --fs-22: clamp(13px, 1.146vw, 34px);
+    --fs-23: clamp(14px, 1.198vw, 36px);
+    --fs-26: clamp(16px, 1.354vw, 37px);
+    --fs-28: clamp(16px, 1.458vw, 38px);
+    --fs-30: clamp(16px, 1.563vw, 40px);
+    --fs-32: clamp(16px, 1.667vw, 45px);
+    --fs-37: clamp(18px, 1.927vw, 45px);
+    --fs-40: clamp(20px, 2.083vw, 50px);
+    --fs-48: clamp(22px, 2.5vw, 54px);
+    --fs-52: clamp(27px, 2.708vw, 60px);
+    --fs-54: clamp(30px, 2.813vw, 62px);
+    --fs-60: clamp(32px, 3.125vw, 65px);
+    --fs-64: clamp(34px, 3.333vw, 70px);
+    --fs-70: clamp(36px, 3.646vw, 75px);
+    --fs-80: clamp(50px, 4.167vw, 85px);
+  }
 }
 
 .pointer {

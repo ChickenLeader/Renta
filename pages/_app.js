@@ -1,17 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import 'antd/dist/antd.css';
-import 'styles/globals.scss'
-import { Provider } from 'react-redux';
+import "bootstrap/dist/css/bootstrap.css";
+import "antd/dist/antd.css";
+import "styles/globals.scss";
+import { Provider } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { CacheProvider } from "@emotion/react";
-import MainLayout from 'components/General/MainLayout';
+import MainLayout from "components/General/MainLayout";
 import { theme } from "styles/theme";
 import createEmotionCache from "hooks/createEmotionCache";
-import { loginHandler } from 'hooks/loginHandler';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { appWithTranslation } from 'next-i18next';
-import { store } from '../redux';
+import { loginHandler } from "hooks/loginHandler";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { appWithTranslation } from "next-i18next";
+import { Navbar } from "components/HomeComponents/navbar/Navbar";
+import { store } from "../redux";
+import { Footer } from "components/HomeComponents/footer/Footer";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -21,25 +23,25 @@ function MyApp({ Component, pageProps }) {
 
   const autoLogin = () => {
     let token = localStorage.getItem("token");
-    loginHandler(token)
-  }
+    loginHandler(token);
+  };
 
   const langAdjustment = () => {
-    localStorage.setItem('lang', router.locale)
+    localStorage.setItem("lang", router.locale);
 
-    let isArabicLang = router.locale === "ar"
-    let dir = isArabicLang ? "rtl" : "ltr"
+    let isArabicLang = router.locale === "ar";
+    let dir = isArabicLang ? "rtl" : "ltr";
 
     document.body.setAttribute("dir", dir);
     if (document.getElementsByTagName("nav").length) {
       document.querySelector("nav").setAttribute("dir", dir);
     }
-  }
+  };
 
   useEffect(() => {
-    autoLogin()
-    langAdjustment()
-  }, [])
+    autoLogin();
+    langAdjustment();
+  }, []);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -47,12 +49,14 @@ function MyApp({ Component, pageProps }) {
         <Provider store={store}>
           <CssBaseline />
           <MainLayout>
+            <Navbar />
             <Component {...pageProps} />
+            <Footer />
           </MainLayout>
         </Provider>
       </ThemeProvider>
     </CacheProvider>
-  )
+  );
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp);
