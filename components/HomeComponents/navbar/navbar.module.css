@@ -1,0 +1,34 @@
+.subContainer {
+  width: 95%;
+  max-width: none;
+}
+.navContainer {
+  border-bottom: 1px solid #f15841;
+}
+.NavImage {
+  height: 70px;
+  width: 45px;
+}
+.signIn {
+  background-color: #f15841;
+  color: white;
+  padding-inline: 3rem !important;
+  padding-block: 10px;
+  margin-inline: 28px;
+}
+.navText {
+  color: black;
+  font-size: 18px;
+  margin-inline: 20px;
+}
+.navlangEn {
+  font-size: 18px;
+  /* margin-right: 5px; */
+  padding-right: 0px;
+  color: black;
+  margin-left: 10px;
+}
+.navlangAr {
+  font-size: 18px;
+  margin-right: 5px;
+}

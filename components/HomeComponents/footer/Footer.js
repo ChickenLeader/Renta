@@ -55,7 +55,11 @@ export const Footer = () => {
           <Row className="justify-content-end">
             {BottomTabItems.map((item, index) => {
               return (
-                <Col lg={index == BottomTabItems.length - 1 ? 2 : 3} xs={6}>
+                <Col
+                  key={item.id}
+                  lg={index == BottomTabItems.length - 1 ? 2 : 3}
+                  xs={6}
+                >
                   <div className={styles.listColumn}>
                     {item.name && (
                       <Text
@@ -68,11 +72,11 @@ export const Footer = () => {
                     )}
 
                     {item?.list?.map((sub_item) => (
-                      <>
+                      <div key={sub_item.id}>
                         <Text fontSize={14} className="pb-2 mb-1" color="white">
                           {sub_item.name}
                         </Text>
-                      </>
+                      </div>
                     ))}
                   </div>
                 </Col>
