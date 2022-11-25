@@ -13,7 +13,7 @@ const Text = ({
   children,
   fontFamily = FontFamily.regular,
   fontSize,
-  color = Colors.primary,
+  color = "black",
   isTranslated = true,
 }) => {
   const { t } = useTranslation(["common"]);

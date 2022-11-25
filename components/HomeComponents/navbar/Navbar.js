@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./navbar.module.css";
 import { Container, Nav, Navbar as RNav } from "react-bootstrap";
 import Image from "next/image";
-import logo from "public/assets/RentaLogo.png";
+import logo from "public/assets/RentaLogox2.png";
 export const Navbar = () => {
   const Registration = true;
   const Nav_Items = [
