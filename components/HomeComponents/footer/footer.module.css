@@ -3,8 +3,8 @@
   padding: 30px;
   padding-inline: 5rem;
   width: 100%;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute;
+  bottom: 0; */
   /* min-height: 200px; */
 }
 .footerImage {

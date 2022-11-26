@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
 import { Col, Row } from "react-bootstrap";
 import styles from "./property.module.css";
 import Image from "next/image";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
+import { Card } from "antd";
 const img = require("../../../public/assets/housex2.png");
 
 const PropertyCard = () => {
@@ -48,14 +48,14 @@ const PropertyCard = () => {
     },
   ];
   return (
-    <div className={styles.cardCon}>
+    <Card className={styles.cardCon}>
       <Row>
-        <Col>
+        <Col lg={3} xs={6} className="p-0">
           <div className={styles.cardImg}>
-            <Image src={img} alt="property card" width={270} height={200} />
+            <Image src={img} alt="property card" width={280} height={200} />
           </div>
         </Col>
-        <Col style={{ padding: 0 }}>
+        <Col className="p-0">
           <div className={styles.details}>
             <div>
               <Text fontSize={20}>Small apartment</Text>
@@ -82,19 +82,19 @@ const PropertyCard = () => {
             </div>
           </div>
         </Col>
-        <Col style={{ paddingBlock: 20 }}>
+        <Col lg={3} xs={6}>
           <div className={styles.iconsCon}>
-            <Row>
+            <Row className="h-100 align-items-center d-flex justify-content-center">
               {tempIcons.map((item) => {
                 return (
-                  <Col lg={6} className=" d-flex align-items-center">
+                  <Col lg={6} xs={6} className="d-flex align-items-center">
                     <Image
                       src={item.icon}
                       alt="space icon"
                       width={25}
                       height={25}
                     />
-                    <Text className="d-inline ms-1">{item.digit}</Text>
+                    <Text className="d-inline ms-2">{item.digit}</Text>
                   </Col>
                 );
               })}
@@ -102,7 +102,7 @@ const PropertyCard = () => {
           </div>
         </Col>
       </Row>
-    </div>
+    </Card>
   );
 };
 

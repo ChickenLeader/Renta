@@ -1,0 +1,10 @@
+.ContactUsContainer {
+  width: 90%;
+  min-height: 100%;
+  margin: auto;
+  margin-inline: auto;
+  margin-top: 5rem;
+  /* padding:10px; */
+  padding-bottom: 5rem;
+  margin-bottom: 7rem;
+}

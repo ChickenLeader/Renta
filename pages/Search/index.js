@@ -5,11 +5,23 @@ import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
 const Search = () => {
   return (
     <ScreenWrapper>
-      <Row>
-        <Col lg={5}>
-          <PropertyCard />
+      <Row className="justify-content-between">
+        <Col lg={6} md={6} xs={12} className="px-5 my-4">
+          {[1, 2, 3, 4].map((item) => (
+            <PropertyCard />
+          ))}
         </Col>
-        <Col></Col>
+        <Col lg={6} md={6} xs={12}>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
+            width="100%"
+            height="100%"
+            // style="border:0;"
+            // allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </Col>
       </Row>
     </ScreenWrapper>
   );
