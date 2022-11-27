@@ -1,12 +1,22 @@
 .cardCon {
-  margin: 20px;
+  /* margin: 20px; */
   margin-block: 10px;
+  margin-inline: 10px;
   margin-right: 0;
   background-color: #f4f4f4;
   max-height: 200px;
   border-radius: 20px;
   overflow: hidden;
-
+}
+.unitCardCon {
+  /* margin: 20px; */
+  margin-block: 10px;
+  margin-inline: 10px;
+  margin-right: 0;
+  background-color: #f4f4f4;
+  max-height: 150px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 .cardImgCon {
   height: 200px;

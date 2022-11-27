@@ -32,3 +32,19 @@
   font-size: 18px;
   margin-right: 5px;
 }
+
+@media only screen and (max-width: 900px) {
+  /* For mobile phones: */
+  .signIn {
+    margin-inline: 20px;
+    max-width: 150px;
+    /* order: -1; */
+  }
+  .navlangAr {
+    margin-left: 20px;
+  }
+  .navlangEn {
+   
+    margin-left: 20px;
+  }
+}

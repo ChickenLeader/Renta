@@ -7,7 +7,7 @@ import { Colors } from "constants/Colors";
 import { Card } from "antd";
 const img = require("../../../public/assets/houseCardx2.png");
 
-const PropertyCard = () => {
+const UnitCard = () => {
   const [loading, setLoading] = useState(false);
   let tempIcons = [
     {
@@ -48,14 +48,14 @@ const PropertyCard = () => {
     },
   ];
   return (
-    <Card hoverable className={styles.cardCon}>
+    <Card hoverable className={styles.unitCardCon}>
       <Row>
         <Col lg={3} md={4} xs={4} className="p-0">
           <div className={styles.cardImgCon}>
             <Image src={img} alt="property card" layout="fill" />
           </div>
         </Col>
-        <Col lg={5} md={4} xs={4} className="p-0">
+        <Col lg={3} md={4} xs={4} className="p-0">
           <div className={styles.details}>
             <div>
               <Text fontSize={20} className="mb-3">
@@ -65,32 +65,15 @@ const PropertyCard = () => {
                 Mountain View, New cairo
               </Text>
             </div>
-            <div>
-              <Text
-                fontSize={28}
-                className="d-inline"
-                fontFamily="semiBold"
-                style={{ fontWeight: 800 }}
-              >
-                7,600
-              </Text>
-              <Text
-                className="d-inline ms-1"
-                fontSize={16}
-                color={Colors.primary}
-              >
-                / month
-              </Text>
-            </div>
           </div>
         </Col>
-        <Col lg={4} md={4} xs={4} className={styles.iconsSection}>
+        <Col lg={6} md={4} xs={4}>
           <div className={styles.iconsCon}>
             <Row className="h-100 align-items-center d-flex justify-content-center border-start border-2 m-auto">
               {tempIcons.map((item) => {
                 return (
                   <Col
-                    lg={5}
+                    lg={4}
                     md={6}
                     xs={12}
                     className="d-flex align-items-center justify-content-center p-0"
@@ -114,4 +97,4 @@ const PropertyCard = () => {
   );
 };
 
-export default PropertyCard;
+export default UnitCard;

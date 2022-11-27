@@ -17,6 +17,7 @@ const Nav_Items = [
 
 export const Navbar = () => {
   const [selected, setselected] = useState("");
+  const [signedin, setsignedin] = useState(false);
   const router = useRouter();
 
   const handleActiveTab = () => {
@@ -37,7 +38,7 @@ export const Navbar = () => {
         <Container className={styles.subContainer}>
           <RNav.Brand href="/Home">
             <div className={styles.NavImage}>
-              <Image src={logo} layout="fill"/>
+              <Image src={logo} layout="fill" />
             </div>
           </RNav.Brand>
           <RNav.Toggle aria-controls="responsive-navbar-nav" />
@@ -60,8 +61,12 @@ export const Navbar = () => {
                   </Nav.Link>
                 </div>
               ))}
-              <Nav.Link className={styles.signIn} href="#">
-                Sign in
+              <Nav.Link
+                className={styles.signIn}
+                href={"/Units"}
+                onClick={() => setsignedin(!signedin)}
+              >
+                <Text color="white">{signedin ? "My units" : "Sign in"}</Text>
               </Nav.Link>
               <Nav.Link className={styles.navlangEn} href="#">
                 EN

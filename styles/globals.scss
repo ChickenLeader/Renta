@@ -92,4 +92,7 @@
 .ant-card-body {
   padding: 0;
 }
+.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+  color: "white";
+}
 
