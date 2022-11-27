@@ -6,8 +6,9 @@
   border-bottom: 1px solid #f15841;
 }
 .NavImage {
-  height: 70px;
+  height: 75px;
   width: 45px;
+  position: relative;
 }
 .signIn {
   background-color: #f15841;

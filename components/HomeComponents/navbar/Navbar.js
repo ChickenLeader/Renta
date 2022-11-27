@@ -7,11 +7,12 @@ import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
 import styles from "./navbar.module.css";
+import { FontFamily } from "constants/FontFamily";
 
 const Nav_Items = [
   { id: 1, name: "Latest seen", navigate: "/Latest" },
   { id: 2, name: "Contact us", navigate: "/ContactUs" },
-  { id: 3, name: "About us", navigate: "/Latest" },
+  { id: 3, name: "About us", navigate: "/AboutUs" },
 ];
 
 export const Navbar = () => {
@@ -34,9 +35,9 @@ export const Navbar = () => {
     <div className={styles.navContainer}>
       <RNav collapseOnSelect expand="lg" bg="white" variant="light">
         <Container className={styles.subContainer}>
-          <RNav.Brand href="#home">
+          <RNav.Brand href="/Home">
             <div className={styles.NavImage}>
-              <Image src={logo} />
+              <Image src={logo} layout="fill"/>
             </div>
           </RNav.Brand>
           <RNav.Toggle aria-controls="responsive-navbar-nav" />
@@ -50,7 +51,9 @@ export const Navbar = () => {
                     // onClick={() => setselected(item.id)}
                   >
                     <Text
-                      color={selected == item.id ? Colors.primary : "black"}
+                      fontFamily={
+                        selected == item.id ? FontFamily.semiBold : null
+                      }
                     >
                       {item.name}
                     </Text>

@@ -45,46 +45,52 @@ export const Footer = () => {
 
   return (
     <div className={styles.footercontainer}>
-      <Row>
-        <Col lg={4} sm={6} xs={12}>
-          <div className={styles.footerImage}>
-            <Image alt="logo" src={logo} />
-          </div>
-        </Col>
-        <Col>
-          <Row className="justify-content-end">
-            {BottomTabItems.map((item, index) => {
-              return (
-                <Col
-                  key={item.id}
-                  lg={index == BottomTabItems.length - 1 ? 2 : 3}
-                  xs={6}
-                >
-                  <div className={styles.listColumn}>
-                    {item.name && (
-                      <Text
-                        fontSize={12}
-                        className="mb-3"
-                        color={Colors.secondaryText}
-                      >
-                        {item?.name}
-                      </Text>
-                    )}
-
-                    {item?.list?.map((sub_item) => (
-                      <div key={sub_item.id}>
-                        <Text fontSize={14} className="pb-2 mb-1" color="white">
-                          {sub_item.name}
+      <div>
+        <Row>
+          <Col lg={4} sm={6} xs={12}>
+            <div className={styles.footerImage}>
+              <Image alt="logo" src={logo} />
+            </div>
+          </Col>
+          <Col>
+            <Row className="justify-content-end">
+              {BottomTabItems.map((item, index) => {
+                return (
+                  <Col
+                    key={item.id}
+                    lg={index == BottomTabItems.length - 1 ? 2 : 3}
+                    xs={6}
+                  >
+                    <div className={styles.listColumn}>
+                      {item.name && (
+                        <Text
+                          fontSize={12}
+                          className="mb-3"
+                          color={Colors.secondaryText}
+                        >
+                          {item?.name}
                         </Text>
-                      </div>
-                    ))}
-                  </div>
-                </Col>
-              );
-            })}
-          </Row>
-        </Col>
-      </Row>
+                      )}
+
+                      {item?.list?.map((sub_item) => (
+                        <div key={sub_item.id}>
+                          <Text
+                            fontSize={14}
+                            className="pb-2 mb-1"
+                            color="white"
+                          >
+                            {sub_item.name}
+                          </Text>
+                        </div>
+                      ))}
+                    </div>
+                  </Col>
+                );
+              })}
+            </Row>
+          </Col>
+        </Row>
+      </div>
     </div>
   );
 };

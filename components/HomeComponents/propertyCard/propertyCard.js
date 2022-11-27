@@ -5,7 +5,7 @@ import Image from "next/image";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { Card } from "antd";
-const img = require("../../../public/assets/housex2.png");
+const img = require("../../../public/assets/houseCardx2.png");
 
 const PropertyCard = () => {
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ const PropertyCard = () => {
     {
       id: 1,
       name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
+      icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 200,
     },
     {
@@ -31,7 +31,7 @@ const PropertyCard = () => {
     {
       id: 1,
       name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
+      icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 167,
     },
     {
@@ -43,19 +43,19 @@ const PropertyCard = () => {
     {
       id: 1,
       name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
+      icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 167,
     },
   ];
   return (
     <Card className={styles.cardCon}>
       <Row>
-        <Col lg={3} xs={6} className="p-0">
-          <div className={styles.cardImg}>
-            <Image src={img} alt="property card" width={280} height={200} />
+        <Col lg={3} md={4} xs={4} className="p-0">
+          <div className={styles.cardImgCon}>
+            <Image src={img} alt="property card" layout="fill" />
           </div>
         </Col>
-        <Col className="p-0">
+        <Col lg={5} md={4}  xs={4} className="p-0">
           <div className={styles.details}>
             <div>
               <Text fontSize={20}>Small apartment</Text>
@@ -82,15 +82,21 @@ const PropertyCard = () => {
             </div>
           </div>
         </Col>
-        <Col lg={3} xs={6}>
+        <Col lg={4} md={4} xs={4} className={styles.iconsSection}>
           <div className={styles.iconsCon}>
-            <Row className="h-100 align-items-center d-flex justify-content-center">
+            <Row className="h-100 align-items-center d-flex justify-content-center border-start border-2 m-auto">
               {tempIcons.map((item) => {
                 return (
-                  <Col lg={6} xs={6} className="d-flex align-items-center">
+                  <Col
+                    lg={5}
+                    md={6}
+                    xs={12}
+                    className="d-flex align-items-center justify-content-center p-0"
+                  >
                     <Image
                       src={item.icon}
                       alt="space icon"
+                      objectFit="contain"
                       width={25}
                       height={25}
                     />

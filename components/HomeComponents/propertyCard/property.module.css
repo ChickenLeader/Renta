@@ -1,19 +1,23 @@
-.cardImg {
-  height: 200px;
-  max-height: 200px;
-  width: 100%;
-  flex-wrap: wrap;
-}
-.ant-card-body {
-  padding: 0 !important;
-}
 .cardCon {
   margin: 20px;
+  margin-block: 10px;
   margin-right: 0;
   background-color: #f4f4f4;
   max-height: 200px;
-  border-radius: 10px;
+  border-radius: 20px;
+  overflow: hidden;
 
+}
+.cardImgCon {
+  height: 200px;
+  max-height: 200px;
+  width: 100%;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
+.ant-card-body {
+  padding: 0 !important;
 }
 .details {
   display: flex;
@@ -30,7 +34,17 @@
 }
 .iconsCon {
   height: 100%;
-  border-left: #CECECE 1px solid;
-  padding-inline: 20px;
+  /* border-left: #CECECE 1px solid; */
+  /* padding-inline: 20px; */
+  margin: auto;
   padding-block: 15px;
+  padding-inline: 0;
 }
+
+/* .iconsSection:before {
+  display: block;
+  content: '';
+  background: silver;
+  height: 30px;
+  width: 2px;
+} */
