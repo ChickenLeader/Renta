@@ -5,6 +5,7 @@ import Image from "next/image";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { Card } from "antd";
+import { FontFamily } from "constants/FontFamily";
 const img = require("../../../public/assets/houseCardx2.png");
 
 const PropertyCard = () => {
@@ -67,10 +68,9 @@ const PropertyCard = () => {
             </div>
             <div>
               <Text
-                fontSize={28}
+                fontSize={26}
                 className="d-inline"
-                fontFamily="semiBold"
-                style={{ fontWeight: 800 }}
+                fontFamily={FontFamily.semiBold}
               >
                 7,600
               </Text>

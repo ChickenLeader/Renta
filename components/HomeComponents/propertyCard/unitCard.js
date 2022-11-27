@@ -55,7 +55,7 @@ const UnitCard = () => {
             <Image src={img} alt="property card" layout="fill" />
           </div>
         </Col>
-        <Col lg={3} md={4} xs={4} className="p-0">
+        <Col lg={3} md={4} xs={4} className="p-0 flex-column align-items-center justify-content-center">
           <div className={styles.details}>
             <div>
               <Text fontSize={20} className="mb-3">
@@ -69,7 +69,10 @@ const UnitCard = () => {
         </Col>
         <Col lg={6} md={4} xs={4}>
           <div className={styles.iconsCon}>
-            <Row className="h-100 align-items-center d-flex justify-content-center border-start border-2 m-auto">
+            <Row
+              style={{ minHeight: 120,maxHeight:150 }}
+              className="align-items-center d-flex justify-content-center border-start border-1 border-secondary m-auto"
+            >
               {tempIcons.map((item) => {
                 return (
                   <Col

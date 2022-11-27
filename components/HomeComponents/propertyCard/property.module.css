@@ -51,6 +51,12 @@
   padding-inline: 0;
 }
 
+@media only screen and (max-width: 600px) {
+  .unitCardCon {
+    max-height: 180px;
+  }
+}
+
 /* .iconsSection:before {
   display: block;
   content: '';
