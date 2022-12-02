@@ -92,7 +92,27 @@
 .ant-card-body {
   padding: 0;
 }
-.navbar-nav .show > .nav-link, .navbar-nav .nav-link.active {
+.navbar-nav .show > .nav-link,
+.navbar-nav .nav-link.active {
   color: "white";
 }
 
+.ant-carousel .slick-dots-bottom {
+  bottom: 0;
+}
+.ant-carousel .slick-dots li.slick-active {
+  background: #fff;
+  width: 16px !important;
+  height: 6px;
+  border-radius: 10px;
+}
+.ant-carousel .slick-dots li {
+  background: #fff;
+  width: 6px !important;
+  height: 6px;
+  border-radius: 3px;
+}
+.ant-carousel .slick-dots li.slick-active button {
+  background: #fff;
+  opacity: 1;
+}

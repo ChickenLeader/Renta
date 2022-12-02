@@ -1,0 +1,10 @@
+.latestContainer {
+  margin-block: 1rem;
+  margin-inline: 2rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .latestContainer {
+    margin-inline: 1rem;
+  }
+}
