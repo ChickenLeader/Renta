@@ -43,7 +43,10 @@ const ContactUs = () => {
             <div className="my-5">
               {ContactUsArr.map((item) => {
                 return (
-                  <div className="d-flex align-items-center my-4">
+                  <div
+                    key={item.id + ""}
+                    className="d-flex align-items-center my-4"
+                  >
                     <Image src={item.icon} />
                     <Text fontSize={18} className="d-inline ms-4">
                       {item.text}
@@ -60,7 +63,7 @@ const ContactUs = () => {
               width={"100%"}
               height={"100%"}
               loading="lazy"
-              referrerpolicy="no-referrer-when-downgrade"
+              // referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
           </Col>
         </Row>

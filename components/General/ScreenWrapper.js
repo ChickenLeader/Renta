@@ -8,7 +8,7 @@ const ScreenWrapper = ({
     pageDescription = ''
 }) => {
     return (
-        <div style={{marginBottom:"200px"}}>
+        <div>
             <Head>
                 {pageTitle ?
                     <title>

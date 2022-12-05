@@ -17,31 +17,31 @@ const UnitCard = () => {
       digit: 167,
     },
     {
-      id: 1,
+      id: 2,
       name: "space",
       icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 200,
     },
     {
-      id: 1,
+      id: 3,
       name: "space",
       icon: require("../../../public/assets/bathSvg.svg"),
       digit: 167,
     },
     {
-      id: 1,
+      id: 4,
       name: "space",
       icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 167,
     },
     {
-      id: 1,
+      id: 5,
       name: "space",
       icon: require("../../../public/assets/bathSvg.svg"),
       digit: 167,
     },
     {
-      id: 1,
+      id: 6,
       name: "space",
       icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 167,
@@ -50,12 +50,20 @@ const UnitCard = () => {
   return (
     <Card hoverable className={styles.unitCardCon}>
       <Row>
-        <Col lg={3} md={4} xs={4} className="p-0">
+        <Col md={4} className="p-0 position-relative">
           <div className={styles.cardImgCon}>
-            <Image src={img} alt="property card" layout="fill" />
+            <Image
+              src={img}
+              alt="property card"
+              layout="fill"
+              objectFit="cover"
+            />
           </div>
         </Col>
-        <Col lg={3} md={4} xs={4} className="p-0 flex-column align-items-center justify-content-center">
+        <Col
+          md={4}
+          className="p-0 flex-column align-items-center justify-content-center"
+        >
           <div className={styles.details}>
             <div>
               <Text fontSize={20} className="mb-3">
@@ -67,18 +75,19 @@ const UnitCard = () => {
             </div>
           </div>
         </Col>
-        <Col lg={6} md={4} xs={4}>
+        <Col md={4} className="ps-0">
           <div className={styles.iconsCon}>
             <Row
-              style={{ minHeight: 120,maxHeight:150 }}
-              className="align-items-center d-flex justify-content-center border-start border-1 border-secondary m-auto"
+              style={{ minHeight: 120}}
+              className="align-items-center p-1 d-flex justify-content-center border-start border-1 m-auto"
             >
               {tempIcons.map((item) => {
                 return (
                   <Col
+                    key={item.id + ""}
                     lg={4}
                     md={6}
-                    xs={12}
+                    xs={6}
                     className="d-flex align-items-center justify-content-center p-0"
                   >
                     <Image
@@ -88,7 +97,7 @@ const UnitCard = () => {
                       width={25}
                       height={25}
                     />
-                    <Text className="d-inline ms-2">{item.digit}</Text>
+                    <Text className="d-inline ms-1">{item.digit}</Text>
                   </Col>
                 );
               })}

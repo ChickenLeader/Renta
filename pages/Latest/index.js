@@ -2,7 +2,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
-import styles from "./latest.module.css"
+import styles from "./latest.module.css";
 const LatestSeen = () => {
   return (
     <ScreenWrapper>

@@ -9,57 +9,63 @@ import { FontFamily } from "constants/FontFamily";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 
 const img = require("../../../public/assets/houseCardx2.png");
+let tempIcons = [
+  {
+    id: 1,
+    name: "space",
+    icon: require("../../../public/assets/bathSvg.svg"),
+    digit: 167,
+  },
+  {
+    id: 2,
+    name: "space",
+    icon: require("../../../public/assets/bedsSvg.svg"),
+    digit: 200,
+  },
+  {
+    id: 3,
+    name: "space",
+    icon: require("../../../public/assets/bathSvg.svg"),
+    digit: 167,
+  },
+  {
+    id: 4,
+    name: "space",
+    icon: require("../../../public/assets/bedsSvg.svg"),
+    digit: 167,
+  },
+  {
+    id: 5,
+    name: "space",
+    icon: require("../../../public/assets/bathSvg.svg"),
+    digit: 167,
+  },
+  {
+    id: 6,
+    name: "space",
+    icon: require("../../../public/assets/bedsSvg.svg"),
+    digit: 167,
+  },
+];
 
 const PropertyCard = () => {
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef();
-  let tempIcons = [
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
-    },
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 200,
-    },
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
-    },
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 167,
-    },
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
-    },
-    {
-      id: 1,
-      name: "space",
-      icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 167,
-    },
-  ];
   return (
     <Card hoverable className={styles.cardCon}>
       <Row>
         <Col md={4} className="p-0 position-relative">
           <div className={styles.directions}>
-            <div className={styles.prev} onClick={() => sliderRef.current.prev()}>
+            <div
+              className={styles.prev}
+              onClick={() => sliderRef.current.prev()}
+            >
               <FiArrowLeft size={22} color="white" />
             </div>
-            <div className={styles.next} onClick={() => sliderRef.current.next()}>
+            <div
+              className={styles.next}
+              onClick={() => sliderRef.current.next()}
+            >
               <FiArrowRight size={22} />
             </div>
           </div>
@@ -68,6 +74,7 @@ const PropertyCard = () => {
               <div key={item + ""} className={styles.cardImgCon}>
                 <Image
                   src={img}
+                  style={{ borderRadius: 20 }}
                   alt="property card"
                   layout="fill"
                   objectFit="cover"
@@ -114,6 +121,7 @@ const PropertyCard = () => {
                     md={6}
                     xs={6}
                     className="d-flex align-items-center justify-content-center p-0"
+                    key={item.id + ""}
                   >
                     <Image
                       src={item.icon}

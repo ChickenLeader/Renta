@@ -13,7 +13,7 @@
   margin-inline: 10px;
   margin-right: 0;
   background-color: #f4f4f4;
-  max-height: 150px;
+  /* max-height: 150px; */
   border-radius: 20px;
   overflow: hidden;
 }
@@ -80,13 +80,19 @@
 
 @media only screen and (max-width: 768px) {
   .unitCardCon {
-    max-height: 180px;
+    max-height: fit-content;
   }
   .directions {
     right: 10%;
   }
   .details {
     align-items: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .unitCardCon {
+    max-height: 150px;
   }
 }
 

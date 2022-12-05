@@ -45,7 +45,7 @@ const Units = () => {
           <Row className="justify-content-between">
             {myUnits.map((item) => {
               return (
-                <Col lg={6}>
+                <Col key={item.id + ""} lg={6}>
                   <UnitCard />
                   <div className="ms-3">
                     <div className={styles.unitDetails}>
