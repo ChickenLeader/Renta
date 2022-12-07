@@ -19,9 +19,9 @@ export const Navbar = () => {
   const [selected, setselected] = useState("");
   const [signedin, setsignedin] = useState(false);
   const router = useRouter();
+  const pathName = router.pathname;
 
   const handleActiveTab = () => {
-    const pathName = router.pathname;
     let activeNav = Nav_Items.find((item) => item.navigate.includes(pathName));
     if (activeNav) {
       setselected(activeNav.id);
@@ -33,8 +33,14 @@ export const Navbar = () => {
     handleActiveTab();
   }, [router.pathname]);
   return (
-    <div className={styles.navContainer}>
-      <RNav collapseOnSelect expand="lg" bg="white" variant="light">
+    <div
+      className={styles.navContainer}
+      style={{
+        position: pathName.includes("/Home") ? "absolute" : "static",
+        border: pathName.includes("/Home") ? "none" : null,
+      }}
+    >
+      <RNav collapseOnSelect expand="lg" variant="light">
         <Container className={styles.subContainer}>
           <RNav.Brand href="/Home">
             <div className={styles.NavImage}>

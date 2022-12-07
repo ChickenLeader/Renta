@@ -1,35 +1,21 @@
-import Head from "next/head"
-import React from "react"
-import { ImportantVars } from "../../constants/ImportantVars"
+import Head from "next/head";
+import React from "react";
+import { ImportantVars } from "../../constants/ImportantVars";
 
-const ScreenWrapper = ({
-    children,
-    pageTitle = '',
-    pageDescription = ''
-}) => {
-    return (
-        <div>
-            <Head>
-                {pageTitle ?
-                    <title>
-                        {`${pageTitle} | ${ImportantVars.websiteName}`}
-                    </title>
-                    :
-                    null
-                }
-                {pageDescription ?
-                    <meta
-                        name="description"
-                        content={pageDescription}
-                    />
-                    :
-                    null
-                }
-            </Head>
+const ScreenWrapper = ({ children, pageTitle = "", pageDescription = "" }) => {
+  return (
+    <div style={{ flex: 1 }}>
+      <Head>
+        {pageTitle ? (
+          <title>{`${pageTitle} | ${ImportantVars.websiteName}`}</title>
+        ) : null}
+        {pageDescription ? (
+          <meta name="description" content={pageDescription} />
+        ) : null}
+      </Head>
+      {children}
+    </div>
+  );
+};
 
-            <main>{children}</main>
-        </div>
-    )
-}
-
-export default ScreenWrapper
+export default ScreenWrapper;

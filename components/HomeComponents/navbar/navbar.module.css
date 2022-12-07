@@ -4,6 +4,9 @@
 }
 .navContainer {
   border-bottom: 1px solid #f15841;
+  /* position: absolute;
+  top:0; */
+  width: 100%;
 }
 .NavImage {
   height: 75px;
@@ -44,7 +47,6 @@
     margin-left: 20px;
   }
   .navlangEn {
-   
     margin-left: 20px;
   }
 }

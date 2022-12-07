@@ -1,0 +1,52 @@
+.homeCon {
+  background-image: url("../../public/assets/Mask\ Group\ 1.png");
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+}
+.subCon {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.searchCon {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140%;
+  padding-inline: 20px;
+  min-height: 100px;
+}
+.searchIcon {
+  width: 10%;
+  height: 100%;
+  background-color: black;
+}
+.areas {
+  width: 30%;
+  margin: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchCon {
+    /* width: 100%; */
+    width: 90%;
+    flex-direction: column;
+    margin-bottom: 5rem;
+  }
+  .areas {
+    width: 95%;
+  }
+}
+/* @media only screen and (max-width: 400px) {
+    .searchCon {
+      width: 90%;
+    }
+  } */
