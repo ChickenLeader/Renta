@@ -3,7 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./footer.module.css";
-import logo from "../../../public/assets/RentaLogo.png";
+import logo from "../../../public/assets/RentaFinalLogo.png";
 import { Colors } from "constants/Colors";
 export const Footer = () => {
   const Registration = true;

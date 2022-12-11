@@ -1,15 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import styles from "./home.module.css";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-const Home = () => {
-  const [age, setAge] = React.useState("");
+import { FiChevronDown } from "react-icons/fi";
+import Image from "next/image";
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
+let areas = [
+  { id: 1, name: "New Cairo" },
+  { id: 2, name: "Zamalek" },
+  { id: 3, name: "Downtown" },
+];
+
+let properties = [
+  { id: 1, name: "Apartment" },
+  { id: 2, name: "Office" },
+  { id: 3, name: "Villa" },
+];
+let monthlyRates = [
+  { id: 1, name: "+2000 LE" },
+  { id: 2, name: "+5000 LE" },
+  { id: 3, name: "+7000 LE" },
+];
+
+const Home = () => {
+  const [area, setarea] = useState(1);
+  const [property, setproperty] = useState(1);
+  const [monthlyRate, setmonthlyRate] = useState(1);
+
+  const dropdownIcon = (props) => {
+    return (
+      <div>
+        <FiChevronDown fontSize={26} color={Colors.primary} />
+        {/* <Image src={require("public/assets/searchIcon.svg")} /> */}
+      </div>
+    );
   };
 
   // There's a problem in navBar being absolute on this screen because of the toggler in mobile view
@@ -30,58 +57,63 @@ const Home = () => {
           </Text>
         </div>
         <div className={styles.searchCon}>
-          <FormControl className={styles.areas} sx={{ m: 1 }}>
+          <FormControl
+            variant="standard"
+            className={styles.areas}
+            sx={{ m: 1 }}
+          >
             <InputLabel>Select area</InputLabel>
             <Select
-              labelId="demo-simple-select-disabled-label"
-              id="demo-simple-select-disabled"
-              value={age}
-              label="Age"
-              onChange={handleChange}
+              value={area}
+              onChange={(event) => setarea(event.target.value)}
+              // inputComponent={dropdownIcon}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {areas.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <FormControl className={styles.areas} sx={{ m: 1 }}>
+          <FormControl
+            variant="standard"
+            className={styles.areas}
+            sx={{ m: 1 }}
+          >
             <InputLabel>Type of property</InputLabel>
             <Select
-              labelId="demo-simple-select-disabled-label"
-              id="demo-simple-select-disabled"
-              value={age}
-              label="Age"
-              onChange={handleChange}
+              value={property}
+              // label="Age"
+              onChange={(event) => setproperty(event.target.value)}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {properties.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <FormControl className={styles.areas} sx={{ m: 1 }}>
+          <FormControl
+            variant="standard"
+            className={styles.areas}
+            sx={{ m: 1 }}
+          >
             <InputLabel>Monthly rate</InputLabel>
             <Select
-              labelId="demo-simple-select-disabled-label"
-              id="demo-simple-select-disabled"
-              value={age}
-              label="Age"
-              onChange={handleChange}
+              value={monthlyRate}
+              // label="Age"
+              onChange={(event) => setmonthlyRate(event.target.value)}
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {monthlyRates.map((item) => (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.name}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
-          <div className={styles.searchIcon}></div>
+          <div className={styles.searchIcon}>
+            <Image src={require("public/assets/searchIcon.svg")} />
+          </div>
         </div>
       </div>
       <div></div>
