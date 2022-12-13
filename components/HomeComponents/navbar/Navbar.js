@@ -34,11 +34,15 @@ export const Navbar = () => {
   }, [router.pathname]);
   return (
     <div
-      className={styles.navContainer}
-      style={{
-        position: pathName.includes("/Home") ? "absolute" : "static",
-        border: pathName.includes("/Home") ? "none" : null,
-      }}
+      className={
+        pathName.includes("/Home")
+          ? styles.customNavContainer
+          : styles.navContainer
+      }
+      // style={{
+      //   // position: pathName.includes("/Home") ? "absolute" : "static",
+      //   border: pathName.includes("/Home") ? "none" : null,
+      // }}
     >
       <RNav collapseOnSelect expand="lg" variant="light">
         <Container className={styles.subContainer}>

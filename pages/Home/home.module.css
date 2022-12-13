@@ -40,7 +40,13 @@
   border-right: 2px solid #f8f8f8 !important;
 }
 
-
+.sidebar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+}
 
 @media only screen and (max-width: 768px) {
   .searchCon {
@@ -48,7 +54,7 @@
     width: 90%;
     flex-direction: column;
     margin-bottom: 5rem;
-    padding-inline:10px
+    padding-inline: 10px;
   }
   .areas {
     width: 95%;

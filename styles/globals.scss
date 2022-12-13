@@ -5,6 +5,9 @@
 * {
   font-family: var(--ff-regular);
 }
+.body {
+  overflow: auto;
+}
 
 :root {
   --ff-Black: "Gilroy-Black";

@@ -2,14 +2,16 @@ import React from "react";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import { Col, Container, Row } from "react-bootstrap";
 import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
+import SideNavBar from "components/HomeComponents/sideNavBar/sideNavBar";
 const Search = () => {
   return (
     <ScreenWrapper>
       <Container fluid>
+        <SideNavBar />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="my-4">
             {[1, 2, 3, 4].map((item) => (
-              <PropertyCard key={item + ""}/>
+              <PropertyCard key={item + ""} />
             ))}
           </Col>
           <Col lg={6} md={12} className="pe-0">

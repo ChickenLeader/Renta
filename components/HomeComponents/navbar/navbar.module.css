@@ -8,6 +8,10 @@
   top:0; */
   width: 100%;
 }
+.customNavContainer {
+  position: absolute;
+  width: 100%;
+}
 .NavImage {
   height: 75px;
   width: 45px;
@@ -48,5 +52,11 @@
   }
   .navlangEn {
     margin-left: 20px;
+  }
+  /* if he wants the navbar to drag the screen down instead of being above it, then uncomment position static, and remove the zIndex  */
+  .customNavContainer {
+    /* position: static; */
+    background-color: #fff;
+    z-index: 5000;
   }
 }
