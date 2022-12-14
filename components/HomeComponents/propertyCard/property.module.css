@@ -54,7 +54,7 @@
   flex-direction: row;
   right: 5%;
   top: 5%;
-  z-index: 5000;
+  z-index: 5;
 }
 .next {
   width: 30px;

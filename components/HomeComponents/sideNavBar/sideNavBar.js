@@ -22,7 +22,9 @@ let monthlyRates = [
 
 const SideNavBar = () => {
   const [isExpanded, setExpendState] = useState(false);
-  const [area, setarea] = useState(1);
+  const [area, setarea] = useState(areas[0]["id"]);
+  const [property, setproperty] = useState(properties[0]["id"]);
+  const [room, setroom] = useState(null);
 
   return (
     <div
@@ -43,23 +45,79 @@ const SideNavBar = () => {
       </div>
       <div>
         {isExpanded && (
-          <div>
-            <Text color="white">Select Area</Text>
-            <FormControl
-              sx={{ m: 1, minWidth: "100%", backgroundColor: "white" }}
-            >
-              <Select
-                value={area}
-                onChange={setarea}
-                displayEmpty
-                inputProps={{ "aria-label": "Without label" }}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+          <>
+            <div className="mb-5">
+              <Text color="white" className="mb-2">
+                Select Area
+              </Text>
+              <FormControl sx={{ minWidth: "100%", backgroundColor: "white" }}>
+                <Select
+                  value={area}
+                  onChange={(event) => setarea(event.target.value)}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  {areas.map((item) => (
+                    <MenuItem value={item.id}>{item.name}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </div>
+            <div className="mb-5">
+              <Text color="white" className="mb-2">
+                Property type
+              </Text>
+              {properties.map((item) => (
+                <div
+                  className={
+                    property == item.id
+                      ? styles.propertyView
+                      : styles.propertyViewSelected
+                  }
+                  onClick={() => setproperty(item.id)}
+                >
+                  <Text
+                    fontSize={14}
+                    color={property == item.id ? "black" : "white"}
+                  >
+                    {item.name}
+                  </Text>
+                </div>
+              ))}
+            </div>
+            <div className="mb-5">
+              <Text color="white" className="mb-2">
+                Price range
+              </Text>
+            </div>
+            <div className="mb-5">
+              <Text color="white" className="mb-2">
+                No. Of rooms
+              </Text>
+              <div className={styles.roomView}>
+                {[1, 2, 3, 4, 5, 6, "More"].map((item) => (
+                  <div
+                    className={room == item ? styles.selectedRoom : styles.room}
+                    onClick={() => setroom(item)}
+                  >
+                    <Text
+                      color={room == item ? "black" : "white"}
+                      style={{ textAlign: "center" }}
+                    >
+                      {item}
+                    </Text>
+                  </div>
+                ))}
+              </div>
+              
+            </div>
+            <div className="mb-5">
+              <Text color="white" className="mb-2">
+              Property area (m2)
+              </Text>
+              
+            </div>
+          </>
         )}
       </div>
     </div>
