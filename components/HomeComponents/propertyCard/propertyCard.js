@@ -52,21 +52,31 @@ let tempIcons = [
 const PropertyCard = () => {
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef();
-  const navigate = useRouter()
+  const navigate = useRouter();
   return (
-    <Card hoverable className={styles.cardCon} onClick={() => navigate.push("/detail/jghghbbj")}>
+    <Card
+      hoverable
+      className={styles.cardCon}
+      onClick={() => navigate.push("/detail/jghghbbj")}
+    >
       <Row>
         <Col md={4} className="p-0 position-relative">
           <div className={styles.directions}>
             <div
               className={styles.prev}
-              onClick={() => sliderRef.current.prev()}
+              onClick={(e) => {
+                e.stopPropagation();
+                sliderRef.current.prev();
+              }}
             >
               <FiArrowLeft size={22} color="white" />
             </div>
             <div
               className={styles.next}
-              onClick={() => sliderRef.current.next()}
+              onClick={(e) => {
+                e.stopPropagation();
+                sliderRef.current.next();
+              }}
             >
               <FiArrowRight size={22} />
             </div>

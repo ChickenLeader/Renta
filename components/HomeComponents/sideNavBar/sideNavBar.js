@@ -32,6 +32,16 @@ const SideNavBar = () => {
   const [property, setproperty] = useState(properties[0]["id"]);
   const [room, setroom] = useState(null);
 
+  const resetFilters = () => {
+    setarea(areas[0]["id"]);
+    setproperty(properties[0]["id"]);
+    setroom(null);
+  };
+
+  const applyFilters = () => {
+    setExpendState(false);
+  };
+
   return (
     <div
       className={
@@ -126,10 +136,18 @@ const SideNavBar = () => {
               </Text>
             </div>
             <div className=" d-flex flex-column align-items-center justify-content-center">
-              <Text color="white" className={styles.resetButton}>
+              <Text
+                color="white"
+                className={styles.resetButton}
+                onClickAction={resetFilters}
+              >
                 Reset filter
               </Text>
-              <Button type="primary" className={styles.applyButton}>
+              <Button
+                type="primary"
+                className={styles.applyButton}
+                onClick={applyFilters}
+              >
                 Apply filter (320)
               </Button>
             </div>

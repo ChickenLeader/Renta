@@ -9,7 +9,7 @@ const Search = () => {
       <Container fluid>
         <SideNavBar />
         <Row className="justify-content-between">
-          <Col lg={6} md={12} className="my-4">
+          <Col lg={6} md={12} className="my-4 ps-5">
             {[1, 2, 3, 4].map((item) => (
               <PropertyCard key={item + ""} />
             ))}
