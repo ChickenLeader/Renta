@@ -7,6 +7,7 @@ import { FontFamily } from "constants/FontFamily";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { FiChevronDown } from "react-icons/fi";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 let areas = [
   { id: 1, name: "New Cairo" },
@@ -29,6 +30,7 @@ const Home = () => {
   const [area, setarea] = useState(1);
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
+  const navigate = useRouter();
 
   const dropdownIcon = (props) => {
     return (
@@ -111,7 +113,10 @@ const Home = () => {
               ))}
             </Select>
           </FormControl>
-          <div className={styles.searchIcon}>
+          <div
+            className={styles.searchIcon}
+            onClick={() => navigate.push("/Search")}
+          >
             <Image src={require("public/assets/searchIcon.svg")} />
           </div>
         </div>

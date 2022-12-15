@@ -7,6 +7,7 @@ import { Colors } from "constants/Colors";
 import { Card, Carousel } from "antd";
 import { FontFamily } from "constants/FontFamily";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
+import { useRouter } from "next/router";
 
 const img = require("../../../public/assets/houseCardx2.png");
 let tempIcons = [
@@ -51,8 +52,9 @@ let tempIcons = [
 const PropertyCard = () => {
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef();
+  const navigate = useRouter()
   return (
-    <Card hoverable className={styles.cardCon}>
+    <Card hoverable className={styles.cardCon} onClick={() => navigate.push("/detail/jghghbbj")}>
       <Row>
         <Col md={4} className="p-0 position-relative">
           <div className={styles.directions}>

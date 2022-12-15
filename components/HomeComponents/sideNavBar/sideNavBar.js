@@ -2,6 +2,9 @@ import Text from "components/General/Text";
 import React, { useState } from "react";
 import styles from "./sideNavBar.module.css";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import Image from "next/image";
+import { Button } from "antd";
+import { Colors } from "constants/Colors";
 
 let areas = [
   { id: 1, name: "New Cairo" },
@@ -20,6 +23,9 @@ let monthlyRates = [
   { id: 3, name: "+7000 LE" },
 ];
 
+const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
+const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
+
 const SideNavBar = () => {
   const [isExpanded, setExpendState] = useState(false);
   const [area, setarea] = useState(areas[0]["id"]);
@@ -32,16 +38,20 @@ const SideNavBar = () => {
         isExpanded ? styles.sideNavContainer : styles.sideNavContainerNX
       }
     >
-      <div className={styles.navUpper}>
-        <div className={styles.navHeading}>
-          <div
-            className={styles.hamburger}
-            onClick={() => setExpendState(!isExpanded)}
-          >
-            <Text style={{ color: "white" }}>Filters </Text>
-          </div>
+      <div className={styles.navHeading}>
+        <div
+          className={styles.hamburger}
+          onClick={() => setExpendState(!isExpanded)}
+        >
+          {isExpanded ? (
+            <Image src={leftArrow} />
+          ) : (
+            <>
+              <Text style={{ color: "white" }}>Filters </Text>
+              <Image src={rightArrow} className="ms-2" objectFit="contain" />
+            </>
+          )}
         </div>
-        <div className="nav-menu"></div>
       </div>
       <div>
         {isExpanded && (
@@ -109,13 +119,19 @@ const SideNavBar = () => {
                   </div>
                 ))}
               </div>
-              
             </div>
             <div className="mb-5">
               <Text color="white" className="mb-2">
-              Property area (m2)
+                Property area (m2)
               </Text>
-              
+            </div>
+            <div className=" d-flex flex-column align-items-center justify-content-center">
+              <Text color="white" className={styles.resetButton}>
+                Reset filter
+              </Text>
+              <Button type="primary" className={styles.applyButton}>
+                Apply filter (320)
+              </Button>
             </div>
           </>
         )}
