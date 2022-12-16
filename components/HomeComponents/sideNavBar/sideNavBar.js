@@ -50,7 +50,7 @@ const SideNavBar = () => {
     >
       <div className={styles.navHeading}>
         <div
-          className={styles.hamburger}
+          className={isExpanded ? styles.hamburgerNX : styles.hamburger}
           onClick={() => setExpendState(!isExpanded)}
         >
           {isExpanded ? (
@@ -58,7 +58,11 @@ const SideNavBar = () => {
           ) : (
             <>
               <Text style={{ color: "white" }}>Filters </Text>
-              <Image src={rightArrow} className="ms-2" objectFit="contain" />
+              <Image
+                src={rightArrow}
+                style={{ margin: 15 }}
+                objectFit="contain"
+              />
             </>
           )}
         </div>

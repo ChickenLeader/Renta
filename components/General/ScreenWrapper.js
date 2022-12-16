@@ -4,7 +4,7 @@ import { ImportantVars } from "../../constants/ImportantVars";
 
 const ScreenWrapper = ({ children, pageTitle = "", pageDescription = "" }) => {
   return (
-    <div style={{ flex: 1 }}>
+    <div style={{ flex: 1, position: "relative" }}>
       <Head>
         {pageTitle ? (
           <title>{`${pageTitle} | ${ImportantVars.websiteName}`}</title>

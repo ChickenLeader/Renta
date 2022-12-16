@@ -3,6 +3,7 @@ import { Col, Row } from "react-bootstrap";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
 import styles from "./latest.module.css";
+import { Pagination } from "@mui/material";
 const LatestSeen = () => {
   return (
     <ScreenWrapper>
@@ -14,6 +15,9 @@ const LatestSeen = () => {
             </Col>
           ))}
         </Row>
+      </div>
+      <div className=" d-flex justify-content-center align-items-center my-5">
+        <Pagination count={5} color="primary" />
       </div>
     </ScreenWrapper>
   );

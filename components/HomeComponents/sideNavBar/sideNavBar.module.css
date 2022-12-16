@@ -3,9 +3,10 @@
 .sideNavContainer {
   background-color: #162137;
   width: 305px;
-  height: 95vh;
   position: absolute;
   left: 0;
+  top: 0;
+  bottom: 0;
   z-index: 100;
   color: var(--light);
   transition: 0.4s;
@@ -13,9 +14,10 @@
 }
 .sideNavContainerNX {
   width: 40px;
-  height: 95vh;
   position: absolute;
   left: 0;
+  top: 0;
+  bottom: 0;
   z-index: 100;
   transition: 0.4s;
   background-color: #162137;
@@ -30,13 +32,34 @@
   border: none;
   cursor: pointer;
   position: absolute;
-  right: -2rem;
+  right: -4.5rem;
+  top: 15px;
+  background-color: #f15841;
+  /* padding: 10px; */
+  padding-block: 10px;
+  padding-inline: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px;
+  transition: 0.4s;
+}
+.hamburgerNX {
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: -1.4rem;
+  top: 15px;
   background-color: #f15841;
   padding: 10px;
   border-radius: 10px;
   display: flex;
-  justify-content: center;
-  width: auto;
+  align-items: center;
+  justify-content: space-between;
+  transition: 0.4s;
+
+  /* width: 100px; */
 }
 .propertyView {
   width: auto;
@@ -80,8 +103,8 @@
   padding: 3px;
   margin-block: 5px !important;
 }
-.applyButton{
-  background-Color: #f15841;
+.applyButton {
+  background-color: #f15841;
   width: 80%;
   height: 45px;
   border: none;

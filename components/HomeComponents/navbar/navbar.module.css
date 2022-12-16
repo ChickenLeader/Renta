@@ -39,6 +39,14 @@
   font-size: 18px;
   margin-right: 5px;
 }
+.sendVerification{
+  padding-block: 15px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  background-color: #162137;
+  cursor: pointer;
+}
 
 @media only screen and (max-width: 1000px) {
   /* For mobile phones: */
