@@ -13,6 +13,19 @@ export const getServerSideProps = async ({ locale }) => {
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
+      redirect: {
+        destination: "/Home",
+        permanent: true,
+      },
     },
   };
 };
+
+// export async function getServerSideProps(cxt) {
+//   return {
+//     redirect: {
+//       destination: "/Home",
+//       permanent: true,
+//     },
+//   };
+// }

@@ -48,7 +48,10 @@ export const Navbar = () => {
             </Text>
             <div className="w-100 ms-5 ps-1">
               <InputLabel>Email</InputLabel>
-              <TextField style={{ width: "90%" }} />
+              <TextField
+                sx={{ input: { color: "black" } }}
+                style={{ width: "90%", color: "black" }}
+              />
             </div>
             <div
               className={styles.sendVerification}
@@ -63,15 +66,24 @@ export const Navbar = () => {
           <>
             <div className="w-100 ms-5 ps-1">
               <InputLabel>New password</InputLabel>
-              <TextField style={{ width: "90%" }} />
+              <TextField
+                sx={{ input: { color: "black" } }}
+                style={{ width: "90%" }}
+              />
             </div>
             <div className="w-100 ms-5 ps-1">
               <InputLabel>Re-enter new password</InputLabel>
-              <TextField style={{ width: "90%" }} />
+              <TextField
+                sx={{ input: { color: "black" } }}
+                style={{ width: "90%" }}
+              />
             </div>
             <div
               className={styles.sendVerification}
-              onClick={() => setmodalStatus("success")}
+              onClick={() => {
+                setmodalStatus("success");
+                setsignedin(true);
+              }}
             >
               <Text color="white" fontFamily={FontFamily.semiBold}>
                 Submit
@@ -100,7 +112,6 @@ export const Navbar = () => {
 
   const handleCancel = () => {
     setIsModalOpen(false);
-    setmodalStatus("signIn");
   };
 
   useEffect(() => {
@@ -165,10 +176,14 @@ export const Navbar = () => {
               ))}
               <Nav.Link
                 className={styles.signIn}
-                href={"/Units"}
-                onClick={() => setsignedin(!signedin)}
+                href={signedin ? "/Units" : "#"}
+                onClick={() => {
+                  !signedin && setIsModalOpen(true);
+                }}
               >
-                <Text color="white">{signedin ? "My units" : "Sign in"}</Text>
+                <Text color="white">
+                  {modalStatus == "success" ? "My units" : "Sign in"}
+                </Text>
               </Nav.Link>
               <Nav.Link
                 className={styles.navlangEn}

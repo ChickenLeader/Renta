@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styles from "./sideNavBar.module.css";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
-import { Button } from "antd";
+import { Button, Slider } from "antd";
 import { Colors } from "constants/Colors";
 
 let areas = [
@@ -30,6 +30,8 @@ const SideNavBar = () => {
   const [isExpanded, setExpendState] = useState(false);
   const [area, setarea] = useState(areas[0]["id"]);
   const [property, setproperty] = useState(properties[0]["id"]);
+  const [priceRange, setpriceRange] = useState([2500, 5500]);
+  const [areaRange, setareaRange] = useState([120, 250]);
   const [room, setroom] = useState(null);
 
   const resetFilters = () => {
@@ -113,6 +115,40 @@ const SideNavBar = () => {
               <Text color="white" className="mb-2">
                 Price range
               </Text>
+              <div>
+                <Slider
+                  range
+                  defaultValue={priceRange}
+                  min={1000}
+                  max={7000}
+                  onChange={(x) => setpriceRange(x)}
+                  className="my-4"
+                  trackStyle={{ backgroundColor: Colors.primary }}
+                  handleStyle={{
+                    borderColor: Colors.primary,
+                  }}
+                />
+                <div className="d-flex align-items-center justify-content-around">
+                  <Text
+                    color="white"
+                    fontSize={14}
+                    className={styles.priceRange}
+                  >
+                    {priceRange[0]
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </Text>
+                  <Text
+                    color="white"
+                    fontSize={14}
+                    className={styles.priceRange}
+                  >
+                    {priceRange[1]
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                  </Text>
+                </div>
+              </div>
             </div>
             <div className="mb-5">
               <Text color="white" className="mb-2">
@@ -138,6 +174,40 @@ const SideNavBar = () => {
               <Text color="white" className="mb-2">
                 Property area (m2)
               </Text>
+              <Slider
+                range
+                defaultValue={areaRange}
+                min={70}
+                max={300}
+                className="my-4"
+                onChange={(x) => setareaRange(x)}
+                trackStyle={{ backgroundColor: Colors.primary }}
+                handleStyle={{ borderColor: Colors.primary }}
+              />
+              <div className="d-flex align-items-center justify-content-around">
+                <Text
+                  color="white"
+                  fontSize={14}
+                  className={styles.priceRange}
+                  // style={{
+                  //   position: "relative",
+                  //   left: (priceRange[0] / 7000) * 100,
+                  // }}
+                >
+                  {areaRange[0]}
+                </Text>
+                <Text
+                  color="white"
+                  fontSize={14}
+                  className={styles.priceRange}
+                  // style={{
+                  //   position: "relative",
+                  //   right: (priceRange[1] / 7000) * 100,
+                  // }}
+                >
+                  {areaRange[1]}
+                </Text>
+              </div>
             </div>
             <div className=" d-flex flex-column align-items-center justify-content-center">
               <Text

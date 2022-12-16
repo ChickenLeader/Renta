@@ -109,3 +109,8 @@
   height: 45px;
   border: none;
 }
+.priceRange{
+  padding-top: 2px;
+  padding-inline: 20px;
+  background-color: #5c6473;
+}
