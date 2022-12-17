@@ -107,7 +107,7 @@ const PropertyCard = () => {
             </div>
             <div>
               <Text
-                fontSize={26}
+                fontSize={30}
                 className="d-inline"
                 fontFamily={FontFamily.semiBold}
               >

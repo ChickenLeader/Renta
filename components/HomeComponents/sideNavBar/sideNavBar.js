@@ -1,5 +1,5 @@
 import Text from "components/General/Text";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./sideNavBar.module.css";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
@@ -33,7 +33,11 @@ const SideNavBar = () => {
   const [priceRange, setpriceRange] = useState([2500, 5500]);
   const [areaRange, setareaRange] = useState([120, 250]);
   const [room, setroom] = useState(null);
-
+  const [priceScale, setpriceScale] = useState(0);
+  const [areaScale, setareaScale] = useState(0);
+  const Ref = useRef();
+  const rangeWidth = (priceRange[0] - priceRange[1]) / (1000 - 7000);
+  const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
   const resetFilters = () => {
     setarea(areas[0]["id"]);
     setproperty(properties[0]["id"]);
@@ -44,8 +48,14 @@ const SideNavBar = () => {
     setExpendState(false);
   };
 
+  useEffect(() => {
+    setpriceScale(Ref.current.clientWidth * rangeWidth);
+    setareaScale(Ref.current.clientWidth * distanceWidth);
+  }, [isExpanded, rangeWidth, distanceWidth]);
+
   return (
     <div
+      ref={Ref}
       className={
         isExpanded ? styles.sideNavContainer : styles.sideNavContainerNX
       }
@@ -116,13 +126,17 @@ const SideNavBar = () => {
                 Price range
               </Text>
               <div>
+                <Image
+                  src={require("public/assets/rangeTest1.svg")}
+                  objectFit="contain"
+                  width={priceScale - 20}
+                />
                 <Slider
                   range
                   defaultValue={priceRange}
                   min={1000}
                   max={7000}
                   onChange={(x) => setpriceRange(x)}
-                  className="my-4"
                   trackStyle={{ backgroundColor: Colors.primary }}
                   handleStyle={{
                     borderColor: Colors.primary,
@@ -174,12 +188,17 @@ const SideNavBar = () => {
               <Text color="white" className="mb-2">
                 Property area (m2)
               </Text>
+              <Image
+                src={require("public/assets/rangeTest1.svg")}
+                objectFit="contain"
+                width={areaScale - 20}
+              />
               <Slider
                 range
                 defaultValue={areaRange}
                 min={70}
                 max={300}
-                className="my-4"
+                // className="my-4"
                 onChange={(x) => setareaRange(x)}
                 trackStyle={{ backgroundColor: Colors.primary }}
                 handleStyle={{ borderColor: Colors.primary }}
