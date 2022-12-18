@@ -34,6 +34,22 @@ export const Navbar = () => {
     }
   };
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  useEffect(() => {
+    handleActiveTab();
+  }, [router.pathname]);
+
   const HandleModalView = () => {
     return (
       <>
@@ -47,7 +63,7 @@ export const Navbar = () => {
               Type your email and send and change your password
             </Text>
             <div className="w-100 ms-5 ps-1">
-              <InputLabel>Email</InputLabel>
+              <InputLabel className={styles.label}>Email</InputLabel>
               <TextField
                 sx={{ input: { color: "black" } }}
                 style={{ width: "90%", color: "black" }}
@@ -65,18 +81,22 @@ export const Navbar = () => {
         ) : modalStatus == "forgotPassowrd" ? (
           <>
             <div className="w-100 ms-5 ps-1">
-              <InputLabel>New password</InputLabel>
-              <TextField
-                sx={{ input: { color: "black" } }}
-                style={{ width: "90%" }}
-              />
-            </div>
-            <div className="w-100 ms-5 ps-1">
-              <InputLabel>Re-enter new password</InputLabel>
-              <TextField
-                sx={{ input: { color: "black" } }}
-                style={{ width: "90%" }}
-              />
+              <div className="mb-3">
+                <InputLabel className={styles.label}>New password</InputLabel>
+                <TextField
+                  sx={{ input: { color: "black" } }}
+                  style={{ width: "90%" }}
+                />
+              </div>
+              <div>
+                <InputLabel className={styles.label}>
+                  Re-enter new password
+                </InputLabel>
+                <TextField
+                  sx={{ input: { color: "black" } }}
+                  style={{ width: "90%" }}
+                />
+              </div>
             </div>
             <div
               className={styles.sendVerification}
@@ -92,8 +112,16 @@ export const Navbar = () => {
           </>
         ) : (
           <>
-            <Image src={require("public/assets/success.svg")} />
-            <Text color="black" fontFamily={FontFamily.semiBold}>
+            <Image
+              src={require("public/assets/success.svg")}
+              width={226}
+              height={226}
+            />
+            <Text
+              color="black"
+              fontFamily={FontFamily.semiBold}
+              className="mb-3"
+            >
               Your password changed successfully
             </Text>
           </>
@@ -102,21 +130,6 @@ export const Navbar = () => {
     );
   };
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
-
-  useEffect(() => {
-    handleActiveTab();
-  }, [router.pathname]);
   return (
     <div
       className={

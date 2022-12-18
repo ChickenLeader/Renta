@@ -39,13 +39,17 @@
   font-size: 18px;
   margin-right: 5px;
 }
-.sendVerification{
+.sendVerification {
   padding-block: 15px;
   width: 90%;
   display: flex;
   justify-content: center;
   background-color: #162137;
   cursor: pointer;
+}
+
+.label {
+  color: #162137 !important;
 }
 
 @media only screen and (max-width: 1000px) {

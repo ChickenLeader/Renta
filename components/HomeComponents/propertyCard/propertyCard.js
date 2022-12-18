@@ -14,13 +14,13 @@ let tempIcons = [
   {
     id: 1,
     name: "space",
-    icon: require("../../../public/assets/bathSvg.svg"),
+    icon: require("../../../public/assets/spaceIcon.svg"),
     digit: 167,
   },
   {
     id: 2,
     name: "space",
-    icon: require("../../../public/assets/bedsSvg.svg"),
+    icon: require("../../../public/assets/spaceIcon.svg"),
     digit: 200,
   },
   {
