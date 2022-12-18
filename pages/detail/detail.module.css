@@ -33,7 +33,7 @@
 .images {
   cursor: pointer;
 }
-
+/* // Carousel   */
 .carouselLayer {
   background-color: aliceblue;
   position: fixed;
@@ -48,12 +48,51 @@
   position: absolute;
   width: 100%;
   top: 50%;
-  transform: translateY(-50%);}
+  transform: translateY(-50%);
+}
 
 .cardImgCon {
   width: 200px;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   position: relative;
   margin: auto;
   z-index: 2000;
+}
+.closeButton {
+  cursor: pointer;
+  transition: 0.4ms;
+  position: absolute;
+  right: 22%;
+  top: 20px;
+  z-index: 2500;
+}
+
+.leftButton {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  z-index: 2500;
+}
+.rightButton {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 5%;
+  z-index: 2500;
+}
+
+@media only screen and (max-width: 768px) {
+  .carouselCon {
+   margin-inline: 15%;
+  }
+
+  .closeButton {
+    cursor: pointer;
+    transition: 0.4ms;
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    z-index: 2500;
+  }
 }

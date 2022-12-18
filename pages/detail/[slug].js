@@ -6,7 +6,7 @@ import Text from "components/General/Text";
 import styles from "./detail.module.css";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
-import { IoLogoWhatsapp, IoMdHeart } from "react-icons/io";
+import { IoLogoWhatsapp, IoMdHeart, IoMdClose } from "react-icons/io";
 import { Carousel } from "antd";
 
 const images = [
@@ -54,6 +54,10 @@ const PropertyDetails = () => {
     setshowCarousel(true);
   };
 
+  const closeCarousel = () => {
+    setshowCarousel(false);
+  };
+
   useEffect(() => {
     if (index) {
       setTimeout(() => {
@@ -68,15 +72,37 @@ const PropertyDetails = () => {
         {showCarousel && (
           <div className={styles.carouselLayer}>
             <div className={styles.carouselCon}>
-              {/* <Text onClickAction={() => console.log(Ref, "From inside")}>
-                hiiiiiii
-              </Text> */}
+              {/* Left Button  */}
+              <div
+                className={styles.leftButton}
+                onClick={() => Ref.current.prev()}
+              >
+                <Image src={require("public/assets/Carousel-arrow-left.svg")} />
+              </div>
+
+              {/* Right Button  */}
+              <div
+                className={styles.rightButton}
+                onClick={() => Ref.current.next()}
+              >
+                <Image
+                  src={require("public/assets/Carousel-arrow-right.svg")}
+                />
+              </div>
+
+              {/* close button */}
+              <div
+                className={styles.closeButton}
+                onClick={() => closeCarousel()}
+              >
+                <IoMdClose size={36} color="white" />
+              </div>
               <Carousel ref={Ref}>
                 {images.map((item, index) => (
                   <div className={styles.cardImgCon}>
                     <Image
                       src={item.image}
-                      style={{ borderRadius: 20 }}
+                      // style={{ borderRadius: 20 }}
                       alt="property card"
                       // layout="fill"
                       objectFit="contain"

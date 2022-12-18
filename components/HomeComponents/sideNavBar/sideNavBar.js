@@ -126,11 +126,11 @@ const SideNavBar = () => {
                 Price range
               </Text>
               <div>
-                <Image
+                {/* <Image
                   src={require("public/assets/rangeTest1.svg")}
                   objectFit="contain"
                   width={priceScale - 20}
-                />
+                /> */}
                 <Slider
                   range
                   defaultValue={priceRange}
@@ -188,11 +188,11 @@ const SideNavBar = () => {
               <Text color="white" className="mb-2">
                 Property area (m2)
               </Text>
-              <Image
+              {/* <Image
                 src={require("public/assets/rangeTest1.svg")}
                 objectFit="contain"
                 width={areaScale - 20}
-              />
+              /> */}
               <Slider
                 range
                 defaultValue={areaRange}

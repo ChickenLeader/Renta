@@ -52,7 +52,7 @@ const Home = () => {
             fontSize={64}
             color={Colors.secondary}
           >
-            find you dream house
+            find your dream house
           </Text>
           <Text fontSize={21} color={Colors.secondary} className="text-center">
             more than 500 units in one click

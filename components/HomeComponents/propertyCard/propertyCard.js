@@ -65,8 +65,8 @@ const PropertyCard = () => {
             <div
               className={styles.prev}
               onClick={(e) => {
-                e.stopPropagation();
                 sliderRef.current.prev();
+                e.stopPropagation();
               }}
             >
               <FiArrowLeft size={22} color="white" />
@@ -74,8 +74,8 @@ const PropertyCard = () => {
             <div
               className={styles.next}
               onClick={(e) => {
-                e.stopPropagation();
                 sliderRef.current.next();
+                e.stopPropagation();
               }}
             >
               <FiArrowRight size={22} />
