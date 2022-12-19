@@ -68,7 +68,7 @@ export const Footer = () => {
         <div className="w-100 align-items-center">
           <Row className="justify-content-between align-items-center">
             {HomeVendors.map((item) => (
-              <Col md={2} xs={6} className={styles.vendorImage}>
+              <Col key={item.id} md={2} xs={6} className={styles.vendorImage}>
                 <Image src={item.image} alt="vendor icon" objectFit="contain" />
               </Col>
             ))}

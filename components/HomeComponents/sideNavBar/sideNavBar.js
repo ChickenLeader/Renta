@@ -94,7 +94,9 @@ const SideNavBar = () => {
                   inputProps={{ "aria-label": "Without label" }}
                 >
                   {areas.map((item) => (
-                    <MenuItem value={item.id}>{item.name}</MenuItem>
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.name}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>
@@ -105,6 +107,7 @@ const SideNavBar = () => {
               </Text>
               {properties.map((item) => (
                 <div
+                  key={item.id}
                   className={
                     property == item.id
                       ? styles.propertyView
@@ -171,6 +174,7 @@ const SideNavBar = () => {
               <div className={styles.roomView}>
                 {[1, 2, 3, 4, 5, 6, "More"].map((item) => (
                   <div
+                    key={item + ""}
                     className={room == item ? styles.selectedRoom : styles.room}
                     onClick={() => setroom(item)}
                   >

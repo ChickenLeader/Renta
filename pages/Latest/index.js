@@ -9,8 +9,8 @@ const LatestSeen = () => {
     <ScreenWrapper>
       <div className={styles.latestContainer}>
         <Row className="justify-content-around">
-          {[1, 2, 3, 4, 5, 6, 7, 8].map(() => (
-            <Col lg={6}>
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+            <Col key={item + ""} lg={6}>
               <PropertyCard />
             </Col>
           ))}

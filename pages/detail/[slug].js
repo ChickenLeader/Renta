@@ -99,7 +99,7 @@ const PropertyDetails = () => {
               </div>
               <Carousel ref={Ref}>
                 {images.map((item, index) => (
-                  <div className={styles.cardImgCon}>
+                  <div key={item.id} className={styles.cardImgCon}>
                     <Image
                       src={item.image}
                       // style={{ borderRadius: 20 }}
@@ -118,18 +118,16 @@ const PropertyDetails = () => {
           {/* Images Row */}
           <Row className="mb-4 align-items-center justify-content-center">
             {images.map((item, index) => (
-              <>
-                <Col md={3} className="p-1">
-                  <Image
-                    src={item.image}
-                    className={styles.images}
-                    onClick={() => {
-                      openCarousel();
-                      setindex(index);
-                    }}
-                  />
-                </Col>
-              </>
+              <Col key={item.id} md={3} className="p-1">
+                <Image
+                  src={item.image}
+                  className={styles.images}
+                  onClick={() => {
+                    openCarousel();
+                    setindex(index);
+                  }}
+                />
+              </Col>
             ))}
           </Row>
           {/* Details and contact Row */}
@@ -143,7 +141,7 @@ const PropertyDetails = () => {
               <Row className="align-items-center justify-content-center">
                 {tempIcons.map((item, index) => {
                   return (
-                    <Col md={6}>
+                    <Col key={item.id} md={6}>
                       <div
                         className="d-flex align-items-center my-2"
                         style={{
@@ -265,7 +263,7 @@ const PropertyDetails = () => {
                 </Text>
                 <div>
                   {tempIcons.map((item) => (
-                    <div className="d-flex flex-row align-self-center mb-3">
+                    <div key={item.id} className="d-flex flex-row align-self-center mb-3">
                       <Image
                         src={item.icon}
                         alt="space icon"
