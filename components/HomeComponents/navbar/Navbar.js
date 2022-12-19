@@ -103,6 +103,9 @@ export const Navbar = () => {
               onClick={() => {
                 setmodalStatus("success");
                 setsignedin(true);
+                setTimeout(() => {
+                  setIsModalOpen(false);
+                }, 2000);
               }}
             >
               <Text color="white" fontFamily={FontFamily.semiBold}>
@@ -163,42 +166,47 @@ export const Navbar = () => {
       </Modal>
       <RNav collapseOnSelect expand="lg" variant="light">
         <Container className={styles.subContainer}>
-          <RNav.Brand href="/Home">
+          <Link href="/Home">
             <div className={styles.NavImage}>
               <Image alt=" " src={logo} layout="fill" />
             </div>
-          </RNav.Brand>
+          </Link>
           <RNav.Toggle aria-controls="responsive-navbar-nav" />
           <RNav.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               {Nav_Items.map((item, index) => (
-                <div key={index}>
-                  <Nav.Link
-                    className={styles.navText}
+                <div
+                  key={index}
+                  className="d-flex flex-column justify-content-center"
+                >
+                  <Link
                     href={item.navigate}
                     // onClick={() => setselected(item.id)}
                   >
-                    <Text
-                      fontFamily={
-                        selected == item.id ? FontFamily.semiBold : null
-                      }
-                    >
-                      {item.name}
-                    </Text>
-                  </Nav.Link>
+                    <a className={styles.navText}>
+                      <Text
+                        fontFamily={
+                          selected == item.id ? FontFamily.semiBold : null
+                        }
+                      >
+                        {item.name}
+                      </Text>
+                    </a>
+                  </Link>
                 </div>
               ))}
-              <Nav.Link
-                className={styles.signIn}
-                href={signedin ? "/Units" : "#"}
-                onClick={() => {
-                  !signedin && setIsModalOpen(true);
-                }}
-              >
-                <Text color="white">
-                  {modalStatus == "success" ? "My units" : "Sign in"}
-                </Text>
-              </Nav.Link>
+              <Link href={signedin ? "/Units" : "#"}>
+                <div
+                  className={styles.signIn}
+                  onClick={() => {
+                    !signedin && setIsModalOpen(true);
+                  }}
+                >
+                  <Text color="white">
+                    {modalStatus == "success" ? "My units" : "Sign in"}
+                  </Text>
+                </div>
+              </Link>
               <Nav.Link
                 className={styles.navlangEn}
                 href="#"

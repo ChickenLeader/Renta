@@ -6,6 +6,7 @@ import styles from "./footer.module.css";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
 import logo from "public/assets/RentaFinalLogo.png";
+import Link from "next/link";
 export const Footer = () => {
   const router = useRouter();
   const pathName = router.pathname;
@@ -15,32 +16,32 @@ export const Footer = () => {
       id: 1,
       name: "Navigation",
       list: [
-        { id: 1, name: "Latest seen" },
-        { id: 2, name: "Shortlist" },
+        { id: 1, name: "Latest seen", navigateTo: "/Latest" },
+        { id: 2, name: "Shortlist", navigateTo: "#" },
       ],
     },
     {
       id: 2,
       name: "ABOUT RENTA",
       list: [
-        { id: 1, name: "Contact us" },
-        { id: 2, name: "About us" },
+        { id: 1, name: "Contact us", navigateTo: "/ContactUs" },
+        { id: 2, name: "About us", navigateTo: "/AboutUs" },
       ],
     },
     {
       id: 3,
       list: [
-        { id: 1, name: "Terms & conditions" },
-        { id: 2, name: "Privacy policy" },
+        { id: 1, name: "Terms & conditions", navigateTo: "#" },
+        { id: 2, name: "Privacy policy", navigateTo: "#" },
       ],
     },
     {
       id: 4,
       name: "ABOUT RENTA",
       list: [
-        { id: 1, name: "INSTAGRAM" },
-        { id: 2, name: "YOUTUBE" },
-        { id: 3, name: "FACEBOOK" },
+        { id: 1, name: "INSTAGRAM", navigateTo: "#" },
+        { id: 2, name: "YOUTUBE", navigateTo: "#" },
+        { id: 3, name: "FACEBOOK", navigateTo: "#" },
       ],
     },
   ];
@@ -103,16 +104,18 @@ export const Footer = () => {
                         )}
 
                         {item?.list?.map((sub_item) => (
-                          <div key={sub_item.id}>
-                            <Text
-                              fontSize={14}
-                              className="pb-2 mb-1"
-                              color="white"
-                              style={{cursor:"pointer"}}
-                            >
-                              {sub_item.name}
-                            </Text>
-                          </div>
+                          <Link href={sub_item.navigateTo + ""}>
+                            <div key={sub_item.id}>
+                              <Text
+                                fontSize={14}
+                                className="pb-2 mb-1"
+                                color="white"
+                                style={{ cursor: "pointer" }}
+                              >
+                                {sub_item.name}
+                              </Text>
+                            </div>
+                          </Link>
                         ))}
                       </div>
                     </Col>

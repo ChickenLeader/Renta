@@ -16,6 +16,7 @@
   height: 75px;
   width: 45px;
   position: relative;
+  cursor: pointer;
 }
 .signIn {
   background-color: #f15841;
@@ -23,10 +24,14 @@
   padding-inline: 3rem !important;
   padding-block: 10px;
   margin-inline: 28px;
+  cursor: pointer;
 }
 .navText {
   font-size: 18px;
   margin-inline: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .navlangEn {
   font-size: 18px;
