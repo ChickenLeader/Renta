@@ -113,6 +113,7 @@ export const Navbar = () => {
         ) : (
           <>
             <Image
+              alt=" "
               src={require("public/assets/success.svg")}
               width={226}
               height={226}
@@ -164,7 +165,7 @@ export const Navbar = () => {
         <Container className={styles.subContainer}>
           <RNav.Brand href="/Home">
             <div className={styles.NavImage}>
-              <Image src={logo} layout="fill" />
+              <Image alt=" " src={logo} layout="fill" />
             </div>
           </RNav.Brand>
           <RNav.Toggle aria-controls="responsive-navbar-nav" />

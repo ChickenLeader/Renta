@@ -47,7 +47,7 @@ const ContactUs = () => {
                     key={item.id + ""}
                     className="d-flex align-items-center my-4"
                   >
-                    <Image src={item.icon} />
+                    <Image alt=" " src={item.icon} />
                     <Text fontSize={18} className="d-inline ms-4">
                       {item.text}
                     </Text>

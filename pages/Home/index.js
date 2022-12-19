@@ -117,7 +117,7 @@ const Home = () => {
             className={styles.searchIcon}
             onClick={() => navigate.push("/Search")}
           >
-            <Image src={require("public/assets/searchIcon.svg")} />
+            <Image alt=" " src={require("public/assets/searchIcon.svg")} />
           </div>
         </div>
       </div>

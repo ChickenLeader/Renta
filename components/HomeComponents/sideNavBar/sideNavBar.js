@@ -66,7 +66,7 @@ const SideNavBar = () => {
           onClick={() => setExpendState(!isExpanded)}
         >
           {isExpanded ? (
-            <Image src={leftArrow} />
+            <Image alt=" " src={leftArrow} />
           ) : (
             <>
               <Text style={{ color: "white" }}>Filters </Text>

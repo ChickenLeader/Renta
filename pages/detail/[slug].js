@@ -77,7 +77,7 @@ const PropertyDetails = () => {
                 className={styles.leftButton}
                 onClick={() => Ref.current.prev()}
               >
-                <Image src={require("public/assets/Carousel-arrow-left.svg")} />
+                <Image alt=" " src={require("public/assets/Carousel-arrow-left.svg")} />
               </div>
 
               {/* Right Button  */}
@@ -86,6 +86,7 @@ const PropertyDetails = () => {
                 onClick={() => Ref.current.next()}
               >
                 <Image
+                alt=" "
                   src={require("public/assets/Carousel-arrow-right.svg")}
                 />
               </div>
@@ -120,6 +121,7 @@ const PropertyDetails = () => {
             {images.map((item, index) => (
               <Col key={item.id} md={3} className="p-1">
                 <Image
+                alt=" "
                   src={item.image}
                   className={styles.images}
                   onClick={() => {

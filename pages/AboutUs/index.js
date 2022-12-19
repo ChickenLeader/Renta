@@ -57,6 +57,7 @@ const AboutUs = (index) => {
           <Col>
             <div className="d-flex flex-column justify-content-center align-items-center h-100">
               <Image
+              alt=" "
                 src={require("public/assets/RentaLogo.png")}
                 width={170}
                 height={300}
