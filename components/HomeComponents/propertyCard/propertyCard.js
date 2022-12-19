@@ -9,7 +9,12 @@ import { FontFamily } from "constants/FontFamily";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/router";
 
-const img = require("../../../public/assets/houseCardx2.png");
+const img = require("../../../public/assets/houseCard.png");
+const images = [
+  require("../../../public/assets/houseCardx2.png"),
+  require("public/assets/ables-ladprao-27-condo-bangkok-515085b5ef237783c2000032_full-436x386.jpg"),
+  require("../../../public/assets/Honey3-436x386.jpeg"),
+];
 let tempIcons = [
   {
     id: 1,
@@ -53,11 +58,18 @@ const PropertyCard = () => {
   const [loading, setLoading] = useState(false);
   const sliderRef = useRef();
   const navigate = useRouter();
+
+  const next = () => {
+    setTimeout(() => {
+      sliderRef.current.next();
+    }, 200);
+  };
+
   return (
     <Card
       hoverable
       className={styles.cardCon}
-      onClick={() => navigate.push("/detail/jghghbbj")}
+      // onClick={() => navigate.push("/detail/jghghbbj")}
     >
       <Row>
         <Col md={4} className="p-0 position-relative">
@@ -66,7 +78,7 @@ const PropertyCard = () => {
               className={styles.prev}
               onClick={(e) => {
                 sliderRef.current.prev();
-                e.stopPropagation();
+                // e.stopPropagation();
               }}
             >
               <FiArrowLeft size={22} color="white" />
@@ -74,18 +86,18 @@ const PropertyCard = () => {
             <div
               className={styles.next}
               onClick={(e) => {
-                sliderRef.current.next();
-                e.stopPropagation();
+                next();
+                // e.stopPropagation();
               }}
             >
               <FiArrowRight size={22} />
             </div>
           </div>
           <Carousel ref={sliderRef} dots={{ className: styles.test }}>
-            {[1, 2, 3, 4].map((item) => (
+            {images.map((item) => (
               <div key={item + ""} className={styles.cardImgCon}>
                 <Image
-                  src={img}
+                  src={item}
                   style={{ borderRadius: 20 }}
                   alt="property card"
                   layout="fill"
@@ -96,7 +108,10 @@ const PropertyCard = () => {
           </Carousel>
         </Col>
         <Col md={4} xs={12} className="p-0">
-          <div className={styles.details}>
+          <div
+            className={styles.details}
+            onClick={() => navigate.push("/detail/jghghbbj")}
+          >
             <div>
               <Text fontSize={20} className="mb-3">
                 Small apartment
@@ -124,7 +139,10 @@ const PropertyCard = () => {
           </div>
         </Col>
         <Col md={4} xs={12} className={styles.iconsSection}>
-          <div className={styles.iconsCon}>
+          <div
+            className={styles.iconsCon}
+            onClick={() => navigate.push("/detail/jghghbbj")}
+          >
             <Row className="h-100 align-items-center d-flex justify-content-center m-auto">
               {tempIcons.map((item) => {
                 return (

@@ -108,6 +108,7 @@ export const Footer = () => {
                               fontSize={14}
                               className="pb-2 mb-1"
                               color="white"
+                              style={{cursor:"pointer"}}
                             >
                               {sub_item.name}
                             </Text>
