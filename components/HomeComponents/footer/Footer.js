@@ -104,8 +104,11 @@ export const Footer = () => {
                         )}
 
                         {item?.list?.map((sub_item) => (
-                          <Link href={sub_item.navigateTo + ""}>
-                            <div key={sub_item.id}>
+                          <Link
+                            key={sub_item.id}
+                            href={sub_item.navigateTo + ""}
+                          >
+                            <div>
                               <Text
                                 fontSize={14}
                                 className="pb-2 mb-1"
