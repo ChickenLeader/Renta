@@ -60,20 +60,28 @@
 @media only screen and (max-width: 1000px) {
   /* For mobile phones: */
   .signIn {
-    margin-inline: 20px;
-    max-width: 150px;
+    margin-inline: 30px;
+    max-width: 170px;
+    margin-block: 15px;
     /* order: -1; */
+    /* margin: auto; */
   }
   .navlangAr {
-    margin-left: 20px;
+    margin-left: 30px;
   }
   .navlangEn {
-    margin-left: 20px;
+    margin-left: 30px;
   }
   /* if he wants the navbar to drag the screen down instead of being above it, then uncomment position static, and remove the zIndex  */
   .customNavContainer {
     /* position: static; */
     background-color: #fff;
     z-index: 5000;
+  }
+  .navTextCon {
+    margin-inline-start: 15px;
+  }
+  .navText {
+    margin: 15px;
   }
 }

@@ -20,6 +20,7 @@
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  height: 100%;
 }
 .ChatwitUs {
   padding: 5px;
@@ -81,12 +82,15 @@
   right: 5%;
   z-index: 2500;
 }
+.phoneNumber {
+  text-decoration: underline;
+  text-align: center;
+}
 
 @media only screen and (max-width: 768px) {
   .carouselCon {
-   margin-inline: 15%;
+    margin-inline: 15%;
   }
-
   .closeButton {
     cursor: pointer;
     transition: 0.4ms;
@@ -94,5 +98,12 @@
     right: 5%;
     top: 10px;
     z-index: 2500;
+  }
+  .phoneNumber {
+    text-align: start;
+  }
+  .ContainerFluid {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
 }

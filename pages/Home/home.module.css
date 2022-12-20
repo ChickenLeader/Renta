@@ -63,6 +63,9 @@
     margin-block: 20px;
     width: 100%;
   }
+  .areas {
+    border: none !important;
+  }
 }
 /* @media only screen and (max-width: 400px) {
     .searchCon {

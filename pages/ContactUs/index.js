@@ -25,7 +25,7 @@ const ContactUs = () => {
     <ScreenWrapper>
       <div className={styles.ContactUsContainer}>
         <Row className="justify-content-between">
-          <Col lg={6} className="pb-5 mb-5">
+          <Col lg={6} className={styles.detailsCol}>
             <Text
               fontSize={24}
               color={Colors.primary}

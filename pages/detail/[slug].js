@@ -48,6 +48,7 @@ let tempIcons = [
 const PropertyDetails = () => {
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(null);
+  const width = window.innerWidth
   const Ref = useRef();
 
   const openCarousel = () => {
@@ -64,6 +65,7 @@ const PropertyDetails = () => {
         Ref.current.goTo(index, true);
       }, 500);
     }
+    console.log(width);
   }, [index, Ref]);
 
   return (
@@ -77,7 +79,10 @@ const PropertyDetails = () => {
                 className={styles.leftButton}
                 onClick={() => Ref.current.prev()}
               >
-                <Image alt=" " src={require("public/assets/Carousel-arrow-left.svg")} />
+                <Image
+                  alt=" "
+                  src={require("public/assets/Carousel-arrow-left.svg")}
+                />
               </div>
 
               {/* Right Button  */}
@@ -86,7 +91,7 @@ const PropertyDetails = () => {
                 onClick={() => Ref.current.next()}
               >
                 <Image
-                alt=" "
+                  alt=" "
                   src={require("public/assets/Carousel-arrow-right.svg")}
                 />
               </div>
@@ -121,7 +126,7 @@ const PropertyDetails = () => {
             {images.map((item, index) => (
               <Col key={item.id} md={3} className="p-1">
                 <Image
-                alt=" "
+                  alt=" "
                   src={item.image}
                   className={styles.images}
                   onClick={() => {
@@ -147,7 +152,10 @@ const PropertyDetails = () => {
                       <div
                         className="d-flex align-items-center my-2"
                         style={{
-                          justifyContent: index % 2 ? "center" : "flex-start",
+                          justifyContent:
+                            width > 768 && index % 2
+                              ? "center"
+                              : "flex-start",
                         }}
                       >
                         <Image
@@ -202,10 +210,7 @@ const PropertyDetails = () => {
                         <Text
                           color="white"
                           fontSize={18}
-                          style={{
-                            textDecoration: "underline",
-                            textAlign: "center",
-                          }}
+                          className={styles.phoneNumber}
                         >
                           01001001000
                         </Text>
@@ -214,7 +219,7 @@ const PropertyDetails = () => {
                   </Col>
                   <Col>
                     <Row className={styles.ChatwitUs}>
-                      <Col md={8}>
+                      <Col md={8} xs={7}>
                         <Text>Chat with us</Text>
                       </Col>
                       <Col className="pe-0 text-center">
@@ -224,7 +229,7 @@ const PropertyDetails = () => {
                   </Col>
                   <Col>
                     <Row className={styles.ChatwitUs}>
-                      <Col md={8}>
+                      <Col md={8} xs={7}>
                         <Text>Add to Shortlist</Text>
                       </Col>
                       <Col className="pe-0 text-center">
@@ -238,7 +243,7 @@ const PropertyDetails = () => {
           </Row>
           {/* Description and map Row */}
           <Row>
-            <Col>
+            <Col md={6}>
               <div>
                 <Text
                   fontSize={18}
@@ -265,7 +270,10 @@ const PropertyDetails = () => {
                 </Text>
                 <div>
                   {tempIcons.map((item) => (
-                    <div key={item.id} className="d-flex flex-row align-self-center mb-3">
+                    <div
+                      key={item.id}
+                      className="d-flex flex-row align-self-center mb-3"
+                    >
                       <Image
                         src={item.icon}
                         alt="space icon"
@@ -281,7 +289,7 @@ const PropertyDetails = () => {
                 </div>
               </div>
             </Col>
-            <Col>
+            <Col md={6}>
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
                 width="100%"

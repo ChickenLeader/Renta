@@ -171,7 +171,7 @@ export const Navbar = () => {
               <Image alt=" " src={logo} layout="fill" />
             </div>
           </Link>
-          <RNav.Toggle aria-controls="responsive-navbar-nav" />
+          <RNav.Toggle aria-controls="responsive-navbar-nav"/>
           <RNav.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               {Nav_Items.map((item, index) => (
@@ -183,15 +183,17 @@ export const Navbar = () => {
                     href={item.navigate}
                     // onClick={() => setselected(item.id)}
                   >
-                    <a className={styles.navText}>
-                      <Text
-                        fontFamily={
-                          selected == item.id ? FontFamily.semiBold : null
-                        }
-                      >
-                        {item.name}
-                      </Text>
-                    </a>
+                    <div className={styles.navTextCon}>
+                      <a className={styles.navText}>
+                        <Text
+                          fontFamily={
+                            selected == item.id ? FontFamily.semiBold : null
+                          }
+                        >
+                          {item.name}
+                        </Text>
+                      </a>
+                    </div>
                   </Link>
                 </div>
               ))}
@@ -202,7 +204,7 @@ export const Navbar = () => {
                     !signedin && setIsModalOpen(true);
                   }}
                 >
-                  <Text color="white">
+                  <Text color="white" style={{textAlign:"center"}}>
                     {modalStatus == "success" ? "My units" : "Sign in"}
                   </Text>
                 </div>

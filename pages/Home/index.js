@@ -46,7 +46,7 @@ const Home = () => {
   return (
     <div className={styles.homeCon}>
       <div className={styles.subCon}>
-        <div className="mb-5">
+        <div className="mb-5 text-center">
           <Text
             fontFamily={FontFamily.bold}
             fontSize={64}
@@ -68,6 +68,7 @@ const Home = () => {
             <Select
               value={area}
               onChange={(event) => setarea(event.target.value)}
+              style={{ border: "none" }}
               // inputComponent={dropdownIcon}
             >
               {areas.map((item) => (

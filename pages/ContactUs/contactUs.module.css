@@ -8,3 +8,16 @@
   padding-bottom: 5rem;
   margin-bottom: 7rem;
 }
+.detailsCol {
+  margin-bottom: 5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .ContactUsContainer {
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+  .detailsCol {
+    margin-bottom: 0;
+  }
+}

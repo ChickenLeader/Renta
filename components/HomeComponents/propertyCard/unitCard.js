@@ -5,10 +5,12 @@ import Image from "next/image";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { Card } from "antd";
+import { useRouter } from "next/router";
 const img = require("../../../public/assets/houseCardx2.png");
 
 const UnitCard = () => {
   const [loading, setLoading] = useState(false);
+  const navigate = useRouter()
   let tempIcons = [
     {
       id: 1,
@@ -48,7 +50,11 @@ const UnitCard = () => {
     },
   ];
   return (
-    <Card hoverable className={styles.unitCardCon}>
+    <Card
+      hoverable
+      className={styles.unitCardCon}
+      onClick={() => navigate.push("/detail/jghghbbj")}
+    >
       <Row>
         <Col md={4} className="p-0 position-relative">
           <div className={styles.cardImgCon}>
@@ -78,7 +84,7 @@ const UnitCard = () => {
         <Col md={4} className="ps-0">
           <div className={styles.iconsCon}>
             <Row
-              style={{ minHeight: 120}}
+              style={{ minHeight: 120 }}
               className="align-items-center p-1 d-flex justify-content-center border-start border-1 m-auto"
             >
               {tempIcons.map((item) => {
