@@ -48,7 +48,7 @@ let tempIcons = [
 const PropertyDetails = () => {
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(null);
-  const width = window.innerWidth
+  const [innerWidth, setinnerWidth] = useState(0);
   const Ref = useRef();
 
   const openCarousel = () => {
@@ -60,12 +60,12 @@ const PropertyDetails = () => {
   };
 
   useEffect(() => {
+    setinnerWidth(window.innerWidth);
     if (index) {
       setTimeout(() => {
         Ref.current.goTo(index, true);
       }, 500);
     }
-    console.log(width);
   }, [index, Ref]);
 
   return (
@@ -153,7 +153,7 @@ const PropertyDetails = () => {
                         className="d-flex align-items-center my-2"
                         style={{
                           justifyContent:
-                            width > 768 && index % 2
+                            innerWidth > 768 && index % 2
                               ? "center"
                               : "flex-start",
                         }}
