@@ -22,6 +22,7 @@ export const Navbar = () => {
   const [signedin, setsignedin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalStatus, setmodalStatus] = useState("signIn");
+  const [expand, setexpand] = useState(false);
   const router = useRouter();
   const pathName = router.pathname;
 
@@ -164,20 +165,24 @@ export const Navbar = () => {
           <HandleModalView />
         </div>
       </Modal>
-      <RNav collapseOnSelect expand="lg" variant="light">
+      <RNav collapseOnSelect expanded={expand} expand="lg" variant="light">
         <Container className={styles.subContainer}>
           <Link href="/Home">
             <div className={styles.NavImage}>
               <Image alt=" " src={logo} layout="fill" />
             </div>
           </Link>
-          <RNav.Toggle aria-controls="responsive-navbar-nav"/>
+          <RNav.Toggle
+            aria-controls="responsive-navbar-nav"
+            onClick={() => setexpand(!expand)}
+          />
           <RNav.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto">
               {Nav_Items.map((item, index) => (
                 <div
                   key={index}
                   className="d-flex flex-column justify-content-center"
+                  onClick={() => setexpand(false)}
                 >
                   <Link
                     href={item.navigate}
@@ -204,7 +209,7 @@ export const Navbar = () => {
                     !signedin && setIsModalOpen(true);
                   }}
                 >
-                  <Text color="white" style={{textAlign:"center"}}>
+                  <Text color="white" style={{ textAlign: "center" }}>
                     {modalStatus == "success" ? "My units" : "Sign in"}
                   </Text>
                 </div>
