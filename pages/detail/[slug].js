@@ -107,7 +107,7 @@ const PropertyDetails = () => {
                 onClick={(e) => e.stopPropagation()}
               >
                 {images.map((item, index) => (
-                  <Carousel.Item>
+                  <Carousel.Item key={item.id}>
                     <div className="w-100 position-relative">
                       <Image
                         src={item.image}
