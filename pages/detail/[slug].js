@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Col, Container, Row } from "react-bootstrap";
+import { Carousel, Col, Container, Row } from "react-bootstrap";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import Text from "components/General/Text";
 import styles from "./detail.module.css";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
 import { IoLogoWhatsapp, IoMdHeart, IoMdClose } from "react-icons/io";
-import { Carousel } from "antd";
+// import { Carousel } from "antd";
 
 const images = [
   { id: 1, image: require("public/assets/housex2.png") },
@@ -47,7 +47,7 @@ let tempIcons = [
 
 const PropertyDetails = () => {
   const [showCarousel, setshowCarousel] = useState(false);
-  const [index, setindex] = useState(null);
+  const [index, setindex] = useState(0);
   const [innerWidth, setinnerWidth] = useState(0);
   const Ref = useRef();
 
@@ -59,23 +59,27 @@ const PropertyDetails = () => {
     setshowCarousel(false);
   };
 
+  const handleSelect = (selectedIndex, e) => {
+    setindex(selectedIndex);
+  };
+
   useEffect(() => {
     setinnerWidth(window.innerWidth);
-    if (index) {
-      setTimeout(() => {
-        Ref.current.goTo(index, true);
-      }, 500);
-    }
+    // if (index) {
+    //   setTimeout(() => {
+    //     Ref.current.goTo(index, true);
+    //   }, 500);
+    // }
   }, [index, Ref]);
 
   return (
     <ScreenWrapper>
       <div className={styles.ContainerFluid}>
         {showCarousel && (
-          <div className={styles.carouselLayer}>
+          <div className={styles.carouselLayer} onClick={() => closeCarousel()}>
             <div className={styles.carouselCon}>
               {/* Left Button  */}
-              <div
+              {/* <div
                 className={styles.leftButton}
                 onClick={() => Ref.current.prev()}
               >
@@ -83,10 +87,10 @@ const PropertyDetails = () => {
                   alt=" "
                   src={require("public/assets/Carousel-arrow-left.svg")}
                 />
-              </div>
+              </div> */}
 
               {/* Right Button  */}
-              <div
+              {/* <div
                 className={styles.rightButton}
                 onClick={() => Ref.current.next()}
               >
@@ -94,16 +98,35 @@ const PropertyDetails = () => {
                   alt=" "
                   src={require("public/assets/Carousel-arrow-right.svg")}
                 />
-              </div>
+              </div> */}
 
-              {/* close button */}
-              <div
-                className={styles.closeButton}
-                onClick={() => closeCarousel()}
+              <Carousel
+                activeIndex={index}
+                onSelect={handleSelect}
+                className={styles.carousel}
+                onClick={(e) => e.stopPropagation()}
               >
-                <IoMdClose size={36} color="white" />
-              </div>
-              <Carousel ref={Ref}>
+                {images.map((item, index) => (
+                  <Carousel.Item>
+                    <div className="w-100 position-relative">
+                      <Image
+                        src={item.image}
+                        className="d-block w-100"
+                        alt="property card"
+                        objectFit="contain"
+                      />
+                      {/* <div
+                        className={styles.closeButton}
+                        onClick={() => closeCarousel()}
+                      >
+                        <IoMdClose size={36} color="black" />
+                      </div> */}
+                    </div>
+                  </Carousel.Item>
+                ))}
+                {/* close button */}
+              </Carousel>
+              {/* <Carousel ref={Ref}>
                 {images.map((item, index) => (
                   <div key={item.id} className={styles.cardImgCon}>
                     <Image
@@ -115,7 +138,7 @@ const PropertyDetails = () => {
                     />
                   </div>
                 ))}
-              </Carousel>
+              </Carousel> */}
             </div>
           </div>
         )}

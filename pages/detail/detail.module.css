@@ -36,7 +36,7 @@
 }
 /* // Carousel   */
 .carouselLayer {
-  background-color: aliceblue;
+  background-color: rgba(255, 255, 255, 0.95);
   position: fixed;
   text-align: center;
   inset: 0;
@@ -46,10 +46,14 @@
   /* display: grid; */
 }
 .carouselCon {
-  position: absolute;
+  position: relative;
   width: 100%;
-  top: 50%;
-  transform: translateY(-50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* top: 50%;
+  transform: translateY(-50%); */
 }
 
 .cardImgCon {
@@ -64,11 +68,11 @@
   transition: 0.4ms;
   position: absolute;
   right: 22%;
-  top: 20px;
+  top: 25%;
   z-index: 2500;
 }
 
-.leftButton {
+/* .leftButton {
   cursor: pointer;
   position: absolute;
   top: 50%;
@@ -81,16 +85,17 @@
   top: 50%;
   right: 5%;
   z-index: 2500;
-}
+} */
 .phoneNumber {
   text-decoration: underline;
   text-align: center;
 }
 
+.carousel {
+  width: 100%;
+}
+
 @media only screen and (max-width: 768px) {
-  .carouselCon {
-    margin-inline: 15%;
-  }
   .closeButton {
     cursor: pointer;
     transition: 0.4ms;
@@ -105,5 +110,8 @@
   .ContainerFluid {
     padding-top: 2rem;
     padding-bottom: 2rem;
+  }
+  .carousel {
+    width: 90%;
   }
 }

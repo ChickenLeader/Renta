@@ -9,8 +9,6 @@
   overflow: auto;
 }
 
-
-
 :root {
   --ff-Black: "Gilroy-Black";
   --ff-Bold: "Gilroy-Bold";
@@ -136,6 +134,27 @@
   padding-inline: 10px !important;
 }
 
-.ant-btn-primary:hover, .ant-btn-primary:focus {
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
   background-color: #ad3a28;
+}
+
+// detail Carousel
+
+.carousel-control-next-icon {
+  background-image: url("../public/assets/Carousel-arrow-right.svg");
+  width: 50px;
+  height: 50px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 25%;
+  opacity: 1 !important;
+}
+
+.carousel-control-prev-icon {
+  background-image: url("../public/assets/Carousel-arrow-left.svg");
+  width: 50px;
+  height: 50px;
 }
