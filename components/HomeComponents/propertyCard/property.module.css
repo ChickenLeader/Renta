@@ -25,6 +25,14 @@
   flex-wrap: wrap;
   position: relative;
 }
+.customCardImgCon {
+  height: 200px;
+  min-height: 250px;
+  width: 100%;
+  border-radius: 20px;
+  flex-wrap: wrap;
+  position: relative;
+}
 .ant-card-body {
   padding: 0 !important;
 }
