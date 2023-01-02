@@ -2,11 +2,35 @@ import Text from "components/General/Text";
 import Image from "next/image";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
-import styles from "./footer.module.css";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
 import logo from "public/assets/RentaFinalLogo.png";
 import Link from "next/link";
+import Slider from "react-slick";
+import styles from "./footer.module.css";
+
+var settings = {
+  dots: false,
+  arrows: false,
+  autoplay: true,
+  speed: 500,
+  slidesToShow: 5,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  centerMode: true,
+  infinite: true,
+  responsive: [
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
+};
+
+
 export const Footer = () => {
   const router = useRouter();
   const pathName = router.pathname;
@@ -67,13 +91,19 @@ export const Footer = () => {
 
       {pathName.includes("/Home") ? (
         <div className="w-100 align-items-center">
-          <Row className="justify-content-between align-items-center">
+          {/* <Row className="justify-content-between align-items-center">
             {HomeVendors.map((item) => (
               <Col key={item.id} md={2} xs={6} className={styles.vendorImage}>
                 <Image src={item.image} alt="vendor icon" objectFit="contain" />
               </Col>
             ))}
-          </Row>
+          </Row> */}
+          <Slider {...settings}>
+            {HomeVendors.map((item) => (
+              <Image src={item.image} alt="vendor icon" objectFit="contain" />
+            ))}
+          </Slider>
+
         </div>
       ) : (
         <div>
