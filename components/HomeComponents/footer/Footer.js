@@ -100,7 +100,7 @@ export const Footer = () => {
           </Row> */}
           <Slider {...settings}>
             {HomeVendors.map((item) => (
-              <Image src={item.image} alt="vendor icon" objectFit="contain" />
+              <Image key={item.id + ""} src={item.image} alt="vendor icon" objectFit="contain" />
             ))}
           </Slider>
 
