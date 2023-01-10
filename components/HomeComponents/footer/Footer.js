@@ -4,7 +4,7 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
-import logo from "public/assets/RentaFinalLogo.png";
+import logo from "public/assets/RentaFinalLogo2x.png";
 import Link from "next/link";
 import Slider from "react-slick";
 import styles from "./footer.module.css";
@@ -100,7 +100,7 @@ export const Footer = () => {
           </Row> */}
           <Slider {...settings}>
             {HomeVendors.map((item) => (
-              <Image key={item.id + ""} src={item.image} alt="vendor icon" objectFit="contain" />
+              <Image key={item.id + ""} src={item.image} alt="vendor icon" objectFit="contain" className={styles.vendorImage} />
             ))}
           </Slider>
 
@@ -110,7 +110,7 @@ export const Footer = () => {
           <Row>
             <Col lg={4} sm={6} xs={12}>
               <div className={styles.footerImage}>
-                <Image alt="logo" src={logo} />
+                <Image objectFit="fill" alt="logo" src={logo} className={styles.footerLogo} />
               </div>
             </Col>
             <Col>

@@ -106,7 +106,8 @@
 }
 
 .ant-carousel .slick-dots-bottom {
-  bottom: 0;
+  bottom: 5px;
+  margin: 0 !important;
 }
 
 .ant-carousel .slick-dots li.slick-active {
@@ -126,6 +127,9 @@
 .ant-carousel .slick-dots li.slick-active button {
   background: #fff;
   opacity: 1;
+}
+.slick-dots li button:before {
+  display: none !important;
 }
 
 .css-1ne7pc9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {

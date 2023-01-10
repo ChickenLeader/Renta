@@ -113,7 +113,7 @@ const PropertyCard = () => {
             onClick={() => navigate.push("/detail/jghghbbj")}
           >
             <div>
-              <Text fontSize={20} className="mb-3">
+              <Text fontSize={20} className={styles.propertyType}>
                 Small apartment
               </Text>
               <Text color={Colors.primary} fontSize={14}>

@@ -86,6 +86,10 @@
   justify-content: center;
 }
 
+.propertyType {
+  /* text-align: center; */
+  margin-bottom: 1rem !important;
+}
 @media only screen and (max-width: 768px) {
   .unitCardCon {
     max-height: fit-content;
@@ -95,6 +99,9 @@
   }
   .details {
     align-items: center;
+  }
+  .propertyType {
+    text-align: center;
   }
 }
 
