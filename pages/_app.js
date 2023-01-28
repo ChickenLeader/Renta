@@ -11,9 +11,9 @@ import { loginHandler } from "hooks/loginHandler";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { appWithTranslation } from "next-i18next";
-import { Navbar } from "components/HomeComponents/navbar/Navbar";
+import Navbar from "components/HomeComponents/navbar/Navbar";
+import Footer from "components/HomeComponents/footer/Footer";
 import { store } from "../redux";
-import { Footer } from "components/HomeComponents/footer/Footer";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -68,6 +68,5 @@ function MyApp({ Component, pageProps }) {
 //     },
 //   };
 // }
-
 
 export default appWithTranslation(MyApp);

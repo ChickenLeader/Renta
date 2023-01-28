@@ -1,9 +1,10 @@
+import { Services } from "apis/Services/Services";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./aboutUs.module.css";
 const aboutUs = [
@@ -32,17 +33,21 @@ const aboutUs = [
       "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est",
   },
 ];
-const AboutUs = (index) => {
-  const aboutItem = (index) => (
+const AboutUs = ({ data }) => {
+  const AboutItem = ({ index, title, text }) => (
     <div className="py-4 mb-4">
       <Text
         fontSize={24}
         color={Colors.primary}
         fontFamily={FontFamily.semiBold}
       >
-        {aboutUs[index]["title"]}
+        {title}
+        {/* {aboutUs[index]["title"]} */}
       </Text>
-      <Text fontSize={18}>{aboutUs[index]["description"]}</Text>
+      <Text fontSize={18}>
+        {/* {aboutUs[index]["description"]} */}
+        {text}
+      </Text>
     </div>
   );
 
@@ -51,13 +56,21 @@ const AboutUs = (index) => {
       <div className={styles.ContainerFluid}>
         <Row className="mb-4">
           <Col>
-            {aboutItem(0)}
-            {aboutItem(1)}
+            <AboutItem
+              index={0}
+              title={data?.first_paragraph_title}
+              text={data?.first_paragraph_text}
+            />
+            <AboutItem
+              index={1}
+              title={data?.second_paragraph_title}
+              text={data?.second_paragraph_text}
+            />
           </Col>
           <Col>
             <div className="d-flex flex-column justify-content-center align-items-center h-100">
               <Image
-              alt=" "
+                alt=" "
                 src={require("public/assets/RentaLogo.png")}
                 width={170}
                 height={300}
@@ -65,11 +78,24 @@ const AboutUs = (index) => {
             </div>
           </Col>
         </Row>
-        {aboutItem(2)}
-        {aboutItem(3)}
+        <AboutItem
+          index={2}
+          title={data?.third_paragraph_title}
+          text={data?.third_paragraph_text}
+        />
+        <AboutItem
+          index={3}
+          title={data?.forth_paragraph_title}
+          text={data?.forth_paragraph_text}
+        />
       </div>
     </ScreenWrapper>
   );
 };
+
+export async function getServerSideProps() {
+  const data = await Services.aboutUs();
+  return { props: { data } };
+}
 
 export default AboutUs;

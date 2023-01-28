@@ -1,6 +1,6 @@
 import Text from "components/General/Text";
 import Image from "next/image";
-import React from "react";
+import React, { memo } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
@@ -162,3 +162,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default memo(Footer)

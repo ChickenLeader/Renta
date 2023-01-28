@@ -31,7 +31,7 @@ const Text = ({
       style={style}
       className={className}
     >
-      {isTranslated ? t(String(children)) : children}
+      {isTranslated ? t(String(children)) : children ? "" : ""}
     </Typography>
   );
 };

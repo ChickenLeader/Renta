@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Container, Nav, Navbar as RNav } from "react-bootstrap";
 import Image from "next/image";
 import logo from "public/assets/RentaLogox2.png";
@@ -17,7 +17,7 @@ const Nav_Items = [
   { id: 3, name: "About us", navigate: "/AboutUs" },
 ];
 
-export const Navbar = () => {
+const Navbar = () => {
   const [selected, setselected] = useState("");
   const [signedin, setsignedin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -231,3 +231,5 @@ export const Navbar = () => {
     </div>
   );
 };
+
+export default memo(Navbar);
