@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import { Col, Container, Row } from "react-bootstrap";
 import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
@@ -6,7 +6,21 @@ import SideNavBar from "components/HomeComponents/sideNavBar/sideNavBar";
 import { Pagination } from "@mui/material";
 import { Colors } from "constants/Colors";
 import styles from "./search.module.css";
-const Search = () => {
+import { useRouter } from "next/router";
+import { Services } from "apis/Services/Services";
+
+const Search = ({ data }) => {
+  const router = useRouter();
+  const test = async () => {
+    const properties = await Services.getProperties();
+    console.log(properties, "normal");
+  };
+
+  useEffect(() => {
+    test();
+    // console.log(JSON.parse(router.query.filter), "sjksshdj");
+    console.log(data, "server Side");
+  }, []);
   return (
     <ScreenWrapper>
       <Container fluid>
@@ -36,4 +50,9 @@ const Search = () => {
   );
 };
 
+export async function getServerSideProps() {
+  const data = await Services.getProperties();
+  // console.log(query,"sssssss");
+  return { props: { data } };
+}
 export default Search;

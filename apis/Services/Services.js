@@ -11,14 +11,20 @@ export class Services {
   static aboutUs() {
     return Network.fetch(ENDPOINTS.about_us.url, {
       method: ENDPOINTS.about_us.method,
-      
     });
   }
-  static search() {
-    return Network.fetch(ENDPOINTS.search.url, {
-      method: ENDPOINTS.search.method,
+  // Filter
+  static areas() {
+    return Network.fetch(ENDPOINTS.getAreas.url, {
+      method: ENDPOINTS.getAreas.method,
     });
   }
+  static propertyTypes() {
+    return Network.fetch(ENDPOINTS.propertyTypes.url, {
+      method: ENDPOINTS.propertyTypes.method,
+    });
+  }
+
   static getContactUs() {
     return Network.fetch(ENDPOINTS.getContactUs.url, {
       method: ENDPOINTS.getContactUs.method,

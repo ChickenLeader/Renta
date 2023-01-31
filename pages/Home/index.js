@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import styles from "./home.module.css";
 import Text from "components/General/Text";
@@ -7,30 +7,42 @@ import { FontFamily } from "constants/FontFamily";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { FiChevronDown } from "react-icons/fi";
 import Image from "next/image";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
+import { Services } from "apis/Services/Services";
 
-let areas = [
-  { id: 1, name: "New Cairo" },
-  { id: 2, name: "Zamalek" },
-  { id: 3, name: "Downtown" },
-];
+// let areas = [
+//   { id: 1, name: "New Cairo" },
+//   { id: 2, name: "Zamalek" },
+//   { id: 3, name: "Downtown" },
+// ];
 
-let properties = [
-  { id: 1, name: "Apartment" },
-  { id: 2, name: "Office" },
-  { id: 3, name: "Villa" },
-];
+// let properties = [
+//   { id: 1, name: "Apartment" },
+//   { id: 2, name: "Office" },
+//   { id: 3, name: "Villa" },
+// ];
+
 let monthlyRates = [
-  { id: 1, name: "+2000 LE" },
-  { id: 2, name: "+5000 LE" },
-  { id: 3, name: "+7000 LE" },
+  { id: 1, min: 2000, max: 5000, name: "2000 - 5000 LE" },
+  { id: 2, min: 5000, max: 8000, name: "5000 - 8000 LE" },
+  { id: 3, min: 8000, max: 11000, name: "8000 - 11000 LE" },
+  { id: 4, min: 11000, max: 15000, name: "11000 - 15000 LE" },
+  { id: 5, min: 15000, max: 20000, name: "15000 - 19000 LE" },
+  { id: 6, min: 20000, max: 25000, name: "19000 - 23000 LE" },
+  { id: 7, min: 25000, max: 30000, name: "23000 - 30000 LE" },
 ];
 
-const Home = () => {
+const Home = ({ areas, propertyType }) => {
+  const router = useRouter();
   const [area, setarea] = useState(1);
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
-  const navigate = useRouter();
+  const filterData = {
+    area: areas[area - 1]["name"],
+    property_type: propertyType[property - 1]["name"],
+    price_gte: monthlyRates[monthlyRate - 1]["min"],
+    price_lte: monthlyRates[monthlyRate - 1]["max"],
+  };
 
   const dropdownIcon = (props) => {
     return (
@@ -89,7 +101,7 @@ const Home = () => {
               // label="Age"
               onChange={(event) => setproperty(event.target.value)}
             >
-              {properties.map((item) => (
+              {propertyType.map((item) => (
                 <MenuItem key={item.id} value={item.id}>
                   {item.name}
                 </MenuItem>
@@ -107,16 +119,22 @@ const Home = () => {
               // label="Age"
               onChange={(event) => setmonthlyRate(event.target.value)}
             >
+              {/* {item.name} */}
               {monthlyRates.map((item) => (
                 <MenuItem key={item.id} value={item.id}>
-                  {item.name}
+                  {`${item.min} - ${item.max} LE`}
                 </MenuItem>
               ))}
             </Select>
           </FormControl>
           <div
             className={styles.searchIcon}
-            onClick={() => navigate.push("/Search")}
+            onClick={() => {
+              router.push({
+                pathname: "/Search",
+                query: { filter: JSON.stringify(filterData) },
+              });
+            }}
           >
             <Image alt=" " src={require("public/assets/searchIcon.svg")} />
           </div>
@@ -126,4 +144,10 @@ const Home = () => {
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const areas = await Services.areas();
+  const propertyType = await Services.propertyTypes();
+  return { props: { areas, propertyType } };
+}
 export default Home;

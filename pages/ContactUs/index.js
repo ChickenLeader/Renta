@@ -1,3 +1,4 @@
+import { Services } from "apis/Services/Services";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
@@ -7,17 +8,21 @@ import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./contactUs.module.css";
 
-const ContactUs = () => {
+const ContactUs = ({ data }) => {
   const ContactUsArr = [
-    { id: 1, text: +20012412342, icon: require("public/assets/phoneSvg.svg") },
+    {
+      id: 1,
+      text: data?.contact_no,
+      icon: require("public/assets/phoneSvg.svg"),
+    },
     {
       id: 2,
-      text: "renta@info.com",
+      text: data?.email,
       icon: require("public/assets/mailSvg.svg"),
     },
     {
       id: 3,
-      text: "13 Abbas elakkad, Nasr city, cairo, egypt",
+      text: data?.address,
       icon: require("public/assets/locationSvg.svg"),
     },
   ];
@@ -34,11 +39,7 @@ const ContactUs = () => {
               Find us
             </Text>
             <Text fontSize={18} className="my-3">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est
+              {data?.find_us}
             </Text>
             <div className="my-5">
               {ContactUsArr.map((item) => {
@@ -71,5 +72,10 @@ const ContactUs = () => {
     </ScreenWrapper>
   );
 };
+
+export async function getServerSideProps() {
+  const data = await Services.getContactUs();
+  return { props: { data } };
+}
 
 export default ContactUs;

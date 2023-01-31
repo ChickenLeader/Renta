@@ -9,8 +9,12 @@ export const ENDPOINTS = {
     url: `${DomainUrl}/about-us/`,
     method: "GET",
   },
-  search: {
+  getAreas: {
     url: `${DomainUrl}/area/`,
+    method: "GET",
+  },
+  propertyTypes: {
+    url: `${DomainUrl}/property-type/`,
     method: "GET",
   },
   getContactUs: {
