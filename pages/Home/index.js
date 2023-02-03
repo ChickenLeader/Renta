@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Router, { useRouter } from "next/router";
+import Image from "next/image";
+import { useDispatch } from "react-redux";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import styles from "./home.module.css";
 import Text from "components/General/Text";
@@ -6,9 +9,8 @@ import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { FiChevronDown } from "react-icons/fi";
-import Image from "next/image";
-import Router, { useRouter } from "next/router";
 import { Services } from "apis/Services/Services";
+import { setFiltersData } from "redux/appReducer";
 
 // let areas = [
 //   { id: 1, name: "New Cairo" },
@@ -34,6 +36,7 @@ let monthlyRates = [
 
 const Home = ({ areas, propertyType }) => {
   const router = useRouter();
+  const dispatch = useDispatch();
   const [area, setarea] = useState(1);
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
@@ -134,11 +137,12 @@ const Home = ({ areas, propertyType }) => {
           <div
             className={styles.searchIcon}
             onClick={() => {
+              dispatch(setFiltersData(filterData));
               router.push({
                 pathname: "/Search",
                 query: {
                   filter: JSON.stringify(selectedFilters),
-                  filterData: JSON.stringify(filterData),
+                  // filterData: JSON.stringify(filterData),
                 },
               });
             }}
