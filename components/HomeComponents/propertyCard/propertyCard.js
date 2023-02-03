@@ -54,8 +54,7 @@ let tempIcons = [
   },
 ];
 
-const PropertyCard = () => {
-  const [loading, setLoading] = useState(false);
+const PropertyCard = ({ item }) => {
   const sliderRef = useRef();
   const navigate = useRouter();
 
@@ -63,6 +62,10 @@ const PropertyCard = () => {
     setTimeout(() => {
       sliderRef.current.next();
     }, 200);
+  };
+
+  const numbersToPrice = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   return (
@@ -114,10 +117,10 @@ const PropertyCard = () => {
           >
             <div>
               <Text fontSize={20} className={styles.propertyType}>
-                Small apartment
+                {item.title}
               </Text>
               <Text color={Colors.primary} fontSize={14}>
-                Mountain View, New cairo
+                {item.address}
               </Text>
             </div>
             <div>
@@ -126,7 +129,7 @@ const PropertyCard = () => {
                 className="d-inline"
                 fontFamily={FontFamily.semiBold}
               >
-                7,600
+                {numbersToPrice(item.price)}
               </Text>
               <Text
                 className="d-inline ms-1"

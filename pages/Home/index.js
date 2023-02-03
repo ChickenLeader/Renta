@@ -37,11 +37,15 @@ const Home = ({ areas, propertyType }) => {
   const [area, setarea] = useState(1);
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
-  const filterData = {
-    area: areas[area - 1]["name"],
-    property_type: propertyType[property - 1]["name"],
+  const selectedFilters = {
+    area: areas[area - 1]["id"],
+    property_type: propertyType[property - 1]["id"],
     price_gte: monthlyRates[monthlyRate - 1]["min"],
     price_lte: monthlyRates[monthlyRate - 1]["max"],
+  };
+  const filterData = {
+    areas: areas,
+    propertyTypes: propertyType,
   };
 
   const dropdownIcon = (props) => {
@@ -132,7 +136,10 @@ const Home = ({ areas, propertyType }) => {
             onClick={() => {
               router.push({
                 pathname: "/Search",
-                query: { filter: JSON.stringify(filterData) },
+                query: {
+                  filter: JSON.stringify(selectedFilters),
+                  filterData: JSON.stringify(filterData),
+                },
               });
             }}
           >

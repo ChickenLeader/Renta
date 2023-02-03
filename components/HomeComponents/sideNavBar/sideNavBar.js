@@ -26,11 +26,14 @@ let monthlyRates = [
 const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
 
-const SideNavBar = () => {
+const SideNavBar = ({ filters, setfilteres, filterData }) => {
   const [isExpanded, setExpendState] = useState(false);
-  const [area, setarea] = useState(areas[0]["id"]);
-  const [property, setproperty] = useState(properties[0]["id"]);
-  const [priceRange, setpriceRange] = useState([2500, 5500]);
+  const [area, setarea] = useState(filters.area);
+  const [property, setproperty] = useState(filters.property_type);
+  const [priceRange, setpriceRange] = useState([
+    filters.price_gte,
+    filters.price_lte,
+  ]);
   const [areaRange, setareaRange] = useState([120, 250]);
   const [room, setroom] = useState(null);
   const [priceScale, setpriceScale] = useState(0);
@@ -69,7 +72,7 @@ const SideNavBar = () => {
             <Image alt=" " src={leftArrow} />
           ) : (
             <>
-              <Text style={{ color: "white" }}>Filters </Text>
+              <Text style={{ color: "white" }}>Filters</Text>
               <Image
                 src={rightArrow}
                 style={{ margin: 15 }}
@@ -93,7 +96,7 @@ const SideNavBar = () => {
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}
                 >
-                  {areas.map((item) => (
+                  {filterData.areas.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
                     </MenuItem>
@@ -105,7 +108,21 @@ const SideNavBar = () => {
               <Text color="white" className="mb-2">
                 Property type
               </Text>
-              {properties.map((item) => (
+              <FormControl sx={{ minWidth: "100%", backgroundColor: "white" }}>
+                <Select
+                  value={property}
+                  onChange={(event) => setproperty(event.target.value)}
+                  displayEmpty
+                  inputProps={{ "aria-label": "Without label" }}
+                >
+                  {filterData.propertyTypes.map((item) => (
+                    <MenuItem key={item.id} value={item.id}>
+                      {item.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+              {/* {filterData.propertyTypes.map((item) => (
                 <div
                   key={item.id}
                   className={
@@ -122,7 +139,7 @@ const SideNavBar = () => {
                     {item.name}
                   </Text>
                 </div>
-              ))}
+              ))} */}
             </div>
             <div className="mb-5">
               <Text color="white" className="mb-2">
@@ -137,8 +154,8 @@ const SideNavBar = () => {
                 <Slider
                   range
                   defaultValue={priceRange}
-                  min={1000}
-                  max={7000}
+                  min={1500}
+                  max={30000}
                   onChange={(x) => setpriceRange(x)}
                   trackStyle={{ backgroundColor: Colors.primary }}
                   handleStyle={{
