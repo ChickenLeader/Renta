@@ -15,16 +15,9 @@ const Search = ({ data }) => {
   const filtersData = useSelector((state) => state.app.filtersData);
   const ParsedSelectedFilters = JSON.parse(router.query.filter);
   const [selectedFilters, setselectedFilters] = useState(ParsedSelectedFilters);
-  const [filteredProperties, setfilteredProperties] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setpage] = useState(1);
 
-  const submitFilters = async (values) => {
-    let Valu = {};
-    const properties = await Services.getProperties();
-    setfilteredProperties(properties);
-    // console.log(properties, "normal");
-  };
 
   useEffect(() => {
     console.log(filtersData);

@@ -5,6 +5,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import { Button, Slider } from "antd";
 import { Colors } from "constants/Colors";
+import { Services } from "apis/Services/Services";
 
 let areas = [
   { id: 1, name: "New Cairo" },
@@ -27,20 +28,28 @@ const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg")
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
 
 const SideNavBar = ({ filters, setfilteres, filterData }) => {
+  const Ref = useRef();
   const [isExpanded, setExpendState] = useState(false);
+  const [filteredProperties, setfilteredProperties] = useState([]);
   const [area, setarea] = useState(filters.area);
   const [property, setproperty] = useState(filters.property_type);
+  const [areaRange, setareaRange] = useState([120, 250]);
+  const [room, setroom] = useState(null);
   const [priceRange, setpriceRange] = useState([
     filters.price_gte,
     filters.price_lte,
   ]);
-  const [areaRange, setareaRange] = useState([120, 250]);
-  const [room, setroom] = useState(null);
-  const [priceScale, setpriceScale] = useState(0);
-  const [areaScale, setareaScale] = useState(0);
-  const Ref = useRef();
-  const rangeWidth = (priceRange[0] - priceRange[1]) / (1000 - 7000);
-  const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
+  // const [priceScale, setpriceScale] = useState(0);
+  // const [areaScale, setareaScale] = useState(0);
+  // const rangeWidth = (priceRange[0] - priceRange[1]) / (1000 - 7000);
+  // const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
+
+  const submitFilters = async (values) => {
+    let Valu = {};
+    const properties = await Services.getProperties();
+    setfilteredProperties(properties);
+    // console.log(properties, "normal");
+  };
   const resetFilters = () => {
     setarea(areas[0]["id"]);
     setproperty(properties[0]["id"]);
@@ -52,9 +61,22 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
   };
 
   useEffect(() => {
-    setpriceScale(Ref.current.clientWidth * rangeWidth);
-    setareaScale(Ref.current.clientWidth * distanceWidth);
-  }, [isExpanded, rangeWidth, distanceWidth]);
+    let x = {
+      area__name: area,
+      area_gte: areaRange[0],
+      area_lte: areaRange[1],
+      property_type__name: property,
+      price_gte: priceRange[0],
+      price_lte: priceRange[1],
+      Bedrooms: room,
+    };
+    console.log(x, "xxxx");
+  }, [area]);
+
+  // useEffect(() => {
+  //   setpriceScale(Ref.current.clientWidth * rangeWidth);F
+  //   setareaScale(Ref.current.clientWidth * distanceWidth);
+  // }, [isExpanded, rangeWidth, distanceWidth]);
 
   return (
     <div
