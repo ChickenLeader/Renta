@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button, Slider } from "antd";
 import { Colors } from "constants/Colors";
 import { Services } from "apis/Services/Services";
+import { useSelector } from "react-redux";
 
 let areas = [
   { id: 1, name: "New Cairo" },
@@ -27,10 +28,11 @@ let monthlyRates = [
 const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
 
-const SideNavBar = ({ filters, setfilteres, filterData }) => {
+const SideNavBar = ({ filters, submitFilters }) => {
   const Ref = useRef();
+  const filtersData = useSelector((state) => state.app.filtersData);
   const [isExpanded, setExpendState] = useState(false);
-  const [filteredProperties, setfilteredProperties] = useState([]);
+
   const [area, setarea] = useState(filters.area);
   const [property, setproperty] = useState(filters.property_type);
   const [areaRange, setareaRange] = useState([120, 250]);
@@ -44,12 +46,6 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
   // const rangeWidth = (priceRange[0] - priceRange[1]) / (1000 - 7000);
   // const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
 
-  const submitFilters = async (values) => {
-    let Valu = {};
-    const properties = await Services.getProperties();
-    setfilteredProperties(properties);
-    // console.log(properties, "normal");
-  };
   const resetFilters = () => {
     setarea(areas[0]["id"]);
     setproperty(properties[0]["id"]);
@@ -58,6 +54,16 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
 
   const applyFilters = () => {
     setExpendState(false);
+    let Valu = {
+      area__name: area,
+      area_gte: areaRange[0],
+      area_lte: areaRange[1],
+      property_type__name: property,
+      price_gte: priceRange[0],
+      price_lte: priceRange[1],
+      Bedrooms: room,
+    };
+    submitFilters(Valu)
   };
 
   useEffect(() => {
@@ -74,9 +80,8 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
   }, [area]);
 
   // useEffect(() => {
-  //   setpriceScale(Ref.current.clientWidth * rangeWidth);F
-  //   setareaScale(Ref.current.clientWidth * distanceWidth);
-  // }, [isExpanded, rangeWidth, distanceWidth]);
+  // console.log(filtersData,"fsssssssssssssssss");
+  // }, [filtersData]);
 
   return (
     <div
@@ -118,7 +123,7 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}
                 >
-                  {filterData.areas.map((item) => (
+                  {filtersData?.areas?.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
                     </MenuItem>
@@ -137,7 +142,7 @@ const SideNavBar = ({ filters, setfilteres, filterData }) => {
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}
                 >
-                  {filterData.propertyTypes.map((item) => (
+                  {filtersData?.propertyTypes?.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
                     </MenuItem>

@@ -12,24 +12,33 @@ import { useSelector } from "react-redux";
 
 const Search = ({ data }) => {
   const router = useRouter();
-  const filtersData = useSelector((state) => state.app.filtersData);
-  const ParsedSelectedFilters = JSON.parse(router.query.filter);
-  const [selectedFilters, setselectedFilters] = useState(ParsedSelectedFilters);
+  // const filtersData = useSelector((state) => state.app.filtersData);
+  const selectedFilters = JSON.parse(router.query.filter);
+  // const [selectedFilters, setselectedFilters] = useState(ParsedSelectedFilters);
+  const [filteredProperties, setfilteredProperties] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setpage] = useState(1);
 
+  // this not to be send inside the Comp so we can have the result properties
+  // it should be sent as a props to the component, and called from inside
+  const submitFilters = async (values) => {
+    const properties = await Services.getProperties(values);
+    setfilteredProperties(properties);
+    console.log(properties, "normal");
+  };
 
-  useEffect(() => {
-    console.log(filtersData);
-  }, []);
+  // useEffect(() => {
+  //   console.log(selectedFilters,"sdsdsdssdd");
+  // }, []);
 
   return (
     <ScreenWrapper style={{ minHeight: 750 }}>
       <Container fluid style={{ minHeight: 750 }}>
         <SideNavBar
+          submitFilters={(data) => submitFilters(data)}
           filters={selectedFilters}
-          setfilteres={(values) => setselectedFilters(values)}
-          filterData={filtersData}
+          // setfilteres={(values) => setselectedFilters(values)}
+          // filterData={filtersData}
         />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="mt-4 ps-5">
