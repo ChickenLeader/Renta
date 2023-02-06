@@ -43,14 +43,31 @@ export class Services {
       method: ENDPOINTS.myUnits.method,
     });
   }
-  static getProperties() {
-    return Network.fetch(ENDPOINTS.properties.url, {
-      method: ENDPOINTS.properties.method,
-    });
+  static getProperties(values) {
+    return Network.fetch(
+      ENDPOINTS.properties.url(
+        values.Bedrooms || "",
+        values.property_type__id || "",
+        values.area__name || "",
+        values.price_gte || "",
+        values.price_lte || "",
+        values.area_gte || "",
+        values.area_lte || "",
+        values.page || 1
+      ),
+      {
+        method: ENDPOINTS.properties.method,
+      }
+    );
   }
   static getPropertiesByID(id) {
     return Network.fetch(ENDPOINTS.propertyByID.url(id), {
       method: ENDPOINTS.propertyByID.method,
+    });
+  }
+  static footerImages() {
+    return Network.fetch(ENDPOINTS.footerImages.url, {
+      method: ENDPOINTS.footerImages.method,
     });
   }
 

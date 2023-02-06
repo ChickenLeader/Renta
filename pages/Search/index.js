@@ -9,20 +9,22 @@ import styles from "./search.module.css";
 import { useRouter } from "next/router";
 import { Services } from "apis/Services/Services";
 import { useSelector } from "react-redux";
+import Text from "components/General/Text";
 
 const Search = ({ data }) => {
   const router = useRouter();
   // const filtersData = useSelector((state) => state.app.filtersData);
   const selectedFilters = JSON.parse(router.query.filter);
-  // const [selectedFilters, setselectedFilters] = useState(ParsedSelectedFilters);
-  const [filteredProperties, setfilteredProperties] = useState([]);
+  const [filteredProperties, setfilteredProperties] = useState(data);
   const [loading, setLoading] = useState(false);
   const [page, setpage] = useState(1);
 
   // this not to be send inside the Comp so we can have the result properties
   // it should be sent as a props to the component, and called from inside
   const submitFilters = async (values) => {
-    const properties = await Services.getProperties(values);
+    console.log(values, "valuesssssss");
+    const Valu = { ...values, page: page };
+    const properties = await Services.getProperties(Valu);
     setfilteredProperties(properties);
     console.log(properties, "normal");
   };
@@ -42,9 +44,13 @@ const Search = ({ data }) => {
         />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="mt-4 ps-5">
-            {data.results.map((item) => (
-              <PropertyCard key={item.id + ""} item={item} />
-            ))}
+            {filteredProperties.results.length ? (
+              filteredProperties.results.map((item) => (
+                <PropertyCard key={item.id + ""} item={item} />
+              ))
+            ) : (
+              <Text style={{ textAlign: "center" }}>No results found</Text>
+            )}
           </Col>
           <Col lg={6} md={12} className="pe-0 pb-2" style={{ minHeight: 755 }}>
             <div className={styles.iframe}>

@@ -33,8 +33,8 @@ const SideNavBar = ({ filters, submitFilters }) => {
   const filtersData = useSelector((state) => state.app.filtersData);
   const [isExpanded, setExpendState] = useState(false);
 
-  const [area, setarea] = useState(filters.area);
-  const [property, setproperty] = useState(filters.property_type);
+  const [area, setarea] = useState(filters.area__name);
+  const [property, setproperty] = useState(filters.property_type__id);
   const [areaRange, setareaRange] = useState([120, 250]);
   const [room, setroom] = useState(null);
   const [priceRange, setpriceRange] = useState([
@@ -55,9 +55,9 @@ const SideNavBar = ({ filters, submitFilters }) => {
   const applyFilters = () => {
     setExpendState(false);
     let Valu = {
-      area__name: area,
-      area_gte: areaRange[0],
-      area_lte: areaRange[1],
+      area__name: "DownTown",
+      // area_gte: areaRange[0],
+      // area_lte: areaRange[1],
       property_type__name: property,
       price_gte: priceRange[0],
       price_lte: priceRange[1],
@@ -66,18 +66,18 @@ const SideNavBar = ({ filters, submitFilters }) => {
     submitFilters(Valu)
   };
 
-  useEffect(() => {
-    let x = {
-      area__name: area,
-      area_gte: areaRange[0],
-      area_lte: areaRange[1],
-      property_type__name: property,
-      price_gte: priceRange[0],
-      price_lte: priceRange[1],
-      Bedrooms: room,
-    };
-    console.log(x, "xxxx");
-  }, [area]);
+  // useEffect(() => {
+  //   let x = {
+  //     area__name: area,
+  //     area_gte: areaRange[0],
+  //     area_lte: areaRange[1],
+  //     property_type__name: property,
+  //     price_gte: priceRange[0],
+  //     price_lte: priceRange[1],
+  //     Bedrooms: room,
+  //   };
+  //   console.log(x, "xxxx");
+  // }, [area]);
 
   // useEffect(() => {
   // console.log(filtersData,"fsssssssssssssssss");

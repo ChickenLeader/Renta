@@ -30,11 +30,25 @@ export const ENDPOINTS = {
     method: "GET",
   },
   properties: {
-    url: `${DomainUrl}/property/`,
+    url: (
+      Bedrooms,
+      property_type__id,
+      area__name,
+      price_gte,
+      price_lte,
+      area_gte,
+      area_lte,
+      page
+    ) =>
+      `${DomainUrl}/property/?Bedrooms=${Bedrooms}&property_type__id=${property_type__id}&area__name=${area__name}&price_gte=${price_gte}&price_lte=${price_lte}&area_gte=${area_gte}&area_lte=${area_lte}&page=${page}`,
     method: "GET",
   },
   propertyByID: {
     url: (id) => `${DomainUrl}/property/${id}`,
+    method: "GET",
+  },
+  footerImages: {
+    url: `${DomainUrl}/footer-image/`,
     method: "GET",
   },
 };

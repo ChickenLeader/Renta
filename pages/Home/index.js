@@ -41,10 +41,11 @@ const Home = ({ areas, propertyType }) => {
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
   const selectedFilters = {
-    area: areas[area - 1]["id"],
-    property_type: propertyType[property - 1]["id"],
-    price_gte: monthlyRates[monthlyRate - 1]["min"],
-    price_lte: monthlyRates[monthlyRate - 1]["max"],
+    area__name: areas[area - 1]["id"],
+    property_type__id: propertyType[property - 1]["id"],
+    price_gte: +monthlyRates[monthlyRate - 1]["min"],
+    price_lte: +monthlyRates[monthlyRate - 1]["max"],
+    Bedrooms: 5,
   };
   const filterData = {
     areas: areas,
@@ -137,6 +138,7 @@ const Home = ({ areas, propertyType }) => {
           <div
             className={styles.searchIcon}
             onClick={() => {
+              // console.log(selectedFilters);
               dispatch(setFiltersData(filterData));
               router.push({
                 pathname: "/Search",
