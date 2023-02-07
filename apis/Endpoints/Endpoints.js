@@ -17,6 +17,10 @@ export const ENDPOINTS = {
     url: `${DomainUrl}/property-type/`,
     method: "GET",
   },
+  monthlyRates: {
+    url: `${DomainUrl}/price-range/`,
+    method: "GET",
+  },
   getContactUs: {
     url: `${DomainUrl}/contact-us-info/`,
     method: "GET",

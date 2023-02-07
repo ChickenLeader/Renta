@@ -24,17 +24,17 @@ import { setFiltersData } from "redux/appReducer";
 //   { id: 3, name: "Villa" },
 // ];
 
-let monthlyRates = [
-  { id: 1, min: 2000, max: 5000, name: "2000 - 5000 LE" },
-  { id: 2, min: 5000, max: 8000, name: "5000 - 8000 LE" },
-  { id: 3, min: 8000, max: 11000, name: "8000 - 11000 LE" },
-  { id: 4, min: 11000, max: 15000, name: "11000 - 15000 LE" },
-  { id: 5, min: 15000, max: 20000, name: "15000 - 19000 LE" },
-  { id: 6, min: 20000, max: 25000, name: "19000 - 23000 LE" },
-  { id: 7, min: 25000, max: 30000, name: "23000 - 30000 LE" },
-];
+// let monthlyRates = [
+//   { id: 1, min: 2000, max: 5000, name: "2000 - 5000 LE" },
+//   { id: 2, min: 5000, max: 8000, name: "5000 - 8000 LE" },
+//   { id: 3, min: 8000, max: 11000, name: "8000 - 11000 LE" },
+//   { id: 4, min: 11000, max: 15000, name: "11000 - 15000 LE" },
+//   { id: 5, min: 15000, max: 20000, name: "15000 - 19000 LE" },
+//   { id: 6, min: 20000, max: 25000, name: "19000 - 23000 LE" },
+//   { id: 7, min: 25000, max: 30000, name: "23000 - 30000 LE" },
+// ];
 
-const Home = ({ areas, propertyType }) => {
+const Home = ({ areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [area, setarea] = useState(1);
@@ -43,8 +43,8 @@ const Home = ({ areas, propertyType }) => {
   const selectedFilters = {
     area__name: areas[area - 1]["id"],
     property_type__id: propertyType[property - 1]["id"],
-    price_gte: +monthlyRates[monthlyRate - 1]["min"],
-    price_lte: +monthlyRates[monthlyRate - 1]["max"],
+    price_gte: +monthlyRates[monthlyRate - 1]["min_price_range"],
+    price_lte: +monthlyRates[monthlyRate - 1]["max_price_range"],
     Bedrooms: 5,
   };
   const filterData = {
@@ -130,7 +130,7 @@ const Home = ({ areas, propertyType }) => {
               {/* {item.name} */}
               {monthlyRates.map((item) => (
                 <MenuItem key={item.id} value={item.id}>
-                  {`${item.min} - ${item.max} LE`}
+                  {`${item.min_price_range} - ${item.max_price_range} LE`}
                 </MenuItem>
               ))}
             </Select>
@@ -161,6 +161,7 @@ const Home = ({ areas, propertyType }) => {
 export async function getServerSideProps() {
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();
-  return { props: { areas, propertyType } };
+  const monthlyRates = await Services.monthlyRates();
+  return { props: { areas, propertyType, monthlyRates } };
 }
 export default Home;

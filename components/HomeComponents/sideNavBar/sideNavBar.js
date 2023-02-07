@@ -56,8 +56,8 @@ const SideNavBar = ({ filters, submitFilters }) => {
     setExpendState(false);
     let Valu = {
       area__name: "DownTown",
-      // area_gte: areaRange[0],
-      // area_lte: areaRange[1],
+      area_gte: areaRange[0],
+      area_lte: areaRange[1],
       property_type__name: property,
       price_gte: priceRange[0],
       price_lte: priceRange[1],

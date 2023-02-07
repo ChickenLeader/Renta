@@ -15,48 +15,49 @@ const images = [
   require("public/assets/ables-ladprao-27-condo-bangkok-515085b5ef237783c2000032_full-436x386.jpg"),
   require("../../../public/assets/Honey3-436x386.jpeg"),
 ];
-let tempIcons = [
-  {
-    id: 1,
-    name: "space",
-    icon: require("../../../public/assets/spaceIcon.svg"),
-    digit: 167,
-  },
-  {
-    id: 2,
-    name: "space",
-    icon: require("../../../public/assets/spaceIcon.svg"),
-    digit: 200,
-  },
-  {
-    id: 3,
-    name: "space",
-    icon: require("../../../public/assets/bathSvg.svg"),
-    digit: 167,
-  },
-  {
-    id: 4,
-    name: "space",
-    icon: require("../../../public/assets/bedsSvg.svg"),
-    digit: 167,
-  },
-  {
-    id: 5,
-    name: "space",
-    icon: require("../../../public/assets/bathSvg.svg"),
-    digit: 167,
-  },
-  {
-    id: 6,
-    name: "space",
-    icon: require("../../../public/assets/bedsSvg.svg"),
-    digit: 167,
-  },
-];
 
 const PropertyCard = ({ item }) => {
   const sliderRef = useRef();
   const navigate = useRouter();
+
+  let tempIcons = [
+    {
+      id: 1,
+      name: "space",
+      icon: require("../../../public/assets/spaceIcon.svg"),
+      digit: item.squared_area,
+    },
+    {
+      id: 2,
+      name: "space",
+      icon: require("../../../public/assets/bedsSvg.svg"),
+      digit: item.Bedrooms,
+    },
+    {
+      id: 3,
+      name: "space",
+      icon: require("../../../public/assets/bathSvg.svg"),
+      digit: item.Bathrooms,
+    },
+    {
+      id: 4,
+      name: "space",
+      icon: require("../../../public/assets/bedsSvg.svg"),
+      digit: 167,
+    },
+    {
+      id: 5,
+      name: "space",
+      icon: require("../../../public/assets/bathSvg.svg"),
+      digit: 167,
+    },
+    {
+      id: 6,
+      name: "space",
+      icon: require("../../../public/assets/bedsSvg.svg"),
+      digit: 167,
+    },
+  ];
 
   const next = () => {
     setTimeout(() => {
@@ -163,7 +164,9 @@ const PropertyCard = ({ item }) => {
                       width={25}
                       height={25}
                     />
-                    <Text className="d-inline ms-2">{item.digit}</Text>
+                    <Text className="d-inline ms-2" style={{ width: 30 }}>
+                      {Math.floor(item.digit)}
+                    </Text>
                   </Col>
                 );
               })}

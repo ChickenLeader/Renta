@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     router.replace("/Home");
   }, []);
-  return <ScreenWrapper></ScreenWrapper>;
+  return <ScreenWrapper>z</ScreenWrapper>;
 }
 
 export const getServerSideProps = async ({ locale }) => {

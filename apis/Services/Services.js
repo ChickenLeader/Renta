@@ -25,6 +25,12 @@ export class Services {
     });
   }
 
+  static monthlyRates() {
+    return Network.fetch(ENDPOINTS.monthlyRates.url, {
+      method: ENDPOINTS.monthlyRates.method,
+    });
+  }
+
   static getContactUs() {
     return Network.fetch(ENDPOINTS.getContactUs.url, {
       method: ENDPOINTS.getContactUs.method,

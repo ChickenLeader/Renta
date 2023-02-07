@@ -66,6 +66,7 @@ const Navbar = () => {
             <div className="w-100 ms-5 ps-1">
               <InputLabel className={styles.label}>Email</InputLabel>
               <TextField
+                type={"email"}
                 sx={{ input: { color: "black" } }}
                 style={{ width: "90%", color: "black" }}
               />
