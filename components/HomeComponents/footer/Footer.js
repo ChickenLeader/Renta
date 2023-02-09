@@ -1,6 +1,6 @@
 import Text from "components/General/Text";
 import Image from "next/image";
-import React, { memo } from "react";
+import React, { memo, useLayoutEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
@@ -8,6 +8,7 @@ import logo from "public/assets/RentaFinalLogo2x.png";
 import Link from "next/link";
 import Slider from "react-slick";
 import styles from "./footer.module.css";
+import { Services } from "apis/Services/Services";
 
 var settings = {
   dots: false,
@@ -20,8 +21,8 @@ var settings = {
   centerMode: true,
   infinite: true,
   responsive: [
-    {
-      breakpoint: 480,
+    { 
+      breakpoint: 500,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -30,10 +31,10 @@ var settings = {
   ],
 };
 
-
 export const Footer = () => {
   const router = useRouter();
   const pathName = router.pathname;
+  const [images, setimages] = useState([]);
 
   const BottomTabItems = [
     {
@@ -71,13 +72,29 @@ export const Footer = () => {
   ];
 
   const HomeVendors = [
-    { id: 1, image: require("public/assets/HomeVendor.svg") },
-    { id: 2, image: require("public/assets/HomeVendor.svg") },
-    { id: 3, image: require("public/assets/HomeVendor.svg") },
-    { id: 4, image: require("public/assets/HomeVendor.svg") },
-    { id: 5, image: require("public/assets/HomeVendor.svg") },
-    { id: 6, image: require("public/assets/HomeVendor.svg") },
+    { id: 1, image: require("public/assets/footer/sodic.svg") },
+    { id: 2, image: require("public/assets/footer/Palm hills White.svg") },
+    { id: 3, image: require("public/assets/footer/Hyde park white.svg") },
+    {
+      id: 4,
+      image: require("public/assets/footer/Emaar Both color & White.svg"),
+    },
+    { id: 5, image: require("public/assets/footer/LMD White.svg") },
+    { id: 6, image: require("public/assets/footer/mnhd White.svg") },
   ];
+
+  const footerImages = () => {
+    Services.footerImages()
+      .then((res) => {
+        console.log(res);
+        setimages(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useLayoutEffect(() => {
+    footerImages();
+  }, []);
 
   return (
     <div
@@ -90,7 +107,7 @@ export const Footer = () => {
       {/* Customized Footer only for Home Screen */}
 
       {pathName.includes("/Home") ? (
-        <div className="w-100 align-items-center">
+        <div className="w-100 ">
           {/* <Row className="justify-content-between align-items-center">
             {HomeVendors.map((item) => (
               <Col key={item.id} md={2} xs={6} className={styles.vendorImage}>
@@ -100,17 +117,29 @@ export const Footer = () => {
           </Row> */}
           <Slider {...settings}>
             {HomeVendors.map((item) => (
-              <Image key={item.id + ""} src={item.image} alt="vendor icon" objectFit="contain" className={styles.vendorImage} />
+              <div>
+                <Image
+                  key={item.id + ""}
+                  src={item.image}
+                  alt="vendor icon"
+                  objectFit="initial"
+                  className={styles.vendorImage}
+                />
+              </div>
             ))}
           </Slider>
-
         </div>
       ) : (
         <div>
           <Row>
             <Col lg={4} sm={6} xs={12}>
               <div className={styles.footerImage}>
-                <Image objectFit="fill" alt="logo" src={logo} className={styles.footerLogo} />
+                <Image
+                  objectFit="fill"
+                  alt="logo"
+                  src={logo}
+                  className={styles.footerLogo}
+                />
               </div>
             </Col>
             <Col>
@@ -163,4 +192,4 @@ export const Footer = () => {
   );
 };
 
-export default memo(Footer)
+export default memo(Footer);
