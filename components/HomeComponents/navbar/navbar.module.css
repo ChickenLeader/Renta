@@ -45,11 +45,11 @@
   margin-right: 5px;
 }
 .sendVerification {
-  padding-block: 15px;
+  padding-block: 15px !important;
   width: 90%;
   display: flex;
   justify-content: center;
-  background-color: #162137;
+  background-color: #162137 !important;
   cursor: pointer;
 }
 
