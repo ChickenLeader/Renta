@@ -63,7 +63,7 @@ const SideNavBar = ({ filters, submitFilters }) => {
       price_lte: priceRange[1],
       Bedrooms: room,
     };
-    submitFilters(Valu)
+    submitFilters(Valu);
   };
 
   // useEffect(() => {
@@ -101,6 +101,7 @@ const SideNavBar = ({ filters, submitFilters }) => {
             <>
               <Text style={{ color: "white" }}>Filters</Text>
               <Image
+                alt=" "
                 src={rightArrow}
                 style={{ margin: 15 }}
                 objectFit="contain"
