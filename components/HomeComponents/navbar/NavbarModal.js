@@ -5,15 +5,43 @@ import { FontFamily } from "constants/FontFamily";
 import styles from "./navbar.module.css";
 import { Colors } from "constants/Colors";
 import Image from "next/image";
+import { Services } from "apis/Services/Services";
+import HandleErrors from "hooks/handleErrors";
+import { loginHandler } from "hooks/loginHandler";
 
 export const NavbarModal = ({ closeModal, setsignedin }) => {
   const [modalStatus, setmodalStatus] = useState("signIn");
+  const [loader, setloader] = useState(false);
   const [authValues, setauthValues] = useState({
     email: "",
     password: "",
     otp: "",
     newPasword: "",
   });
+
+  const login = () => {
+    setloader(true);
+    let Valu = { email: authValues.email, password: authValues.password };
+    Services.login(Valu)
+      .then((res) => {
+        console.log(res);
+        // setsignedin(true);
+        // loginHandler(res.token);
+        setTimeout(() => {
+          closeModal();
+          // clearForm();
+        }, 1000);
+      })
+      .catch((err) => {
+        console.log(err.detail, "errrrr");
+        // if (err.detail) {
+        //     HandleErrors(err.detail)
+        // } else {
+        //   err?.details?.[0] && HandleErrors(err.details[0]);
+        // }
+      })
+      .finally(() => setloader(false));
+  };
 
   const clearForm = () => {
     setmodalStatus("signIn");
@@ -68,13 +96,7 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
           <Button
             variant="contained"
             className={styles.sendVerification}
-            onClick={() => {
-              setsignedin(true);
-              setTimeout(() => {
-                closeModal();
-                // clearForm();
-              }, 1000);
-            }}
+            onClick={login}
           >
             <Text color="white" fontFamily={FontFamily.semiBold}>
               Login

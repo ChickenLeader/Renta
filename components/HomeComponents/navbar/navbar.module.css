@@ -50,7 +50,7 @@
   display: flex;
   justify-content: center;
   background-color: #162137 !important;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .label {

@@ -1,10 +1,13 @@
 import DomainUrl from "apis/Domain";
 
 export const ENDPOINTS = {
+  // AUTH
   login: {
-    url: `${DomainUrl}/about-us/`,
-    method: "GET",
+    url: `${DomainUrl}/users/login`,
+    method: "POST",
   },
+
+  // Home
   about_us: {
     url: `${DomainUrl}/about-us/`,
     method: "GET",
