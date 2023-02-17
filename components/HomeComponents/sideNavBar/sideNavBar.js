@@ -28,9 +28,9 @@ let monthlyRates = [
 const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
 
-const SideNavBar = ({ filters, submitFilters }) => {
+const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
   const Ref = useRef();
-  const filtersData = useSelector((state) => state.app.filtersData);
+  // const filtersData = useSelector((state) => state.app.filtersData);
   const [isExpanded, setExpendState] = useState(false);
 
   const [area, setarea] = useState(filters.area__name);
@@ -47,8 +47,8 @@ const SideNavBar = ({ filters, submitFilters }) => {
   // const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
 
   const resetFilters = () => {
-    setarea(areas[0]["id"]);
-    setproperty(properties[0]["id"]);
+    setarea(sideNavData.areas[0]["id"]);
+    setproperty(sideNavData.propertyTypes[0]["id"]);
     setroom(null);
   };
 
@@ -66,22 +66,18 @@ const SideNavBar = ({ filters, submitFilters }) => {
     submitFilters(Valu);
   };
 
-  // useEffect(() => {
-  //   let x = {
-  //     area__name: area,
-  //     area_gte: areaRange[0],
-  //     area_lte: areaRange[1],
-  //     property_type__name: property,
-  //     price_gte: priceRange[0],
-  //     price_lte: priceRange[1],
-  //     Bedrooms: room,
-  //   };
-  //   console.log(x, "xxxx");
-  // }, [area]);
-
-  // useEffect(() => {
-  // console.log(filtersData,"fsssssssssssssssss");
-  // }, [filtersData]);
+  useEffect(() => {
+    let x = {
+      area__name: area,
+      area_gte: areaRange[0],
+      area_lte: areaRange[1],
+      property_type__name: property,
+      price_gte: priceRange[0],
+      price_lte: priceRange[1],
+      Bedrooms: room,
+    };
+    console.log(x, "xxxx");
+  }, [area]);
 
   return (
     <div
@@ -124,7 +120,7 @@ const SideNavBar = ({ filters, submitFilters }) => {
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}
                 >
-                  {filtersData?.areas?.map((item) => (
+                  {sideNavData?.areas?.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
                     </MenuItem>
@@ -143,7 +139,7 @@ const SideNavBar = ({ filters, submitFilters }) => {
                   displayEmpty
                   inputProps={{ "aria-label": "Without label" }}
                 >
-                  {filtersData?.propertyTypes?.map((item) => (
+                  {sideNavData?.propertyTypes?.map((item) => (
                     <MenuItem key={item.id} value={item.id}>
                       {item.name}
                     </MenuItem>

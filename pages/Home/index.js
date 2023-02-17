@@ -47,10 +47,6 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
     price_lte: +monthlyRates[monthlyRate - 1]["max_price_range"],
     Bedrooms: 5,
   };
-  const filterData = {
-    areas: areas,
-    propertyTypes: propertyType,
-  };
 
   const dropdownIcon = (props) => {
     return (
@@ -138,13 +134,10 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
           <div
             className={styles.searchIcon}
             onClick={() => {
-              // console.log(selectedFilters);
-              dispatch(setFiltersData(filterData));
               router.push({
                 pathname: "/Search",
                 query: {
                   filter: JSON.stringify(selectedFilters),
-                  // filterData: JSON.stringify(filterData),
                 },
               });
             }}

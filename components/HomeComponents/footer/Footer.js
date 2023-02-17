@@ -15,7 +15,7 @@ var settings = {
   arrows: false,
   autoplay: true,
   speed: 500,
-  slidesToShow: 5,
+  slidesToShow: 4,
   slidesToScroll: 1,
   initialSlide: 0,
   centerMode: true,

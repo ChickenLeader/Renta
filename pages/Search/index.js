@@ -11,13 +11,18 @@ import { Services } from "apis/Services/Services";
 import { useSelector } from "react-redux";
 import Text from "components/General/Text";
 
-const Search = ({ data }) => {
+const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   // const filtersData = useSelector((state) => state.app.filtersData);
   const selectedFilters = JSON.parse(router.query.filter);
   const [filteredProperties, setfilteredProperties] = useState(data);
   const [loading, setLoading] = useState(false);
   const [page, setpage] = useState(1);
+  const sideNavData = {
+    areas: areas,
+    propertyTypes: propertyType,
+    monthlyRates: monthlyRates,
+  };
 
   // this not to be send inside the Comp so we can have the result properties
   // it should be sent as a props to the component, and called from inside
@@ -29,9 +34,9 @@ const Search = ({ data }) => {
     console.log(properties, "normal");
   };
 
-  // useEffect(() => {
-  //   console.log(selectedFilters,"sdsdsdssdd");
-  // }, []);
+  useEffect(() => {
+    console.log(selectedFilters, "sdsdsdssdd");
+  }, []);
 
   return (
     <ScreenWrapper style={{ minHeight: 750 }}>
@@ -39,8 +44,8 @@ const Search = ({ data }) => {
         <SideNavBar
           submitFilters={(data) => submitFilters(data)}
           filters={selectedFilters}
+          sideNavData={sideNavData}
           // setfilteres={(values) => setselectedFilters(values)}
-          // filterData={filtersData}
         />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="mt-4 ps-5">
@@ -80,6 +85,9 @@ const Search = ({ data }) => {
 export async function getServerSideProps({ query }) {
   let filterData = JSON.parse(query.filter);
   const data = await Services.getProperties(filterData);
-  return { props: { data } };
+  const areas = await Services.areas();
+  const propertyType = await Services.propertyTypes();
+  const monthlyRates = await Services.monthlyRates();
+  return { props: { data, areas, propertyType, monthlyRates } };
 }
 export default Search;
