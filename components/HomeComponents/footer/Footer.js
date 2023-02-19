@@ -115,7 +115,7 @@ export const Footer = () => {
               </Col>
             ))}
           </Row> */}
-          <Slider {...settings}>
+          <Slider {...settings} className={"footerSlider"}>
             {HomeVendors.map((item) => (
               <div key={item.id + ""}>
                 <Image

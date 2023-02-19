@@ -100,10 +100,10 @@
   padding: 0;
 }
 
-.slick-track{
+.footerSlider > .slick-list > .slick-track {
   display: flex;
   align-items: center;
-  div{
+  div {
     text-align: center;
   }
   div span {
@@ -111,8 +111,7 @@
   }
 }
 
-
-.navbar-nav .show>.nav-link,
+.navbar-nav .show > .nav-link,
 .navbar-nav .nav-link.active {
   color: "white";
 }
