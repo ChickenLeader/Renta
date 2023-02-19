@@ -23,6 +23,7 @@ const Navbar = () => {
   const [signedin, setsignedin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expand, setexpand] = useState(false);
+  const [language, setlanguage] = useState("en");
   const router = useRouter();
   const pathName = router.pathname;
 
@@ -35,6 +36,29 @@ const Navbar = () => {
     }
   };
 
+  const handleLanguage = () => {
+    const savedLang = localStorage.getItem("lang");
+    setlanguage(savedLang);
+  };
+
+  const languageChange = (lang) => {
+    setlanguage(lang);
+    // const lang = router.locale === "en" ? "ar" : "en";
+    let dir;
+    if (lang === "en") {
+      dir = "ltr";
+    } else {
+      dir = "rtl";
+    }
+    router.push(router.asPath, router.asPath, { locale: lang });
+    localStorage.setItem("lang", lang);
+
+    document.body.setAttribute("dir", dir);
+    if (document.getElementsByTagName("nav").length) {
+      document.querySelector("nav").setAttribute("dir", dir);
+    }
+  };
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -42,6 +66,10 @@ const Navbar = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  useEffect(() => {
+    handleLanguage();
+  }, []);
 
   useEffect(() => {
     handleActiveTab();
@@ -93,7 +121,7 @@ const Navbar = () => {
             onClick={() => setexpand(!expand)}
           />
           <RNav.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto">
+            <Nav className={`${language == "ar" ? "me" : "ms"}-auto`}>
               {Nav_Items.map((item, index) => (
                 <div
                   key={index}
@@ -122,7 +150,7 @@ const Navbar = () => {
                 <div
                   className={styles.signIn}
                   onClick={() => {
-                    !signedin && setIsModalOpen(true);
+                    !signedin && showModal();
                   }}
                 >
                   <Text color="white" style={{ textAlign: "center" }}>
@@ -130,7 +158,30 @@ const Navbar = () => {
                   </Text>
                 </div>
               </Link>
-              <Nav.Link
+              <div className="d-flex align-items-center">
+                <div onClick={() => languageChange("en")}>
+                  <Text
+                    style={{
+                      cursor: "pointer",
+                      color: language == "en" ? Colors.primary : "black",
+                    }}
+                  >
+                    EN
+                  </Text>
+                </div>
+                <Text className={"mx-1"}>|</Text>
+                <div onClick={() => languageChange("ar")}>
+                  <Text
+                    style={{
+                      cursor: "pointer",
+                      color: language == "ar" ? Colors.primary : "black",
+                    }}
+                  >
+                    AR
+                  </Text>
+                </div>
+              </div>
+              {/* <Nav.Link
                 className={styles.navlangEn}
                 href="#"
                 onClick={showModal}
@@ -139,7 +190,7 @@ const Navbar = () => {
               </Nav.Link>
               <Nav.Link className={styles.navlangAr} href="#">
                 | AR
-              </Nav.Link>
+              </Nav.Link> */}
             </Nav>
           </RNav.Collapse>
         </Container>

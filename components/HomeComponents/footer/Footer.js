@@ -131,10 +131,12 @@ export const Footer = () => {
       ) : (
         <div>
           <Row>
-            <Col lg={4} sm={6} xs={12}>
+            <Col lg={3} sm={6} xs={12}>
               <div className={styles.footerImage}>
                 <Image
-                  objectFit="fill"
+                  // objectFit="contain"
+                  width={65}
+                  height={115}
                   alt="logo"
                   src={logo}
                   className={styles.footerLogo}

@@ -45,9 +45,13 @@ export class Services {
   }
 
   static myUnits() {
-    return Network.fetch(ENDPOINTS.myUnits.url, {
-      method: ENDPOINTS.myUnits.method,
-    });
+    return Network.fetch(
+      ENDPOINTS.myUnits.url,
+      {
+        method: ENDPOINTS.myUnits.method,
+      },
+      true
+    );
   }
   static getProperties(values) {
     return Network.fetch(
