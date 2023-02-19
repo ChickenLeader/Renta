@@ -3,6 +3,7 @@
 @import "./variables/colors";
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
+@import "../node_modules/leaflet/dist/leaflet.css";
 
 * {
   font-family: var(--ff-regular);

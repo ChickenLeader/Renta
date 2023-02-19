@@ -12,40 +12,40 @@ const MapComponent = (props) => {
 
   return (
     <>
-      {props.data ? (
-        <MapContainer
-          whenCreated={(r) => {
-            return props.map(r);
-          }}
-          center={[
-            Number(props.data[0]?.latitude),
-            Number(props.data[0]?.longitude),
-          ]}
-          zoom={4}
-          scrollWheelZoom={false}
-          style={{ width: "100%", height: 390, zIndex: 2 }}
-          zoomControl={true}
-          doubleClickZoom={true}
-          boxZoom
-          dragging
-        >
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {props?.data.map((location, index) => (
-            <Marker
-              key={index}
-              position={[Number(location.latitude), Number(location.longitude)]}
-              icon={newicon}
-            >
-              <Popup>{location.name}</Popup>
-            </Marker>
-          ))}
-        </MapContainer>
-      ) : (
-        <></>
-      )}
+      <MapContainer
+        whenCreated={(r) => {
+          return props.map(r);
+        }}
+        center={
+          props?.data?.[0]?.latitude
+            ? [
+                Number(props.data[0]?.latitude),
+                Number(props.data[0]?.longitude),
+              ]
+            : [30.0511, 31.3656]
+        }
+        zoom={12}
+        scrollWheelZoom={false}
+        style={{ width: "100%", height: "100%", zIndex: 2 }}
+        zoomControl={true}
+        doubleClickZoom={true}
+        boxZoom
+        dragging
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {props?.data.map((location, index) => (
+          <Marker
+            key={index}
+            position={[Number(location.latitude), Number(location.longitude)]}
+            // icon={newicon}
+          >
+            <Popup>{location.name}</Popup>
+          </Marker>
+        ))}
+      </MapContainer>
     </>
   );
 };
