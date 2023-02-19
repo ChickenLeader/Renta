@@ -72,14 +72,14 @@ export const Footer = () => {
   ];
 
   const HomeVendors = [
-    { id: 1, image: require("public/assets/footer/sodic.svg") },
-    { id: 2, image: require("public/assets/footer/Palm hills White.svg") },
-    { id: 3, image: require("public/assets/footer/Hyde park white.svg") },
     {
       id: 4,
       image: require("public/assets/footer/Emaar Both color & White.svg"),
     },
+    { id: 1, image: require("public/assets/footer/sodic.svg") },
+    { id: 2, image: require("public/assets/footer/Palm hills White.svg") },
     { id: 5, image: require("public/assets/footer/LMD White.svg") },
+    { id: 3, image: require("public/assets/footer/Hyde park white.svg") },
     { id: 6, image: require("public/assets/footer/mnhd White.svg") },
   ];
 
