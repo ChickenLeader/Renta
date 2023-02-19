@@ -85,6 +85,18 @@
   align-items: center;
   justify-content: center;
 }
+.cardHeader {
+  background-image: url("../../../public/assets/housex2.png");
+  background-position: 100%;
+  background-repeat: no-repeat;
+  padding-top: 25%;
+  padding-bottom: 3rem;
+  padding-inline: 4rem;
+}
+
+.cardDetails {
+  border-radius: 10px;
+}
 
 .propertyType {
   /* text-align: center; */
@@ -107,7 +119,7 @@
 
 @media only screen and (min-width: 768px) {
   .unitCardCon {
-    max-height: 150px;
+    /* max-height: 150px; */
   }
 }
 

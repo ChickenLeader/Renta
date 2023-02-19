@@ -1,3 +1,7 @@
 .unitDetails{
     margin-block: 2rem;
 }
+.arrowCon{
+    text-align: center !important;
+    cursor: pointer;
+}
