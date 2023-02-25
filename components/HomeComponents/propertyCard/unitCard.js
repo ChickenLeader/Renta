@@ -37,18 +37,18 @@ const UnitCard = ({ item }) => {
       icon: require("../../../public/assets/bedsSvg.svg"),
       digit: 167,
     },
-    {
-      id: 5,
-      name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
-    },
-    {
-      id: 6,
-      name: "space",
-      icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 167,
-    },
+    // {
+    //   id: 5,
+    //   name: "space",
+    //   icon: require("../../../public/assets/bathSvg.svg"),
+    //   digit: 167,
+    // },
+    // {
+    //   id: 6,
+    //   name: "space",
+    //   icon: require("../../../public/assets/bedsSvg.svg"),
+    //   digit: 167,
+    // },
   ];
 
   const unitDetails = [
@@ -95,7 +95,6 @@ const UnitCard = ({ item }) => {
                   return (
                     <Col
                       key={item.id + ""}
-                      lg={4}
                       md={6}
                       xs={6}
                       className="d-flex align-items-center justify-content-center p-0"
@@ -118,7 +117,7 @@ const UnitCard = ({ item }) => {
       </div>
 
       <div>
-        <div className="ms-3">
+        <div className="px-3">
           {unitDetails.map((detail) => {
             return (
               <div className={"d-flex align-items-center my-5"}>

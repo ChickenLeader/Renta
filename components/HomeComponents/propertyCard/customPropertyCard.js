@@ -40,18 +40,18 @@ let tempIcons = [
     icon: require("../../../public/assets/bedsSvg.svg"),
     digit: 167,
   },
-  {
-    id: 5,
-    name: "space",
-    icon: require("../../../public/assets/bathSvg.svg"),
-    digit: 167,
-  },
-  {
-    id: 6,
-    name: "space",
-    icon: require("../../../public/assets/bedsSvg.svg"),
-    digit: 167,
-  },
+  // {
+  //   id: 5,
+  //   name: "space",
+  //   icon: require("../../../public/assets/bathSvg.svg"),
+  //   digit: 167,
+  // },
+  // {
+  //   id: 6,
+  //   name: "space",
+  //   icon: require("../../../public/assets/bedsSvg.svg"),
+  //   digit: 167,
+  // },
 ];
 
 const CustomPropertyCard = () => {

@@ -77,7 +77,7 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
               <Text style={{ textAlign: "center" }}>No results found</Text>
             )}
           </Col>
-          <Col lg={6} md={12} className="pe-0 pb-2" style={{ minHeight: 755 }}>
+          <Col lg={6} md={12} className="pe-0 pb-0" style={{ minHeight: 755 }}>
             <div className={styles.iframe}>
             <MapWithNoSSR data={locations}/>
               {/* <iframe

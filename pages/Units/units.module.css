@@ -3,5 +3,6 @@
 }
 .arrowCon{
     text-align: center !important;
+    margin: auto;
     cursor: pointer;
 }
