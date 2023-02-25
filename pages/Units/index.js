@@ -56,14 +56,14 @@ const Units = () => {
             </div>
           </div>
           <Row className="justify-content-between align-items-center">
-            <Col lg={2}>
+            {/* <Col lg={2}>
               <div className={styles.arrowCon}>
                 <Image
                   src={require("public/assets/UnitsArrow.svg")}
                   style={{ transform: "rotate(180deg)", opacity: 0.4 }}
                 />
               </div>
-            </Col>
+            </Col> */}
             {myUnits.map((item) => {
               return (
                 <Col key={item.id + ""}>

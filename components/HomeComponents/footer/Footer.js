@@ -1,6 +1,6 @@
 import Text from "components/General/Text";
 import Image from "next/image";
-import React, { memo, useLayoutEffect, useState } from "react";
+import React, { memo, useEffect, useLayoutEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Colors } from "constants/Colors";
 import { useRouter } from "next/router";
@@ -21,7 +21,7 @@ var settings = {
   centerMode: true,
   infinite: true,
   responsive: [
-    { 
+    {
       breakpoint: 500,
       settings: {
         slidesToShow: 1,
@@ -92,21 +92,22 @@ export const Footer = () => {
       .catch((err) => console.log(err));
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     footerImages();
   }, []);
 
+  const customFooterPages = ["/", "/Home"];
   return (
     <div
       className={
-        pathName.includes("/Home")
+        customFooterPages.includes(pathName)
           ? styles.customizedFooterContainer
           : styles.footercontainer
       }
     >
       {/* Customized Footer only for Home Screen */}
 
-      {pathName.includes("/Home") ? (
+      {customFooterPages.includes(pathName) ? (
         <div className="w-100 ">
           {/* <Row className="justify-content-between align-items-center">
             {HomeVendors.map((item) => (

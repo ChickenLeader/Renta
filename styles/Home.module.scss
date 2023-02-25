@@ -4,3 +4,78 @@
 .nav-link.active {
   color: transparent;
 }
+
+.homeCon {
+  background-image: url("../public/assets/HomeBackgroundx2.png");
+  background-size: cover;
+  background-position: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.subCon {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.searchCon {
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 140%;
+  padding-inline: 20px;
+  min-height: 100px;
+}
+.searchIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  padding: 20px;
+  background-color: #162137;
+  cursor: pointer;
+}
+.areas {
+  width: 100%;
+  position: relative;
+  /* background-color: bisque; */
+  border-right: 2px solid #f8f8f8 !important;
+}
+
+.sidebar {
+  position: absolute;
+  height: 100%;
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchCon {
+    /* width: 100%; */
+    width: 90%;
+    flex-direction: column;
+    margin-bottom: 5rem;
+    padding-inline: 10px;
+  }
+  .areas {
+    width: 95%;
+  }
+  .searchIcon {
+    margin-block: 20px;
+    width: 100%;
+  }
+  .areas {
+    border: none !important;
+  }
+}
+/* @media only screen and (max-width: 400px) {
+    .searchCon {
+      width: 90%;
+    }
+  } */

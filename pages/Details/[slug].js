@@ -7,6 +7,8 @@ import styles from "./detail.module.css";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
 import { IoLogoWhatsapp, IoMdHeart, IoMdClose } from "react-icons/io";
+import { Services } from "apis/Services/Services";
+import { useRouter } from "next/router";
 // import { Carousel } from "antd";
 
 const images = [
@@ -50,7 +52,16 @@ const PropertyDetails = () => {
   const [index, setindex] = useState(0);
   const [innerWidth, setinnerWidth] = useState(0);
   const Ref = useRef();
+  const router = useRouter();
 
+  const getPropertyById = () => {
+    console.log(router.query.slug);
+    Services.getPropertyByID(router.query.slug)
+      .then((res) => {
+        console.log("res", res);
+      })
+      .catch((err) => console.log(err));
+  };
   const openCarousel = () => {
     setshowCarousel(true);
   };
@@ -62,6 +73,9 @@ const PropertyDetails = () => {
   const handleSelect = (selectedIndex, e) => {
     setindex(selectedIndex);
   };
+  useEffect(() => {
+    getPropertyById();
+  }, []);
 
   useEffect(() => {
     setinnerWidth(window.innerWidth);
@@ -126,19 +140,6 @@ const PropertyDetails = () => {
                 ))}
                 {/* close button */}
               </Carousel>
-              {/* <Carousel ref={Ref}>
-                {images.map((item, index) => (
-                  <div key={item.id} className={styles.cardImgCon}>
-                    <Image
-                      src={item.image}
-                      // style={{ borderRadius: 20 }}
-                      alt="property card"
-                      // layout="fill"
-                      objectFit="contain"
-                    />
-                  </div>
-                ))}
-              </Carousel> */}
             </div>
           </div>
         )}
@@ -250,7 +251,7 @@ const PropertyDetails = () => {
                       </Col>
                     </Row>
                   </Col>
-                  <Col>
+                  {/* <Col>
                     <Row className={styles.ChatwitUs}>
                       <Col md={8} xs={7}>
                         <Text>Add to Shortlist</Text>
@@ -259,7 +260,7 @@ const PropertyDetails = () => {
                         <IoMdHeart color={Colors.primary} size={26} />
                       </Col>
                     </Row>
-                  </Col>
+                  </Col> */}
                 </Row>
               </div>
             </Col>
@@ -326,23 +327,9 @@ const PropertyDetails = () => {
     </ScreenWrapper>
   );
 };
-
-{
-  /* <Raw>
-<Col>
-  <Row>
-    <Col>
-      <Image
-        src={item.icon}
-        alt="space icon"
-        objectFit="contain"
-        width={25}
-        height={25}
-      />
-    </Col>
-  </Row>
-</Col>
-<Col></Col>
-</Raw> */
-}
+// export async function getServerSideProps({ query }) {
+//   let data = await Services.getPropertyByID(query);
+//   console.log(data);
+//   return { props: { data } };
+// }
 export default PropertyDetails;

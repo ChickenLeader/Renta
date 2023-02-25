@@ -29,13 +29,13 @@ const PropertyCard = ({ item }) => {
     },
     {
       id: 2,
-      name: "space",
+      name: "bedrooms",
       icon: require("../../../public/assets/bedsSvg.svg"),
       digit: item.Bedrooms,
     },
     {
       id: 3,
-      name: "space",
+      name: "bathrooms",
       icon: require("../../../public/assets/bathSvg.svg"),
       digit: item.Bathrooms,
     },
@@ -73,7 +73,7 @@ const PropertyCard = ({ item }) => {
     <Card
       hoverable
       className={styles.cardCon}
-      // onClick={() => navigate.push("/detail/jghghbbj")}
+      onClick={() => navigate.push(`/Details/${item.id}`)}
     >
       <Row>
         <Col md={4} className="p-0 position-relative">
@@ -114,7 +114,7 @@ const PropertyCard = ({ item }) => {
         <Col md={4} xs={12} className="p-0">
           <div
             className={styles.details}
-            onClick={() => navigate.push("/detail/jghghbbj")}
+            onClick={() => navigate.push(`/Details/${item.id}`)}
           >
             <div>
               <Text fontSize={20} className={styles.propertyType}>
@@ -145,7 +145,7 @@ const PropertyCard = ({ item }) => {
         <Col md={4} xs={12} className={styles.iconsSection}>
           <div
             className={styles.iconsCon}
-            onClick={() => navigate.push("/detail/jghghbbj")}
+            onClick={() => navigate.push(`/Details/${item.id}`)}
           >
             <Row className="h-100 align-items-center d-flex justify-content-center m-auto">
               {tempIcons.map((item) => {

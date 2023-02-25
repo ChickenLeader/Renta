@@ -70,7 +70,7 @@ export class Services {
       }
     );
   }
-  static getPropertiesByID(id) {
+  static getPropertyByID(id) {
     return Network.fetch(ENDPOINTS.propertyByID.url(id), {
       method: ENDPOINTS.propertyByID.method,
     });
