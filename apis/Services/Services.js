@@ -63,7 +63,8 @@ export class Services {
         values.price_lte || "",
         values.area_gte || "",
         values.area_lte || "",
-        values.page || 1
+        values.page || 1,
+        values.page_size || 5
       ),
       {
         method: ENDPOINTS.properties.method,

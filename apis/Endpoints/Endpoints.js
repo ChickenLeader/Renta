@@ -45,9 +45,10 @@ export const ENDPOINTS = {
       price_lte,
       area_gte,
       area_lte,
-      page
+      page,
+      page_size
     ) =>
-      `${DomainUrl}/property/?Bedrooms=${Bedrooms}&property_type__id=${property_type__id}&area__name=${area__name}&price_gte=${price_gte}&price_lte=${price_lte}&area_gte=${area_gte}&area_lte=${area_lte}&page=${page}`,
+      `${DomainUrl}/property/?Bedrooms=${Bedrooms}&property_type__id=${property_type__id}&area__name=${area__name}&price_gte=${price_gte}&price_lte=${price_lte}&area_gte=${area_gte}&area_lte=${area_lte}&page=${page}&page_size=${page_size}`,
     method: "GET",
   },
   propertyByID: {

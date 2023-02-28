@@ -18,6 +18,7 @@ const MapWithNoSSR = dynamic(
     ssr: false,
   }
 );
+
 const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   // const filtersData = useSelector((state) => state.app.filtersData);
@@ -26,25 +27,20 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const [mapTrigger, setmapTrigger] = useState(false);
   const [loading, setLoading] = useState(false);
   const [page, setpage] = useState(1);
+  const [locations, setlocations] = useState([]);
   const sideNavData = {
     areas: areas,
     propertyTypes: propertyType,
     monthlyRates: monthlyRates,
   };
-  const [locations, setlocations] = useState([]);
 
-  // this not to be send inside the Comp so we can have the result properties
-  // it should be sent as a props to the component, and called from inside
   const submitFilters = async (values) => {
-    const Valu = { ...values, page: page };
+    const Valu = { ...values, page: page, page_size: 5 };
     const properties = await Services.getProperties(Valu);
     setfilteredProperties(properties);
     setmapTrigger(!mapTrigger);
   };
 
-  // useEffect(() => {
-  //   console.log(selectedFilters, "sdsdsdssdd");
-  // }, []);
   useLayoutEffect(() => {
     let tempArr = [];
     // console.log(filteredProperties, "data?");

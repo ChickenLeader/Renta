@@ -45,7 +45,7 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
     property_type__id: propertyType[property - 1]["id"],
     price_gte: +monthlyRates[monthlyRate - 1]["min_price_range"],
     price_lte: +monthlyRates[monthlyRate - 1]["max_price_range"],
-    Bedrooms: 5,
+    page_size: 4,
   };
 
   const dropdownIcon = (props) => {
