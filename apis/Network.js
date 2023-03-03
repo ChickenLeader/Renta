@@ -28,6 +28,7 @@ export class Network {
   static getHeaders(originalHeaders, auth) {
     let headers = {
       Accept: "application/json",
+      "Content-Type": "application/json",
     };
     if (auth) {
       headers.Authorization = `Token ${auth}`;

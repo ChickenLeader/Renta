@@ -6,7 +6,14 @@ export const ENDPOINTS = {
     url: `${DomainUrl}/users/login`,
     method: "POST",
   },
-
+  send_reset_email: {
+    url: `${DomainUrl}/users/password/send_reset_email/`,
+    method: "POST",
+  },
+  reset_password: {
+    url: `${DomainUrl}/users/password/reset_password/`,
+    method: "POST",
+  },
   // Home
   about_us: {
     url: `${DomainUrl}/about-us/`,

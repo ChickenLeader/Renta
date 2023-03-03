@@ -12,6 +12,7 @@ import { loginHandler } from "hooks/loginHandler";
 export const NavbarModal = ({ closeModal, setsignedin }) => {
   const [modalStatus, setmodalStatus] = useState("signIn");
   const [loader, setloader] = useState(false);
+  const [errors, seterrors] = useState(false);
   const [authValues, setauthValues] = useState({
     email: "",
     password: "",
@@ -20,8 +21,10 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
   });
 
   const login = () => {
+    seterrors(true);
     setloader(true);
     let Valu = { email: authValues.email, password: authValues.password };
+    console.log(Valu);
     Services.login(Valu)
       .then((res) => {
         console.log(res);
@@ -33,7 +36,7 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
         }, 1000);
       })
       .catch((err) => {
-        console.log(err.detail, "errrrr");
+        console.log(err, "errrrr");
         // if (err.detail) {
         //     HandleErrors(err.detail)
         // } else {
@@ -41,6 +44,26 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
         // }
       })
       .finally(() => setloader(false));
+  };
+
+  const sendOTP = () => {
+    Services.send_reset_code()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const createNewPassword = () => {
+    Services.reset_password()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const clearForm = () => {
@@ -61,6 +84,8 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
             <div className="mb-3">
               <InputLabel className={styles.label}>Email</InputLabel>
               <TextField
+                required
+                error={!authValues.email && errors}
                 key={"emailLogin"}
                 sx={{ input: { color: "black" } }}
                 style={{ width: "90%" }}
@@ -72,16 +97,26 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
                   setauthValues({ ...authValues, email: e.target.value });
                 }}
               />
+              {!authValues.email && errors ? (
+                <Text color="red">This field is required</Text>
+              ) : null}
             </div>
             <div>
               <InputLabel className={styles.label}>Password</InputLabel>
               <TextField
+                error={!authValues.password && errors}
+                required
                 sx={{ input: { color: "black" } }}
                 style={{ width: "90%" }}
                 type="password"
-                // onChange={(e) => setpassword(e.target.value)}
-                // value={password}
+                onChange={(e) =>
+                  setauthValues({ ...authValues, password: e.target.value })
+                }
+                value={authValues.password}
               />
+              {!authValues.password && errors ? (
+                <Text color="red">This field is required</Text>
+              ) : null}
             </div>
           </div>
           <div

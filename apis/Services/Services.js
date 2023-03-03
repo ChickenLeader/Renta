@@ -8,6 +8,18 @@ export class Services {
       method: ENDPOINTS.login.method,
     });
   }
+  static send_reset_code(values) {
+    return Network.fetch(ENDPOINTS.send_reset_email.url, {
+      body: JSON.stringify(values),
+      method: ENDPOINTS.send_reset_email.method,
+    });
+  }
+  static reset_password(values) {
+    return Network.fetch(ENDPOINTS.reset_password.url, {
+      body: JSON.stringify(values),
+      method: ENDPOINTS.reset_password.method,
+    });
+  }
   static aboutUs() {
     return Network.fetch(ENDPOINTS.about_us.url, {
       method: ENDPOINTS.about_us.method,
