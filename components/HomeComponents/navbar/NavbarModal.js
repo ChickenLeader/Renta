@@ -188,7 +188,7 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
             fontFamily={FontFamily.medium}
             color={Colors.secondary}
           >
-            please enter the code we sent you to lza kza
+            please enter the code we sent to your email
           </Text>
           <div className="w-100 ms-5 ps-1">
             <InputLabel className={styles.label}>OTP</InputLabel>
