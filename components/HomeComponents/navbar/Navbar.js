@@ -150,6 +150,7 @@ const Navbar = () => {
                 <div
                   className={styles.signIn}
                   onClick={() => {
+                    setexpand(false);
                     !signedin && showModal();
                   }}
                 >
@@ -158,7 +159,7 @@ const Navbar = () => {
                   </Text>
                 </div>
               </Link>
-              <div className="d-flex align-items-center">
+              <div className="d-flex align-items-center ms-4 ps-1">
                 <div onClick={() => languageChange("en")}>
                   <Text
                     style={{

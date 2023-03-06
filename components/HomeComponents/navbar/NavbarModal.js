@@ -21,39 +21,47 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
   });
 
   const login = () => {
-    seterrors(true);
     setloader(true);
-    let Valu = { email: authValues.email, password: authValues.password };
-    console.log(Valu);
-    Services.login(Valu)
-      .then((res) => {
-        console.log(res);
-        // setsignedin(true);
-        // loginHandler(res.token);
-        setTimeout(() => {
-          closeModal();
-          // clearForm();
-        }, 1000);
-      })
-      .catch((err) => {
-        console.log(err, "errrrr");
-        // if (err.detail) {
-        //     HandleErrors(err.detail)
-        // } else {
-        //   err?.details?.[0] && HandleErrors(err.details[0]);
-        // }
-      })
-      .finally(() => setloader(false));
+    const valu = { email: authValues.email, password: authValues.password };
+    if (!valu.email || !valu.password) {
+      seterrors(true);
+    } else {
+      Services.login(valu)
+        .then((res) => {
+          console.log(res);
+          // setsignedin(true);
+          // loginHandler(res.token);
+          setTimeout(() => {
+            closeModal();
+            // clearForm();
+          }, 1000);
+        })
+        .catch((err) => {
+          console.log(err, "errrrr");
+          // if (err.detail) {
+          //     HandleErrors(err.detail)
+          // } else {
+          //   err?.details?.[0] && HandleErrors(err.details[0]);
+          // }
+        })
+        .finally(() => setloader(false));
+    }
   };
 
   const sendOTP = () => {
-    Services.send_reset_code()
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const valu = { email: authValues.email };
+    if (!valu.email) {
+      seterrors(true);
+    } else {
+      Services.send_reset_code(valu)
+        .then((res) => {
+          console.log(res);
+          setmodalStatus("otp");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   const createNewPassword = () => {
@@ -124,6 +132,7 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
             style={{ cursor: "pointer" }}
             onClick={() => {
               setmodalStatus("forgotPassowrd");
+              seterrors(false);
             }}
           >
             <Text className={"text-right"}>Forgot password?</Text>
@@ -145,7 +154,7 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
             fontFamily={FontFamily.medium}
             color={Colors.secondary}
           >
-            Type your email and send and change your password
+            Type your email below to change your password
           </Text>
           <div className="w-100 ms-5 ps-1">
             <InputLabel className={styles.label}>Email</InputLabel>
@@ -153,13 +162,19 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
               type={"email"}
               sx={{ input: { color: "black" } }}
               style={{ width: "90%", color: "black" }}
-              // value={email}
+              onChange={(e) =>
+                setauthValues({ ...authValues, email: e.target.value })
+              }
+              value={authValues.email}
             />
+            {!authValues.email && errors ? (
+              <Text color="red">This field is required</Text>
+            ) : null}
           </div>
           <Button
             variant="contained"
             className={styles.sendVerification}
-            onClick={() => setmodalStatus("otp")}
+            onClick={sendOTP}
           >
             <Text color="white" fontFamily={FontFamily.semiBold}>
               send verification email
