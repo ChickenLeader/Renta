@@ -22,7 +22,7 @@ const MapWithNoSSR = dynamic(
 const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   // const filtersData = useSelector((state) => state.app.filtersData);
-  const selectedFilters = JSON.parse(router.query.filter);
+  const selectedFilters = router.query;
   const [filteredProperties, setfilteredProperties] = useState(data);
   const [mapTrigger, setmapTrigger] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -35,10 +35,18 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   };
 
   const submitFilters = async (values) => {
-    const Valu = { ...values, page: page, page_size: 5 };
+    const Valu = { ...values, page: 1, page_size: 5 };
     const properties = await Services.getProperties(Valu);
     setfilteredProperties(properties);
     setmapTrigger(!mapTrigger);
+  };
+
+  const handlePagination = (page) => {
+    // const currentPath = props.router.pathname;
+    const currentQuery = router.query;
+    currentQuery.page = page;
+
+    router.push({ query: currentQuery }, undefined, { shallow: true });
   };
 
   useLayoutEffect(() => {
@@ -90,7 +98,7 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
             <Pagination
               count={data.results.length / 5}
               color="primary"
-              onChange={(x) => setpage(+x.target.innerText)}
+              onChange={(x) => handlePagination(+x.target.innerText)}
             />
           </div>
         )}
@@ -100,8 +108,9 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
 };
 
 export async function getServerSideProps({ query }) {
-  let filterData = query.filter ? JSON.parse(query.filter) : "";
-  const data = await Services.getProperties(filterData);
+  let filterData = query || "";
+  const valu = { ...filterData, page: query.page || 1, page_size: 5 };
+  const data = await Services.getProperties(valu);
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();
   const monthlyRates = await Services.monthlyRates();

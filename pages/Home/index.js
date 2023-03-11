@@ -136,9 +136,7 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             onClick={() => {
               router.push({
                 pathname: "/Search",
-                query: {
-                  filter: JSON.stringify(selectedFilters),
-                },
+                query: {...selectedFilters},
               });
             }}
           >
