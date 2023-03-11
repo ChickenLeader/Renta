@@ -21,12 +21,8 @@ const MapWithNoSSR = dynamic(
 
 const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
-  // const filtersData = useSelector((state) => state.app.filtersData);
   const selectedFilters = router.query;
-  const [filteredProperties, setfilteredProperties] = useState(data);
   const [mapTrigger, setmapTrigger] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [page, setpage] = useState(1);
   const [locations, setlocations] = useState([]);
   const sideNavData = {
     areas: areas,
@@ -36,8 +32,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
 
   const submitFilters = async (values) => {
     const Valu = { ...values, page: router.query.page || 1, page_size: 4 };
-    // const properties = await Services.getProperties(Valu);
-    // setfilteredProperties(properties);
     router.push({ query: Valu }, undefined, { shallow: false });
     setmapTrigger(!mapTrigger);
   };
@@ -50,7 +44,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
 
   useLayoutEffect(() => {
     let tempArr = [];
-    // console.log(filteredProperties, "data?");
     data.results.map((item) =>
       tempArr.push({
         id: item.id,
@@ -68,7 +61,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
           submitFilters={(data) => submitFilters(data)}
           filters={selectedFilters}
           sideNavData={sideNavData}
-          // setfilteres={(values) => setselectedFilters(values)}
         />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="mt-4 ps-5">
@@ -83,12 +75,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
           <Col lg={6} md={12} className="pe-0 pb-0" style={{ minHeight: 755 }}>
             <div className={styles.iframe}>
               <MapWithNoSSR data={locations} />
-              {/* <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
-                width="100%"
-                height="100%"
-                loading="lazy"
-              ></iframe> */}
             </div>
           </Col>
         </Row>

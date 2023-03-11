@@ -12,7 +12,7 @@ const LatestSeen = () => {
         <Row className="justify-content-around">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
             <Col key={item + ""} lg={6}>
-              <CustomPropertyCard />
+              <CustomPropertyCard item={item} />
             </Col>
           ))}
         </Row>

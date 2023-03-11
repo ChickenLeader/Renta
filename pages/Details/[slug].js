@@ -20,39 +20,40 @@ const images = [
   { id: 6, image: require("public/assets/housex2.png") },
   { id: 7, image: require("public/assets/housex2.png") },
 ];
-let tempIcons = [
-  {
-    id: 1,
-    name: "Property type:",
-    icon: require("public/assets/spaceIcon.svg"),
-    digit: "Apartment",
-  },
-  {
-    id: 2,
-    name: "No of bedrooms:",
-    icon: require("public/assets/spaceIcon.svg"),
-    digit: 200,
-  },
-  {
-    id: 3,
-    name: "Property area:",
-    icon: require("public/assets/spaceIcon.svg"),
-    digit: 167,
-  },
-  {
-    id: 4,
-    name: "No of bathrooms:",
-    icon: require("public/assets/spaceIcon.svg"),
-    digit: 167,
-  },
-];
 
-const PropertyDetails = () => {
+const PropertyDetails = ({ data }) => {
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(0);
   const [innerWidth, setinnerWidth] = useState(0);
   const Ref = useRef();
   const router = useRouter();
+
+  let tempIcons = [
+    {
+      id: 1,
+      name: "Property type:",
+      icon: require("public/assets/spaceIcon.svg"),
+      digit: data.property_type,
+    },
+    {
+      id: 2,
+      name: "No of bedrooms:",
+      icon: require("public/assets/spaceIcon.svg"),
+      digit: data.Bedrooms,
+    },
+    {
+      id: 3,
+      name: "Property area:",
+      icon: require("public/assets/spaceIcon.svg"),
+      digit: Math.floor(data.squared_area),
+    },
+    {
+      id: 4,
+      name: "No of bathrooms:",
+      icon: require("public/assets/spaceIcon.svg"),
+      digit: data.Bathrooms,
+    },
+  ];
 
   const getPropertyById = () => {
     console.log(router.query.slug);
@@ -92,35 +93,13 @@ const PropertyDetails = () => {
         {showCarousel && (
           <div className={styles.carouselLayer} onClick={() => closeCarousel()}>
             <div className={styles.carouselCon}>
-              {/* Left Button  */}
-              {/* <div
-                className={styles.leftButton}
-                onClick={() => Ref.current.prev()}
-              >
-                <Image
-                  alt=" "
-                  src={require("public/assets/Carousel-arrow-left.svg")}
-                />
-              </div> */}
-
-              {/* Right Button  */}
-              {/* <div
-                className={styles.rightButton}
-                onClick={() => Ref.current.next()}
-              >
-                <Image
-                  alt=" "
-                  src={require("public/assets/Carousel-arrow-right.svg")}
-                />
-              </div> */}
-
               <Carousel
                 activeIndex={index}
                 onSelect={handleSelect}
                 className={styles.carousel}
                 onClick={(e) => e.stopPropagation()}
               >
-                {images.map((item, index) => (
+                {property_image?.map((item, index) => (
                   <Carousel.Item key={item.id}>
                     <div className="w-100 position-relative">
                       <Image
@@ -129,12 +108,6 @@ const PropertyDetails = () => {
                         alt="property card"
                         objectFit="contain"
                       />
-                      {/* <div
-                        className={styles.closeButton}
-                        onClick={() => closeCarousel()}
-                      >
-                        <IoMdClose size={36} color="black" />
-                      </div> */}
                     </div>
                   </Carousel.Item>
                 ))}
@@ -147,7 +120,7 @@ const PropertyDetails = () => {
         <Container fluid>
           {/* Images Row */}
           <Row className="mb-4 align-items-center justify-content-center">
-            {images.map((item, index) => (
+            {data?.property_image?.map((item, index) => (
               <Col key={item.id} md={3} className="p-1">
                 <Image
                   alt=" "
@@ -166,7 +139,7 @@ const PropertyDetails = () => {
             <Col>
               <div className="mb-2">
                 <Text fontSize={32} color={Colors.secondary}>
-                  Small apartment
+                  {data.title}
                 </Text>
               </div>
               <Row className="align-items-center justify-content-center">
@@ -176,10 +149,7 @@ const PropertyDetails = () => {
                       <div
                         className="d-flex align-items-center my-2"
                         style={{
-                          justifyContent:
-                            innerWidth > 768 && index % 2
-                              ? "center"
-                              : "flex-start",
+                          justifyContent: "flex-start",
                         }}
                       >
                         <Image
@@ -214,7 +184,7 @@ const PropertyDetails = () => {
                     className="d-inline"
                     fontFamily={FontFamily.bold}
                   >
-                    7,600
+                    {data.price}
                   </Text>
                   <Text
                     className="d-inline ms-1"
@@ -227,10 +197,10 @@ const PropertyDetails = () => {
                 <Row className="mx-1 py-2 gap-2">
                   <Col>
                     <Row className={styles.callUs}>
-                      <Col>
+                      <Col md={7}>
                         <Text color="white">Call us</Text>
                       </Col>
-                      <Col md={8} className="pe-0">
+                      <Col className="pe-0">
                         <Text
                           color="white"
                           fontSize={18}
@@ -242,8 +212,13 @@ const PropertyDetails = () => {
                     </Row>
                   </Col>
                   <Col>
-                    <Row className={styles.ChatwitUs}>
-                      <Col md={8} xs={7}>
+                    <Row
+                      className={styles.ChatwitUs}
+                      onClick={() =>
+                        window.open(`https://wa.me/${data?.phone}`)
+                      }
+                    >
+                      <Col md={9} xs={7}>
                         <Text>Chat with us</Text>
                       </Col>
                       <Col className="pe-0 text-center">
@@ -251,16 +226,6 @@ const PropertyDetails = () => {
                       </Col>
                     </Row>
                   </Col>
-                  {/* <Col>
-                    <Row className={styles.ChatwitUs}>
-                      <Col md={8} xs={7}>
-                        <Text>Add to Shortlist</Text>
-                      </Col>
-                      <Col className="pe-0 text-center">
-                        <IoMdHeart color={Colors.primary} size={26} />
-                      </Col>
-                    </Row>
-                  </Col> */}
                 </Row>
               </div>
             </Col>
@@ -276,13 +241,7 @@ const PropertyDetails = () => {
                 >
                   Description:
                 </Text>
-                <Text color={Colors.secondary}>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est
-                </Text>
+                <Text color={Colors.secondary}>{data.description}</Text>
               </div>
               <div className="mt-5">
                 <Text
@@ -327,9 +286,8 @@ const PropertyDetails = () => {
     </ScreenWrapper>
   );
 };
-// export async function getServerSideProps({ query }) {
-//   let data = await Services.getPropertyByID(query);
-//   console.log(data);
-//   return { props: { data } };
-// }
+export async function getServerSideProps({ query }) {
+  let data = await Services.getPropertyByID(query.slug);
+  return { props: { data } };
+}
 export default PropertyDetails;

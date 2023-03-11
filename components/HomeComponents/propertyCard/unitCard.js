@@ -63,7 +63,7 @@ const UnitCard = ({ item }) => {
     <Card
       hoverable
       className={styles.unitCardCon}
-      onClick={() => navigate.push("/detail/jghghbbj")}
+      onClick={() => navigate.push(`/detail/${item.id}`)}
     >
       <div className={styles.cardHeader}>
         <Row

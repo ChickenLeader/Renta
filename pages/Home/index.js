@@ -68,7 +68,7 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             fontSize={64}
             color={Colors.secondary}
           >
-            find your dream house
+            perfecting renting
           </Text>
           <Text fontSize={21} color={Colors.secondary} className="text-center">
             more than 500 units in one click
@@ -136,7 +136,7 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             onClick={() => {
               router.push({
                 pathname: "/Search",
-                query: {...selectedFilters},
+                query: { ...selectedFilters },
               });
             }}
           >
