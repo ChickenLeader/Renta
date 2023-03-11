@@ -16,20 +16,20 @@ const UnitCard = ({ item }) => {
     {
       id: 1,
       name: "space",
-      icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
+      icon: require("../../../public/assets/spaceIcon.svg"),
+      digit: Math.floor(item.squared_area),
     },
     {
       id: 2,
-      name: "space",
+      name: "bedrooms",
       icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 200,
+      digit: item.Bedrooms,
     },
     {
       id: 3,
-      name: "space",
+      name: "bathrooms",
       icon: require("../../../public/assets/bathSvg.svg"),
-      digit: 167,
+      digit: item.Bathrooms,
     },
     {
       id: 4,

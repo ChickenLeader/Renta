@@ -95,7 +95,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
 export async function getServerSideProps({ query }) {
   let filterData = query || "";
   const valu = { ...filterData, page: +query.page || 1, page_size: 4 };
-  console.log(valu);
   const data = await Services.getProperties(valu);
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();

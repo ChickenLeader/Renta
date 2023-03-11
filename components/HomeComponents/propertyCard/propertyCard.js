@@ -164,7 +164,10 @@ const PropertyCard = ({ item }) => {
                       width={25}
                       height={25}
                     />
-                    <Text className="d-inline ms-2" style={{ width: 30 }}>
+                    <Text
+                      className="d-inline"
+                      style={{ width: 30, marginInlineStart: 5 }}
+                    >
                       {Math.floor(item.digit)}
                     </Text>
                   </Col>

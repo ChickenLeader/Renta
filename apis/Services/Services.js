@@ -75,6 +75,7 @@ export class Services {
         values.price_lte || "",
         values.area_gte || "",
         values.area_lte || "",
+        values.most_viewed || "",
         values.page || 1,
         values.page_size || 5
       ),
