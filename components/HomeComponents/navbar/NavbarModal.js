@@ -9,7 +9,7 @@ import { Services } from "apis/Services/Services";
 import HandleErrors from "hooks/handleErrors";
 import { loginHandler } from "hooks/loginHandler";
 
-export const NavbarModal = ({ closeModal, setsignedin }) => {
+export const NavbarModal = ({ closeModal }) => {
   const [modalStatus, setmodalStatus] = useState("signIn");
   const [loader, setloader] = useState(false);
   const [errors, seterrors] = useState(false);
@@ -28,9 +28,8 @@ export const NavbarModal = ({ closeModal, setsignedin }) => {
     } else {
       Services.login(valu)
         .then((res) => {
-          console.log(res);
-          // setsignedin(true);
-          // loginHandler(res.token);
+          console.log(res,"ressssss");
+          loginHandler(res.token.access_token);
           setTimeout(() => {
             closeModal();
             // clearForm();

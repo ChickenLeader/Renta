@@ -6,8 +6,8 @@ const MapComponent = (props) => {
   // const [data, setLocations] = useState([])
 
   const newicon = new L.icon({
-    iconUrl: "/assets/icons/map-pin.svg",
-    iconSize: [30, 40],
+    iconUrl: "/assets/marker.svg",
+    iconSize: [50, 60],
   });
 
   return (
@@ -40,7 +40,7 @@ const MapComponent = (props) => {
           <Marker
             key={index}
             position={[Number(location.latitude), Number(location.longitude)]}
-            // icon={newicon}
+            icon={newicon}
           >
             <Popup>{location.name}</Popup>
           </Marker>

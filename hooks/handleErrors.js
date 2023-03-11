@@ -9,10 +9,11 @@ export default function HandleErrors(err) {
     }
 
     if (err?.code?.includes('token_not_valid')) {
+        
         logoutHandler()
     }
 
-    console.log("errdata", err)
+    console.log("errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrdata", err)
 
     if (err.details?.reason) {
         showErrorToast(err.details?.reason)

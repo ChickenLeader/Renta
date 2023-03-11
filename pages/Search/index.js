@@ -35,24 +35,23 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   };
 
   const submitFilters = async (values) => {
-    const Valu = { ...values, page: 1, page_size: 5 };
-    const properties = await Services.getProperties(Valu);
-    setfilteredProperties(properties);
+    const Valu = { ...values, page: router.query.page || 1, page_size: 4 };
+    // const properties = await Services.getProperties(Valu);
+    // setfilteredProperties(properties);
+    router.push({ query: Valu }, undefined, { shallow: false });
     setmapTrigger(!mapTrigger);
   };
 
   const handlePagination = (page) => {
-    // const currentPath = props.router.pathname;
     const currentQuery = router.query;
     currentQuery.page = page;
-
-    router.push({ query: currentQuery }, undefined, { shallow: true });
+    router.push({ query: currentQuery }, undefined, { shallow: false });
   };
 
   useLayoutEffect(() => {
     let tempArr = [];
     // console.log(filteredProperties, "data?");
-    filteredProperties.results.map((item) =>
+    data.results.map((item) =>
       tempArr.push({
         id: item.id,
         latitude: item.latitude,
@@ -73,8 +72,8 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
         />
         <Row className="justify-content-between">
           <Col lg={6} md={12} className="mt-4 ps-5">
-            {filteredProperties.results.length ? (
-              filteredProperties.results.map((item) => (
+            {data.results.length ? (
+              data.results.map((item) => (
                 <PropertyCard key={item.id + ""} item={item} />
               ))
             ) : (
@@ -93,10 +92,10 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
             </div>
           </Col>
         </Row>
-        {data.results.length > 5 && (
+        {data?.count > 4 && (
           <div className=" d-flex justify-content-center align-items-center my-5">
             <Pagination
-              count={data.results.length / 5}
+              count={data.pages_number}
               color="primary"
               onChange={(x) => handlePagination(+x.target.innerText)}
             />
@@ -109,7 +108,8 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
 
 export async function getServerSideProps({ query }) {
   let filterData = query || "";
-  const valu = { ...filterData, page: query.page || 1, page_size: 5 };
+  const valu = { ...filterData, page: +query.page || 1, page_size: 4 };
+  console.log(valu);
   const data = await Services.getProperties(valu);
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();

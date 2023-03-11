@@ -11,6 +11,7 @@ import { FontFamily } from "constants/FontFamily";
 import { Modal } from "antd";
 import { InputLabel, TextField } from "@mui/material";
 import { NavbarModal } from "./NavbarModal";
+import { useSelector } from "react-redux";
 
 const Nav_Items = [
   { id: 1, name: "Latest seen", navigate: "/Latest" },
@@ -20,10 +21,10 @@ const Nav_Items = [
 
 const Navbar = () => {
   const [selected, setselected] = useState("");
-  const [signedin, setsignedin] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [expand, setexpand] = useState(false);
   const [language, setlanguage] = useState("en");
+  const isSignedIn = useSelector((state) => state.auth.token);
   const router = useRouter();
   const pathName = router.pathname;
 
@@ -103,10 +104,7 @@ const Navbar = () => {
           className="d-flex flex-column align-items-center justify-content-between"
           style={{ height: 300 }}
         >
-          <NavbarModal
-            closeModal={() => handleCancel()}
-            setsignedin={setsignedin}
-          />
+          <NavbarModal closeModal={() => handleCancel()} />
         </div>
       </Modal>
       <RNav collapseOnSelect expanded={expand} expand="lg" variant="light">
@@ -146,16 +144,16 @@ const Navbar = () => {
                   </Link>
                 </div>
               ))}
-              <Link href={signedin ? "/Units" : "#"}>
+              <Link href={isSignedIn ? "/Units" : "#"}>
                 <div
                   className={styles.signIn}
                   onClick={() => {
                     setexpand(false);
-                    !signedin && showModal();
+                    !isSignedIn && showModal();
                   }}
                 >
                   <Text color="white" style={{ textAlign: "center" }}>
-                    {signedin == true ? "My units" : "Sign in"}
+                    {isSignedIn ? "My units" : "Sign in"}
                   </Text>
                 </div>
               </Link>

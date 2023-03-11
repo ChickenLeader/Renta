@@ -40,7 +40,7 @@ export const ENDPOINTS = {
     method: "POST",
   },
   myUnits: {
-    url: `${DomainUrl}/my-unit/`,
+    url: `${DomainUrl}/my-unit/?page_size=2`,
     method: "GET",
   },
   properties: {
