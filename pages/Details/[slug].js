@@ -9,6 +9,7 @@ import { FontFamily } from "constants/FontFamily";
 import { IoLogoWhatsapp, IoMdHeart, IoMdClose } from "react-icons/io";
 import { Services } from "apis/Services/Services";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 // import { Carousel } from "antd";
 
 const images = [
@@ -288,6 +289,8 @@ const PropertyDetails = ({ data }) => {
 };
 export async function getServerSideProps({ query }) {
   let data = await Services.getPropertyByID(query.slug);
-  return { props: { data } };
+  return {
+    props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+  };
 }
 export default PropertyDetails;

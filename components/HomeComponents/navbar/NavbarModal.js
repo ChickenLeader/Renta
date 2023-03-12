@@ -55,7 +55,7 @@ export const NavbarModal = ({ closeModal }) => {
       Services.send_reset_code(valu)
         .then((res) => {
           console.log(res);
-          setmodalStatus("otp");
+          setmodalStatus("newPassword");
         })
         .catch((err) => {
           console.log(err);

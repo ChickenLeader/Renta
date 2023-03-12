@@ -1,42 +1,50 @@
 export class Network {
-  constructor() {}
+  constructor() {
+    this.bearer = "";
+  }
 
   static async fetch(url, init, addAuth) {
     const response = await fetch(url, {
       mode: "cors",
       ...init,
-      headers: Network.getHeaders(init.header, addAuth),
+      headers: Network.getHeaders(init.headers, addAuth),
     });
     let promise;
-    if (
-      response.status !== 200 &&
-      response.status !== 201 &&
-      response.status !== 204
-    ) {
+    if (![204, 201, 200].includes(response.status)) {
       let promise = response.json().then((data) => {
+        // console.log(response,"ressasasasasasasasaassssssssssssssssssss");
         return Promise.reject(data);
       });
-
       return promise.catch((error) => {
-        return Promise.reject(error);
+        // console.log(error,"22222222222222222222ressasasasasasasasaassssssssssssssssssss");
+        return Promise.reject({ error: "error from Network" });
       });
-    } else {
-      promise = response.json() || {};
+    } else if (response.status == 204) promise = Promise.resolve({});
+    else {
+      promise = response.json();
     }
+
     return promise;
   }
+
   static getHeaders(originalHeaders, auth) {
-    let headers = {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    };
+    let headers = {};
     if (auth) {
-      headers.Authorization = `Token ${auth}`;
+      if (typeof window !== "undefined") {
+        console.log("SUIIIIIIIIIIIIIIIIII");
+        this.bearer = localStorage.getItem("token");
+        headers.Authorization = `Token ${this.bearer}`;
+      }else {
+        console.log("offf a777");
+      }
     }
     headers = {
       ...headers,
       ...originalHeaders,
+      "content-type": "application/json",
+      Accept: "application/json",
     };
+
     return headers;
   }
 }

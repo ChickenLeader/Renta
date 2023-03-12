@@ -7,6 +7,7 @@ import { Pagination } from "@mui/material";
 import CustomPropertyCard from "components/HomeComponents/propertyCard/customPropertyCard";
 import { Services } from "apis/Services/Services";
 import { useRouter } from "next/router";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const LatestSeen = ({ data }) => {
   const router = useRouter();
 
@@ -39,10 +40,12 @@ const LatestSeen = ({ data }) => {
   );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, locale }) {
   const valu = { most_viewed: true, pages_number: 6, page: 1 };
   const data = await Services.getProperties(valu);
-  return { props: { data } };
+  return {
+    props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+  };
 }
 
 export default LatestSeen;

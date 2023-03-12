@@ -52,12 +52,26 @@ const UnitCard = ({ item }) => {
   ];
 
   const unitDetails = [
-    { id: 1, title: "Renter name:", value: item.name },
-    { id: 2, title: "Rent amount per month:", value: item.rent },
-    { id: 3, title: "Contract start:", value: item.startDate },
-    { id: 4, title: "Contract end:", value: item.endDate },
-    { id: 5, title: "Contract photo:", value: item.photo, underline: true },
-    { id: 6, title: "Renter id photo:", value: item.idPhoto, underline: true },
+    { id: 1, title: "Renter name:", value: item.renter_name },
+    {
+      id: 2,
+      title: "Rent amount per month:",
+      value: item.rent_amount_per_month,
+    },
+    { id: 3, title: "Contract start:", value: item.contract_start },
+    { id: 4, title: "Contract end:", value: item.contract_end },
+    {
+      id: 5,
+      title: "Contract photo:",
+      value: item.contract_photo || "No Photo",
+      underline: true,
+    },
+    {
+      id: 6,
+      title: "Renter id photo:",
+      value: item.renter_id_photo || "No Photo",
+      underline: true,
+    },
   ];
   return (
     <Card

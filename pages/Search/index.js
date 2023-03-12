@@ -11,6 +11,7 @@ import { Services } from "apis/Services/Services";
 import { useSelector } from "react-redux";
 import Text from "components/General/Text";
 import dynamic from "next/dynamic";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const MapWithNoSSR = dynamic(
   () => import("components/HomeComponents/map/Map"),
@@ -92,13 +93,21 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   );
 };
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query, locale }) {
   let filterData = query || "";
   const valu = { ...filterData, page: +query.page || 1, page_size: 4 };
   const data = await Services.getProperties(valu);
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();
   const monthlyRates = await Services.monthlyRates();
-  return { props: { data, areas, propertyType, monthlyRates } };
+  return {
+    props: {
+      data,
+      areas,
+      propertyType,
+      monthlyRates,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 }
 export default Search;

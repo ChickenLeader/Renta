@@ -185,3 +185,13 @@
   width: 50px;
   height: 50px;
 }
+
+body[dir="rtl"] {
+  .sideNavCon {
+    right: 0;
+  }
+  .sideNavHamburger {
+    left: -1.4rem !important;
+    right: auto;
+  }
+}

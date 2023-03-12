@@ -25,6 +25,7 @@ const Navbar = () => {
   const [expand, setexpand] = useState(false);
   const [language, setlanguage] = useState("en");
   const isSignedIn = useSelector((state) => state.auth.token);
+  const stateRedux = useSelector((state) => state);
   const router = useRouter();
   const pathName = router.pathname;
 

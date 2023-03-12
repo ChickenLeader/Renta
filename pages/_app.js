@@ -23,7 +23,9 @@ function MyApp({ Component, pageProps }) {
 
   const autoLogin = () => {
     let token = localStorage.getItem("token");
-    loginHandler(token);
+    if (token) {
+      loginHandler(token);
+    }
   };
 
   const langAdjustment = () => {

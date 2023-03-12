@@ -12,11 +12,8 @@
   transition: 0.4s;
   padding: 1rem;
 }
-.sideNavContainer[dir="rtl"]{
-  right: 0;
-  top: 0;
-  bottom: 0;
-}
+
+
 .sideNavContainerNX {
   width: 40px;
   position: absolute;

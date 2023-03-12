@@ -11,6 +11,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { FiChevronDown } from "react-icons/fi";
 import { Services } from "apis/Services/Services";
 import { setFiltersData } from "redux/appReducer";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 // let areas = [
 //   { id: 1, name: "New Cairo" },
@@ -149,10 +150,17 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   const areas = await Services.areas();
   const propertyType = await Services.propertyTypes();
   const monthlyRates = await Services.monthlyRates();
-  return { props: { areas, propertyType, monthlyRates } };
+  return {
+    props: {
+      areas,
+      propertyType,
+      monthlyRates,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
 }
 export default Home;

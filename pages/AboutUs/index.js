@@ -3,6 +3,7 @@ import ScreenWrapper from "components/General/ScreenWrapper";
 import Text from "components/General/Text";
 import { Colors } from "constants/Colors";
 import { FontFamily } from "constants/FontFamily";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
@@ -93,9 +94,11 @@ const AboutUs = ({ data }) => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ locale }) {
   const data = await Services.aboutUs();
-  return { props: { data } };
+  return {
+    props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+  };
 }
 
 export default AboutUs;

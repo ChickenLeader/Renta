@@ -41,10 +41,6 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
     filters.price_gte,
     filters.price_lte,
   ]);
-  // const [priceScale, setpriceScale] = useState(0);
-  // const [areaScale, setareaScale] = useState(0);
-  // const rangeWidth = (priceRange[0] - priceRange[1]) / (1000 - 7000);
-  // const distanceWidth = (areaRange[0] - areaRange[1]) / (70 - 300);
 
   const resetFilters = () => {
     setarea(sideNavData.areas[0]["id"]);
@@ -82,13 +78,15 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
   return (
     <div
       ref={Ref}
-      className={
+      className={`${
         isExpanded ? styles.sideNavContainer : styles.sideNavContainerNX
-      }
+      } sideNavCon`}
     >
       <div className={styles.navHeading}>
         <div
-          className={isExpanded ? styles.hamburgerNX : styles.hamburger}
+          className={`${isExpanded ? styles.hamburgerNX : styles.hamburger} ${
+            isExpanded && "sideNavHamburger"
+          } `}
           onClick={() => setExpendState(!isExpanded)}
         >
           {isExpanded ? (

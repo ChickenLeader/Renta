@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "components/General/Container";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import Text from "components/General/Text";
@@ -10,9 +10,11 @@ import { logoutHandler } from "hooks/logoutHandler";
 import { Pagination } from "@mui/material";
 import { useRouter } from "next/router";
 import { Services } from "apis/Services/Services";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const Units = ({ data }) => {
+const Units = () => {
   const router = useRouter();
+  const [data, setdata] = useState([]);
   let myUnits = [
     {
       id: 1,
@@ -33,15 +35,23 @@ const Units = ({ data }) => {
       idPhoto: "W1235..123512345.1235./23512.png",
     },
   ];
-
+  const getUnits = async () => {
+    await Services.myUnits()
+      .then((res) => {
+        console.log(res, "ress");
+        setdata(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const logout = () => {
     logoutHandler();
     router.push("/Home");
   };
-
-  React.useEffect(() => {
-    console.log(data);
-  }, [data]);
+  useEffect(() => {
+    getUnits();
+  }, []);
 
   return (
     <ScreenWrapper>
@@ -66,10 +76,10 @@ const Units = ({ data }) => {
             </div>
           </div>
           {data?.length > 0 ? (
-            <Row className="justify-content-between align-items-center">
-              {myUnits.map((item) => {
+            <Row className="justify-content-center align-items-center">
+              {data.map((item) => {
                 return (
-                  <Col key={item.id + ""}>
+                  <Col md={6} key={item.id + ""}>
                     <UnitCard item={item} />
                   </Col>
                 );
@@ -100,9 +110,8 @@ const Units = ({ data }) => {
   );
 };
 
-export async function getServerSideProps() {
-  const data = await Services.myUnits();
-  return { props: { data } };
+export async function getServerSideProps({ locale }) {
+  return { props: { ...(await serverSideTranslations(locale, ["common"])) } };
 }
 
 export default Units;
