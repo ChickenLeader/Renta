@@ -95,7 +95,7 @@ const AboutUs = ({ data }) => {
 };
 
 export async function getServerSideProps({ locale }) {
-  const data = await Services.aboutUs();
+  const data = await Services.aboutUs(locale);
   return {
     props: { data, ...(await serverSideTranslations(locale, ["common"])) },
   };

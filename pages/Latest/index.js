@@ -42,7 +42,7 @@ const LatestSeen = ({ data }) => {
 
 export async function getServerSideProps({ query, locale }) {
   const valu = { most_viewed: true, pages_number: 6, page: 1 };
-  const data = await Services.getProperties(valu);
+  const data = await Services.getProperties(valu, locale);
   return {
     props: { data, ...(await serverSideTranslations(locale, ["common"])) },
   };

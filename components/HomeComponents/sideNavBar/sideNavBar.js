@@ -7,23 +7,7 @@ import { Button, Slider } from "antd";
 import { Colors } from "constants/Colors";
 import { Services } from "apis/Services/Services";
 import { useSelector } from "react-redux";
-
-let areas = [
-  { id: 1, name: "New Cairo" },
-  { id: 2, name: "Zamalek" },
-  { id: 3, name: "Downtown" },
-];
-
-let properties = [
-  { id: 1, name: "Apartment" },
-  { id: 2, name: "Office" },
-  { id: 3, name: "Villa" },
-];
-let monthlyRates = [
-  { id: 1, name: "+2000 LE" },
-  { id: 2, name: "+5000 LE" },
-  { id: 3, name: "+7000 LE" },
-];
+import { i18n } from "next-i18next";
 
 const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
@@ -72,7 +56,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
       price_lte: priceRange[1],
       Bedrooms: room,
     };
-    console.log(x, "xxxx");
+    console.log(i18n.dir());
   }, [area]);
 
   return (
@@ -82,21 +66,21 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
         isExpanded ? styles.sideNavContainer : styles.sideNavContainerNX
       } sideNavCon`}
     >
-      <div className={styles.navHeading}>
+      <div className={`${styles.navHeading} navHeading`}>
         <div
-          className={`${isExpanded ? styles.hamburgerNX : styles.hamburger} ${
-            isExpanded && "sideNavHamburger"
+          className={`${isExpanded ? styles.hamburger : styles.hamburgerNX} ${
+            isExpanded ? "sideNavHamburgerNX" : "sideNavHamburger"
           } `}
           onClick={() => setExpendState(!isExpanded)}
         >
           {isExpanded ? (
-            <Image alt=" " src={leftArrow} />
+            <Image alt=" " src={i18n.dir() == "rtl" ? rightArrow : leftArrow} />
           ) : (
             <>
               <Text style={{ color: "white" }}>Filters</Text>
               <Image
                 alt=" "
-                src={rightArrow}
+                src={i18n.dir() == "rtl" ? leftArrow : rightArrow}
                 style={{ margin: 15 }}
                 objectFit="contain"
               />

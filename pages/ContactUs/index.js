@@ -75,7 +75,7 @@ const ContactUs = ({ data }) => {
 };
 
 export async function getServerSideProps({ locale }) {
-  const data = await Services.getContactUs();
+  const data = await Services.getContactUs(locale);
   return {
     props: { data, ...(await serverSideTranslations(locale, ["common"])) },
   };

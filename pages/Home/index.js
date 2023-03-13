@@ -12,6 +12,7 @@ import { FiChevronDown } from "react-icons/fi";
 import { Services } from "apis/Services/Services";
 import { setFiltersData } from "redux/appReducer";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
 // let areas = [
 //   { id: 1, name: "New Cairo" },
@@ -37,6 +38,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const Home = ({ areas, propertyType, monthlyRates }) => {
   const router = useRouter();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [area, setarea] = useState(1);
   const [property, setproperty] = useState(1);
@@ -81,10 +83,13 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             className={styles.areas}
             sx={{ m: 1 }}
           >
-            <InputLabel>Select area</InputLabel>
+            <InputLabel className="home-input-label">
+              {t("Select area")}
+            </InputLabel>
             <Select
               value={area}
               onChange={(event) => setarea(event.target.value)}
+              className="home-input-select"
               style={{ border: "none" }}
               // inputComponent={dropdownIcon}
             >
@@ -100,10 +105,12 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             className={styles.areas}
             sx={{ m: 1 }}
           >
-            <InputLabel>Type of property</InputLabel>
+            <InputLabel className="home-input-label">
+              {t("Type of property")}
+            </InputLabel>
             <Select
               value={property}
-              // label="Age"
+              className="home-input-select"
               onChange={(event) => setproperty(event.target.value)}
             >
               {propertyType.map((item) => (
@@ -118,10 +125,12 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
             className={styles.areas}
             sx={{ m: 1 }}
           >
-            <InputLabel>Monthly rate</InputLabel>
+            <InputLabel className="home-input-label">
+              {t("Monthly rate")}
+            </InputLabel>
             <Select
               value={monthlyRate}
-              // label="Age"
+              className="home-input-select"
               onChange={(event) => setmonthlyRate(event.target.value)}
             >
               {/* {item.name} */}
@@ -151,9 +160,9 @@ const Home = ({ areas, propertyType, monthlyRates }) => {
 };
 
 export async function getServerSideProps({ locale }) {
-  const areas = await Services.areas();
-  const propertyType = await Services.propertyTypes();
-  const monthlyRates = await Services.monthlyRates();
+  const areas = await Services.areas(locale);
+  const propertyType = await Services.propertyTypes(locale);
+  const monthlyRates = await Services.monthlyRates(locale);
   return {
     props: {
       areas,

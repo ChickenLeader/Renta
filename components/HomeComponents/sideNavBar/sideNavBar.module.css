@@ -30,7 +30,7 @@
   height: 50px;
 }
 
-.hamburger {
+.hamburgerNX {
   border: none;
   cursor: pointer;
   position: absolute;
@@ -47,7 +47,7 @@
   width: 100px;
   transition: 0.4s;
 }
-.hamburgerNX {
+.hamburger {
   border: none;
   cursor: pointer;
   position: absolute;

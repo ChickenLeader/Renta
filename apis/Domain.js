@@ -1,2 +1,2 @@
-const DomainUrl = `https://backend.rentaegypt.com/en/api`;
+const DomainUrl = `https://backend.rentaegypt.com`;
 export default DomainUrl;

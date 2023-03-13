@@ -8,6 +8,7 @@ import { Card, Carousel } from "antd";
 import { FontFamily } from "constants/FontFamily";
 import { FiArrowRight, FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/router";
+import { i18n } from "next-i18next";
 
 const img = require("../../../public/assets/houseCard.png");
 const images = [
@@ -59,9 +60,14 @@ const PropertyCard = ({ item }) => {
     // },
   ];
 
-  const next = () => {
+  const nextSlide = () => {
     setTimeout(() => {
       sliderRef.current.next();
+    }, 200);
+  };
+  const prevSlide = () => {
+    setTimeout(() => {
+      sliderRef.current.prev();
     }, 200);
   };
 
@@ -76,25 +82,36 @@ const PropertyCard = ({ item }) => {
       onClick={() => navigate.push(`/Details/${item.id}`)}
     >
       <Row>
-        <Col md={4} className="p-0 position-relative">
+        <Col
+          md={4}
+          className="p-0 position-relative"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className={styles.directions}>
             <div
               className={styles.prev}
               onClick={(e) => {
-                sliderRef.current.prev();
-                // e.stopPropagation();
+                i18n.dir() == "rtl" ? nextSlide() : prevSlide();
               }}
             >
-              <FiArrowLeft size={22} color="white" />
+              {i18n.dir() == "rtl" ? (
+                <FiArrowRight size={22} color="white" />
+              ) : (
+                <FiArrowLeft size={22} color="white" />
+              )}
+              {/* <FiArrowLeft size={22} color="white" /> */}
             </div>
             <div
               className={styles.next}
               onClick={(e) => {
-                next();
-                // e.stopPropagation();
+                i18n.dir() == "rtl" ? prevSlide() : nextSlide();
               }}
             >
-              <FiArrowRight size={22} />
+              {i18n.dir() == "rtl" ? (
+                <FiArrowLeft size={22} />
+              ) : (
+                <FiArrowRight size={22} />
+              )}
             </div>
           </div>
           <Carousel ref={sliderRef} dots={{ className: styles.test }}>

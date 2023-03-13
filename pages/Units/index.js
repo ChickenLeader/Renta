@@ -36,7 +36,8 @@ const Units = () => {
     },
   ];
   const getUnits = async () => {
-    await Services.myUnits()
+    let lang = localStorage.getItem("AppLang") || "en";
+    await Services.myUnits(lang)
       .then((res) => {
         console.log(res, "ress");
         setdata(res);

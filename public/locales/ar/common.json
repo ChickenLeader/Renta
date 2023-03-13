@@ -3,7 +3,7 @@
   "dir": "rtl",
   "test": "تجربة",
   "Find us": "تجدنا",
-  "/ month": "شهريا  /",
+  "/ month": " / شهريا",
   "Chat with us": "دردش معنا",
   "Description:": "وصف:",
   "Compound facilities": "مرافق المُجَمَّع",
@@ -40,5 +40,8 @@
   "No. Of rooms": "عدد الغرف",
   "Property area": "منطقة الملكية",
   "Reset filter": "تصفية إعادة تعيين",
-  "Apply filter": "تطبيق "
+  "Apply filter": "تطبيق ",
+  "No units yet": "لا توجد وحدات بعد",
+  "Logout": "تسجيل الخروج",
+  "call us": "تواصل معنا"
 }

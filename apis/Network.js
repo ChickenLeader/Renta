@@ -1,10 +1,16 @@
+import DomainUrl from "./Domain";
+
 export class Network {
   constructor() {
     this.bearer = "";
   }
 
   static async fetch(url, init, addAuth) {
-    const response = await fetch(url, {
+    let requestedUrl = url.includes("http")
+      ? url
+      : DomainUrl + `/${init?.locale || "en"}/api` + url;
+    console.log(requestedUrl);
+    const response = await fetch(requestedUrl, {
       mode: "cors",
       ...init,
       headers: Network.getHeaders(init.headers, addAuth),
@@ -31,11 +37,8 @@ export class Network {
     let headers = {};
     if (auth) {
       if (typeof window !== "undefined") {
-        console.log("SUIIIIIIIIIIIIIIIIII");
         this.bearer = localStorage.getItem("token");
         headers.Authorization = `Token ${this.bearer}`;
-      }else {
-        console.log("offf a777");
       }
     }
     headers = {

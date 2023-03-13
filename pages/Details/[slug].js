@@ -287,8 +287,8 @@ const PropertyDetails = ({ data }) => {
     </ScreenWrapper>
   );
 };
-export async function getServerSideProps({ query }) {
-  let data = await Services.getPropertyByID(query.slug);
+export async function getServerSideProps({ query, locale }) {
+  let data = await Services.getPropertyByID(query.slug, locale);
   return {
     props: { data, ...(await serverSideTranslations(locale, ["common"])) },
   };
