@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Services } from "apis/Services/Services";
 import HandleErrors from "hooks/handleErrors";
 import { loginHandler } from "hooks/loginHandler";
+import { toast } from "react-hot-toast";
 
 export const NavbarModal = ({ closeModal }) => {
   const [modalStatus, setmodalStatus] = useState("signIn");
@@ -28,7 +29,7 @@ export const NavbarModal = ({ closeModal }) => {
     } else {
       Services.login(valu)
         .then((res) => {
-          console.log(res,"ressssss");
+          console.log(res, "ressssss");
           loginHandler(res.token.access_token);
           setTimeout(() => {
             closeModal();
@@ -37,6 +38,7 @@ export const NavbarModal = ({ closeModal }) => {
         })
         .catch((err) => {
           console.log(err, "errrrr");
+          toast.error("Wrong credentials");
           // if (err.detail) {
           //     HandleErrors(err.detail)
           // } else {
@@ -55,7 +57,8 @@ export const NavbarModal = ({ closeModal }) => {
       Services.send_reset_code(valu)
         .then((res) => {
           console.log(res);
-          setmodalStatus("newPassword");
+          toast.success("An OTP has been sent to your email");
+          setmodalStatus("otp");
         })
         .catch((err) => {
           console.log(err);
@@ -64,11 +67,19 @@ export const NavbarModal = ({ closeModal }) => {
   };
 
   const createNewPassword = () => {
-    Services.reset_password()
+    const valu = {
+      email: authValues.email,
+      code: authValues.otp,
+      password: authValues.newPasword,
+      re_enter_password: authValues.newPasword,
+    };
+    Services.reset_password(valu)
       .then((res) => {
         console.log(res);
+        setmodalStatus("success");
       })
       .catch((err) => {
+        toast.error("Something went wrong, try again later");
         console.log(err);
       });
   };
@@ -83,12 +94,16 @@ export const NavbarModal = ({ closeModal }) => {
     });
   };
 
+  useEffect(() => {
+    console.log(authValues);
+  }, [authValues]);
+
   return (
     <>
       {modalStatus == "signIn" ? (
         <>
-          <div className="w-100 ms-5 ps-1">
-            <div className="mb-3">
+          <div className="w-100 m-auto mb-2">
+            <div className="mb-3 w-100">
               <InputLabel className={styles.label}>Email</InputLabel>
               <TextField
                 required
@@ -97,7 +112,7 @@ export const NavbarModal = ({ closeModal }) => {
                 sx={{ input: { color: "black" } }}
                 style={{ width: "90%" }}
                 type="email"
-                className="form-contol"
+                className="form-contol w-100"
                 value={authValues.email}
                 onChange={(e) => {
                   //   console.log(e.target.value);
@@ -114,7 +129,7 @@ export const NavbarModal = ({ closeModal }) => {
                 error={!authValues.password && errors}
                 required
                 sx={{ input: { color: "black" } }}
-                style={{ width: "90%" }}
+                style={{ width: "100%" }}
                 type="password"
                 onChange={(e) =>
                   setauthValues({ ...authValues, password: e.target.value })
@@ -127,10 +142,11 @@ export const NavbarModal = ({ closeModal }) => {
             </div>
           </div>
           <div
-            className="align-self-end me-5"
+            className="align-self-end me-5 mb-4"
             style={{ cursor: "pointer" }}
             onClick={() => {
               setmodalStatus("forgotPassowrd");
+              setauthValues({ ...authValues, password: "" });
               seterrors(false);
             }}
           >
@@ -155,12 +171,12 @@ export const NavbarModal = ({ closeModal }) => {
           >
             Type your email below to change your password
           </Text>
-          <div className="w-100 ms-5 ps-1">
+          <div className="w-100 my-5">
             <InputLabel className={styles.label}>Email</InputLabel>
             <TextField
               type={"email"}
               sx={{ input: { color: "black" } }}
-              style={{ width: "90%", color: "black" }}
+              style={{ width: "100%", color: "black" }}
               onChange={(e) =>
                 setauthValues({ ...authValues, email: e.target.value })
               }
@@ -189,66 +205,50 @@ export const NavbarModal = ({ closeModal }) => {
           >
             please enter the code we sent to your email
           </Text>
-          <div className="w-100 ms-5 ps-1">
-            <InputLabel className={styles.label}>OTP</InputLabel>
-            <TextField
-              type={"number"}
-              sx={{ input: { color: "black" } }}
-              style={{ width: "90%", color: "black" }}
-            />
-          </div>
-
+          <>
+            <div className="w-100 my-2">
+              <InputLabel className={styles.label}>OTP</InputLabel>
+              <TextField
+                type={"number"}
+                sx={{ input: { color: "black" } }}
+                style={{ width: "100%", color: "black" }}
+                onChange={(e) =>
+                  setauthValues({ ...authValues, otp: e.target.value })
+                }
+                value={authValues.otp}
+              />
+            </div>
+            <div className="w-100 my-2">
+              <InputLabel className={styles.label}>New password</InputLabel>
+              <TextField
+                sx={{ input: { color: "black" } }}
+                style={{ width: "100%" }}
+                type="password"
+                onChange={(e) =>
+                  setauthValues({ ...authValues, newPasword: e.target.value })
+                }
+                inputProps={{
+                  autoComplete: "new-password",
+                }}
+                autoSave={false}
+                value={authValues.newPasword}
+              />
+            </div>
+          </>
           <Button
             variant="contained"
-            className={styles.sendVerification}
-            onClick={() => setmodalStatus("newPassword")}
+            className={`${styles.sendVerification} my-2`}
+            onClick={() => createNewPassword()}
           >
             <Text color="white" fontFamily={FontFamily.semiBold}>
               Verify
             </Text>
           </Button>
         </>
-      ) : modalStatus == "newPassword" ? (
-        <>
-          <div className="w-100 ms-5 ps-1">
-            <div className="mb-3">
-              <InputLabel className={styles.label}>New password</InputLabel>
-              <TextField
-                sx={{ input: { color: "black" } }}
-                style={{ width: "90%" }}
-                type="password"
-              />
-            </div>
-            <div>
-              <InputLabel className={styles.label}>
-                Re-enter new password
-              </InputLabel>
-              <TextField
-                sx={{ input: { color: "black" } }}
-                style={{ width: "90%" }}
-                type="password"
-              />
-            </div>
-          </div>
-          <Button
-            className={styles.sendVerification}
-            onClick={() => {
-              setmodalStatus("success");
-              // setsignedin(true);
-              setTimeout(() => {
-                setmodalStatus("signIn");
-              }, 3000);
-            }}
-          >
-            <Text color="white" fontFamily={FontFamily.semiBold}>
-              Submit
-            </Text>
-          </Button>
-        </>
       ) : modalStatus == "success" ? (
         <>
           <Image
-            alt=" "
+            alt="success icon"
             src={require("public/assets/success.svg")}
             width={226}
             height={226}

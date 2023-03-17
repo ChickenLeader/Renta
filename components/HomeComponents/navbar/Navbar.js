@@ -103,7 +103,7 @@ const Navbar = () => {
       >
         <div
           className="d-flex flex-column align-items-center justify-content-between"
-          style={{ height: 300 }}
+          style={{ paddingInline: 30 }}
         >
           <NavbarModal closeModal={() => handleCancel()} />
         </div>

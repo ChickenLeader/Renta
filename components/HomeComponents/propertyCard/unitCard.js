@@ -84,10 +84,7 @@ const UnitCard = ({ item }) => {
           className={`justify-content-around align-items-center ${styles.cardDetails}`}
           style={{ backgroundColor: "#f4f4f4" }}
         >
-          <Col
-            md={5}
-            className=" flex-column align-items-center justify-content-center"
-          >
+          <Col className=" flex-column align-items-center justify-content-center">
             <div className={styles.details}>
               <div>
                 <Text fontSize={20} className={styles.propertyType}>
@@ -99,7 +96,7 @@ const UnitCard = ({ item }) => {
               </div>
             </div>
           </Col>
-          <Col md={6} className="ps-0">
+          <Col className="ps-0">
             <div className={styles.iconsCon}>
               <Row
                 style={{ minHeight: 120 }}
@@ -109,9 +106,7 @@ const UnitCard = ({ item }) => {
                   return (
                     <Col
                       key={item.id + ""}
-                      md={6}
-                      xs={6}
-                      className="d-flex align-items-center justify-content-center p-0"
+                      className="d-flex align-items-center justify-content-start "
                     >
                       <Image
                         src={item.icon}

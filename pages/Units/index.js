@@ -76,9 +76,9 @@ const Units = () => {
               </Text>
             </div>
           </div>
-          {data?.length > 0 ? (
+          {data?.results?.length > 0 ? (
             <Row className="justify-content-center align-items-center">
-              {data.map((item) => {
+              {data.results.map((item) => {
                 return (
                   <Col md={6} key={item.id + ""}>
                     <UnitCard item={item} />
@@ -99,7 +99,7 @@ const Units = () => {
           {data?.count > 2 && (
             <div className=" d-flex justify-content-center align-items-center my-5">
               <Pagination
-                count={data?.count / 2}
+                count={data?.pages_number}
                 color="primary"
                 // onChange={(x) => handlePagination(+x.target.innerText)}
               />

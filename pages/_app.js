@@ -14,6 +14,7 @@ import { appWithTranslation } from "next-i18next";
 import Navbar from "components/HomeComponents/navbar/Navbar";
 import Footer from "components/HomeComponents/footer/Footer";
 import { store } from "../redux";
+import { Toaster } from "react-hot-toast";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -50,6 +51,7 @@ function MyApp({ Component, pageProps }) {
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
         <Provider store={store}>
+          <Toaster position="top-right" />
           <CssBaseline />
           <MainLayout>
             <Navbar />
