@@ -17,19 +17,19 @@ const UnitCard = ({ item }) => {
       id: 1,
       name: "space",
       icon: require("../../../public/assets/spaceIcon.svg"),
-      digit: Math.floor(item.squared_area),
+      digit: Math.floor(item.property_id.squared_area),
     },
     {
       id: 2,
       name: "bedrooms",
       icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: item.Bedrooms,
+      digit: item.property_id.Bedrooms,
     },
     {
       id: 3,
       name: "bathrooms",
       icon: require("../../../public/assets/bathSvg.svg"),
-      digit: item.Bathrooms,
+      digit: item.property_id.Bathrooms,
     },
     {
       id: 4,
@@ -107,6 +107,7 @@ const UnitCard = ({ item }) => {
                     <Col
                       key={item.id + ""}
                       className="d-flex align-items-center justify-content-start "
+                      md={6}
                     >
                       <Image
                         src={item.icon}

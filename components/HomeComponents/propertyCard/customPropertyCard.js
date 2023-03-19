@@ -69,7 +69,7 @@ const CustomPropertyCard = ({ item }) => {
     <Card
       hoverable
       className={styles.cardCon}
-      onClick={() => navigate.push(`/detail/${item.id}`)}
+      onClick={() => navigate.push(`/Details/${item.id}`)}
     >
       <Row>
         <Col md={12}>
@@ -116,7 +116,7 @@ const CustomPropertyCard = ({ item }) => {
         <Col md={5} xs={12} className="p-0">
           <div
             className={styles.details}
-            onClick={() => navigate.push(`/detail/${item.id}`)}
+            onClick={() => navigate.push(`/Details/${item.id}`)}
           >
             <div>
               <Text fontSize={20} className={styles.propertyType}>
@@ -147,7 +147,7 @@ const CustomPropertyCard = ({ item }) => {
         <Col md={5} xs={12} className={styles.iconsSection}>
           <div
             className={styles.iconsCon}
-            onClick={() => navigate.push(`/detail/${item.id}`)}
+            onClick={() => navigate.push(`/Details/${item.id}`)}
           >
             <Row
               className="h-100 align-items-center d-flex justify-content-between m-auto"

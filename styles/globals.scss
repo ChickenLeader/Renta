@@ -205,6 +205,9 @@ body[dir="rtl"] {
     right: auto;
     left: 0 !important;
   }
+  .pagination svg {
+    transform: rotate(-180deg);
+  }
 }
 
 /* overwritting bootstrap margins and paddings for english and arabic */

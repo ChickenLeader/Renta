@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScreenWrapper from "components/General/ScreenWrapper";
 import { Col, Container, Row } from "react-bootstrap";
 import PropertyCard from "components/HomeComponents/propertyCard/propertyCard";
@@ -23,6 +23,7 @@ const MapWithNoSSR = dynamic(
 const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   const selectedFilters = router.query;
+  // const [page, setpage] = useState(router.query.page || 1);
   const [mapTrigger, setmapTrigger] = useState(false);
   const [locations, setlocations] = useState([]);
   const sideNavData = {
@@ -38,22 +39,30 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   };
 
   const handlePagination = (page) => {
+    // console.log(page,"handlechange");
     const currentQuery = router.query;
     currentQuery.page = page;
+    setmapTrigger(!mapTrigger);
     router.push({ query: currentQuery }, undefined, { shallow: false });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let tempArr = [];
     data.results.map((item) =>
       tempArr.push({
         id: item.id,
+        name: item.title,
         latitude: item.latitude,
         longitude: item.longitude,
       })
     );
+    // console.log(router.query.page);
     setlocations(tempArr);
   }, [mapTrigger]);
+
+  // useEffect(() => {
+  //   console.log(page,"paga");
+  // }, [page]);
 
   return (
     <ScreenWrapper style={{ minHeight: 750 }}>
@@ -82,6 +91,7 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
         {data?.count > 4 && (
           <div className=" d-flex justify-content-center align-items-center my-5">
             <Pagination
+              className="pagination"
               count={data.pages_number}
               color="primary"
               onChange={(x) => handlePagination(+x.target.innerText)}

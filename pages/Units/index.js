@@ -15,26 +15,6 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const Units = () => {
   const router = useRouter();
   const [data, setdata] = useState([]);
-  let myUnits = [
-    {
-      id: 1,
-      name: "ahmed mosaad mohamed",
-      rent: "28,500",
-      startDate: "12.05.2022",
-      endDate: "11.05.2025",
-      photo: "W1235..123512345.1235./23512.png",
-      idPhoto: "W1235..123512345.1235./23512.png",
-    },
-    {
-      id: 2,
-      name: "ahmed mosaad mohamed",
-      rent: "28,500",
-      startDate: "12.05.2022",
-      endDate: "11.05.2025",
-      photo: "W1235..123512345.1235./23512.png",
-      idPhoto: "W1235..123512345.1235./23512.png",
-    },
-  ];
   const getUnits = async () => {
     let lang = localStorage.getItem("AppLang") || "en";
     await Services.myUnits(lang)
@@ -80,7 +60,7 @@ const Units = () => {
             <Row className="justify-content-center align-items-center">
               {data.results.map((item) => {
                 return (
-                  <Col md={6} key={item.id + ""}>
+                  <Col lg={6} md={12} xs={12} key={item.id + ""}>
                     <UnitCard item={item} />
                   </Col>
                 );
@@ -99,6 +79,7 @@ const Units = () => {
           {data?.count > 2 && (
             <div className=" d-flex justify-content-center align-items-center my-5">
               <Pagination
+                className="pagination"
                 count={data?.pages_number}
                 color="primary"
                 // onChange={(x) => handlePagination(+x.target.innerText)}

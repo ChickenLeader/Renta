@@ -45,6 +45,7 @@ const Navbar = () => {
 
   const languageChange = (lang) => {
     setlanguage(lang);
+    setexpand(false);
     // const lang = router.locale === "en" ? "ar" : "en";
     let dir;
     if (lang === "en") {

@@ -1,22 +1,20 @@
 import Text from "components/General/Text";
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./sideNavBar.module.css";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import { FormControl, MenuItem, Select } from "@mui/material";
 import Image from "next/image";
 import { Button, Slider } from "antd";
 import { Colors } from "constants/Colors";
-import { Services } from "apis/Services/Services";
-import { useSelector } from "react-redux";
-import { i18n } from "next-i18next";
+import { i18n, useTranslation } from "next-i18next";
 
 const rightArrow = require("public/assets/vuesax-linear-arrow-square-right.svg");
 const leftArrow = require("public/assets/vuesax-linear-arrow-square-left.svg");
 
 const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
   const Ref = useRef();
+  const { t } = useTranslation();
   // const filtersData = useSelector((state) => state.app.filtersData);
   const [isExpanded, setExpendState] = useState(false);
-
   const [area, setarea] = useState(filters.area__name);
   const [property, setproperty] = useState(filters.property_type__id);
   const [areaRange, setareaRange] = useState([120, 250]);
@@ -25,6 +23,16 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
     filters.price_gte,
     filters.price_lte,
   ]);
+
+  const rooms = [
+    { id: 1, name: 1, value: 1 },
+    { id: 2, name: 1, value: 2 },
+    { id: 3, name: 1, value: 3 },
+    { id: 4, name: 1, value: 4 },
+    { id: 5, name: 1, value: 5 },
+    { id: 6, name: 1, value: 6 },
+    { id: 7, name: "Name", value: 7 },
+  ];
 
   const resetFilters = () => {
     setarea(sideNavData.areas[0]["id"]);
@@ -41,7 +49,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
       property_type__name: property,
       price_gte: priceRange[0],
       price_lte: priceRange[1],
-      Bedrooms: room,
+      Bedrooms: room.value,
     };
     submitFilters(Valu);
   };
@@ -128,35 +136,12 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
                   ))}
                 </Select>
               </FormControl>
-              {/* {filterData.propertyTypes.map((item) => (
-                <div
-                  key={item.id}
-                  className={
-                    property == item.id
-                      ? styles.propertyView
-                      : styles.propertyViewSelected
-                  }
-                  onClick={() => setproperty(item.id)}
-                >
-                  <Text
-                    fontSize={14}
-                    color={property == item.id ? "black" : "white"}
-                  >
-                    {item.name}
-                  </Text>
-                </div>
-              ))} */}
             </div>
             <div className="mb-5">
               <Text color="white" className="mb-2">
                 Price range
               </Text>
               <div>
-                {/* <Image
-                  src={require("public/assets/rangeTest1.svg")}
-                  objectFit="contain"
-                  width={priceScale - 20}
-                /> */}
                 <Slider
                   range
                   defaultValue={priceRange}
@@ -195,7 +180,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
                 No. Of rooms
               </Text>
               <div className={styles.roomView}>
-                {[1, 2, 3, 4, 5, 6, "More"].map((item) => (
+                {rooms.map((item) => (
                   <div
                     key={item + ""}
                     className={room == item ? styles.selectedRoom : styles.room}
@@ -205,7 +190,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
                       color={room == item ? "black" : "white"}
                       style={{ textAlign: "center" }}
                     >
-                      {item}
+                      {item.name}
                     </Text>
                   </div>
                 ))}
@@ -215,11 +200,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
               <Text color="white" className="mb-2">
                 Property area (m2)
               </Text>
-              {/* <Image
-                src={require("public/assets/rangeTest1.svg")}
-                objectFit="contain"
-                width={areaScale - 20}
-              /> */}
+
               <Slider
                 range
                 defaultValue={areaRange}
@@ -231,26 +212,10 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
                 handleStyle={{ borderColor: Colors.primary }}
               />
               <div className="d-flex align-items-center justify-content-around">
-                <Text
-                  color="white"
-                  fontSize={14}
-                  className={styles.priceRange}
-                  // style={{
-                  //   position: "relative",
-                  //   left: (priceRange[0] / 7000) * 100,
-                  // }}
-                >
+                <Text color="white" fontSize={14} className={styles.priceRange}>
                   {areaRange[0]}
                 </Text>
-                <Text
-                  color="white"
-                  fontSize={14}
-                  className={styles.priceRange}
-                  // style={{
-                  //   position: "relative",
-                  //   right: (priceRange[1] / 7000) * 100,
-                  // }}
-                >
+                <Text color="white" fontSize={14} className={styles.priceRange}>
                   {areaRange[1]}
                 </Text>
               </div>
@@ -268,7 +233,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
                 className={styles.applyButton}
                 onClick={applyFilters}
               >
-                Apply filter (320)
+                {t("Apply filter")}
               </Button>
             </div>
           </>

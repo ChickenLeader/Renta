@@ -30,6 +30,7 @@ const LatestSeen = ({ data }) => {
       {data.pages_number > 1 && (
         <div className=" d-flex justify-content-center align-items-center my-5">
           <Pagination
+            className="pagination"
             count={data.pages_number}
             color="primary"
             onChange={(x) => handlePagination(+x.target.innerText)}

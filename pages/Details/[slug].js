@@ -10,7 +10,15 @@ import { IoLogoWhatsapp, IoMdHeart, IoMdClose } from "react-icons/io";
 import { Services } from "apis/Services/Services";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import dynamic from "next/dynamic";
 // import { Carousel } from "antd";
+
+const MapWithNoSSR = dynamic(
+  () => import("components/HomeComponents/map/Map"),
+  {
+    ssr: false,
+  }
+);
 
 const images = [
   { id: 1, image: require("public/assets/housex2.png") },
@@ -25,7 +33,6 @@ const images = [
 const PropertyDetails = ({ data }) => {
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(0);
-  const [innerWidth, setinnerWidth] = useState(0);
   const Ref = useRef();
   const router = useRouter();
 
@@ -78,15 +85,6 @@ const PropertyDetails = ({ data }) => {
   useEffect(() => {
     getPropertyById();
   }, []);
-
-  useEffect(() => {
-    setinnerWidth(window.innerWidth);
-    // if (index) {
-    //   setTimeout(() => {
-    //     Ref.current.goTo(index, true);
-    //   }, 500);
-    // }
-  }, [index, Ref]);
 
   return (
     <ScreenWrapper>
@@ -197,7 +195,12 @@ const PropertyDetails = ({ data }) => {
                 </div>
                 <Row className="mx-1 py-2 gap-2">
                   <Col>
-                    <Row className={styles.callUs}>
+                    <Row
+                      className={styles.callUs}
+                      onClick={() => {
+                        window.open(`tel:${data?.phone}`);
+                      }}
+                    >
                       <Col md={7}>
                         <Text color="white">Call us</Text>
                       </Col>
@@ -207,7 +210,7 @@ const PropertyDetails = ({ data }) => {
                           fontSize={18}
                           className={styles.phoneNumber}
                         >
-                          01001001000
+                          {data?.phone}
                         </Text>
                       </Col>
                     </Row>
@@ -215,9 +218,9 @@ const PropertyDetails = ({ data }) => {
                   <Col>
                     <Row
                       className={styles.ChatwitUs}
-                      onClick={() =>
-                        window.open(`https://wa.me/${data?.phone}`)
-                      }
+                      onClick={() => {
+                        window.open(`https://wa.me/${data?.phone}`);
+                      }}
                     >
                       <Col md={9} xs={7}>
                         <Text>Chat with us</Text>
@@ -240,9 +243,9 @@ const PropertyDetails = ({ data }) => {
                   color={Colors.secondaryText}
                   className="mb-2"
                 >
-                  Description:
+                  Description:{" "}
                 </Text>
-                <Text color={Colors.secondary}>{data.description}</Text>
+                <Text color={Colors.secondary}>{data?.description}</Text>
               </div>
               <div className="mt-5">
                 <Text
@@ -274,12 +277,16 @@ const PropertyDetails = ({ data }) => {
               </div>
             </Col>
             <Col md={6}>
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
-                width="100%"
-                height="100%"
-                loading="lazy"
-              ></iframe>
+              <MapWithNoSSR
+                data={[
+                  {
+                    id: data?.id,
+                    name:data?.title,
+                    latitude: data?.latitude,
+                    longitude: data?.longitude,
+                  },
+                ]}
+              />
             </Col>
           </Row>
         </Container>
