@@ -116,18 +116,20 @@ export const Footer = () => {
               </Col>
             ))}
           </Row> */}
-          <Slider {...settings} className={"footerSlider"}>
-            {HomeVendors.map((item) => (
-              <div key={item.id + ""}>
-                <Image
-                  src={item.image}
-                  alt="vendor icon"
-                  objectFit="initial"
-                  className={styles.vendorImage}
-                />
-              </div>
-            ))}
-          </Slider>
+          {images.length > 0 && (
+            <Slider {...settings} className={"footerSlider"}>
+              {images.map((item) => (
+                <div key={item.id + ""} className="pointer">
+                  <Image
+                    src={item?.image}
+                    alt="vendor icon"
+                    objectFit="initial"
+                    className={styles.vendorImage}
+                  />
+                </div>
+              ))}
+            </Slider>
+          )}
         </div>
       ) : (
         <div>
