@@ -8,8 +8,20 @@ import Image from "next/image";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./contactUs.module.css";
+import { useForm, Controller } from "react-hook-form";
+import { Input, Form, Button } from "antd";
+import ContactForm from "components/HomeComponents/contactForm/contactUsForm";
 
 const ContactUs = ({ data }) => {
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   const ContactUsArr = [
     {
       id: 1,
@@ -31,42 +43,48 @@ const ContactUs = ({ data }) => {
     <ScreenWrapper>
       <div className={styles.ContactUsContainer}>
         <Row className="justify-content-between">
-          <Col lg={6} className={styles.detailsCol}>
-            <Text
-              fontSize={24}
-              color={Colors.primary}
-              fontFamily={FontFamily.semiBold}
-            >
-              Find us
-            </Text>
-            <Text fontSize={18} className="my-3">
-              {data?.find_us}
-            </Text>
-            <div className="my-5">
-              {ContactUsArr.map((item) => {
-                return (
-                  <div
-                    key={item.id + ""}
-                    className="d-flex align-items-center my-4"
-                  >
-                    <Image alt=" " src={item.icon} />
-                    <Text fontSize={18} className="d-inline ms-4">
-                      {item.text}
-                    </Text>
-                    <br />
-                  </div>
-                );
-              })}
-            </div>
+          <Col lg={6}>
+           <ContactForm />
           </Col>
           <Col lg={5}>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
-              width={"100%"}
-              height={"100%"}
-              loading="lazy"
-              // referrerpolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <div style={{ minHeight: 400 }}>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d78146.87474262953!2d31.33369147247803!3d30.04728278348716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2seg!4v1669470927403!5m2!1sen!2seg"
+                width={"100%"}
+                height={400}
+                loading="lazy"
+                // referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+
+            <div className="mt-2">
+              <Text
+                fontSize={24}
+                color={Colors.primary}
+                fontFamily={FontFamily.semiBold}
+              >
+                Find us
+              </Text>
+              <Text fontSize={18} className="my-3">
+                {data?.find_us}
+              </Text>
+              <div className="my-5">
+                {ContactUsArr.map((item) => {
+                  return (
+                    <div
+                      key={item.id + ""}
+                      className="d-flex align-items-center my-4"
+                    >
+                      <Image alt=" " src={item.icon} />
+                      <Text fontSize={18} className="d-inline ms-4">
+                        {item.text}
+                      </Text>
+                      <br />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </Col>
         </Row>
       </div>
