@@ -106,6 +106,13 @@ export class Services {
     });
   }
 
+  static terms_privacy(locale = "en") {
+    return Network.fetch(ENDPOINTS.terms_privacy.url, {
+      method: ENDPOINTS.terms_privacy.method,
+      locale: locale,
+    });
+  }
+
   //   static individualInsurance(values) {
   //     return Network.fetch(ENDPOINTS.individualInsurance.url, {
   //       body: JSON.stringify(values),

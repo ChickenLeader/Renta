@@ -56,8 +56,8 @@ export const Footer = () => {
     {
       id: 3,
       list: [
-        { id: 1, name: "Terms & conditions", navigateTo: "#" },
-        { id: 2, name: "Privacy policy", navigateTo: "#" },
+        { id: 1, name: "Terms & conditions", navigateTo: "/Terms&Conditions" },
+        { id: 2, name: "Privacy policy", navigateTo: "/Privacy_Policy" },
       ],
     },
     {

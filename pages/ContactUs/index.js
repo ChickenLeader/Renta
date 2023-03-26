@@ -8,20 +8,9 @@ import Image from "next/image";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import styles from "./contactUs.module.css";
-import { useForm, Controller } from "react-hook-form";
-import { Input, Form, Button } from "antd";
 import ContactForm from "components/HomeComponents/contactForm/contactUsForm";
 
 const ContactUs = ({ data }) => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    console.log(data);
-  };
   const ContactUsArr = [
     {
       id: 1,
@@ -44,7 +33,7 @@ const ContactUs = ({ data }) => {
       <div className={styles.ContactUsContainer}>
         <Row className="justify-content-between">
           <Col lg={6}>
-           <ContactForm />
+            <ContactForm />
           </Col>
           <Col lg={5}>
             <div style={{ minHeight: 400 }}>

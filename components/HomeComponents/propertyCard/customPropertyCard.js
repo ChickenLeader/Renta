@@ -43,27 +43,16 @@ const CustomPropertyCard = ({ item }) => {
     {
       id: 4,
       name: "space",
-      icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: 167,
+      icon: require("../../../public/assets/furnished.svg"),
+      digit: item.is_furnished ? "Yes" : "No",
     },
-    // {
-    //   id: 5,
-    //   name: "space",
-    //   icon: require("../../../public/assets/bathSvg.svg"),
-    //   digit: 167,
-    // },
-    // {
-    //   id: 6,
-    //   name: "space",
-    //   icon: require("../../../public/assets/bedsSvg.svg"),
-    //   digit: 167,
-    // },
   ];
   const next = () => {
     setTimeout(() => {
       sliderRef.current.next();
     }, 200);
   };
+  console.log(item, "itemememem");
 
   return (
     <Card

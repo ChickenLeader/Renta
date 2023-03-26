@@ -51,7 +51,6 @@ const AboutUs = ({ data }) => {
       </Text>
     </div>
   );
-
   return (
     <ScreenWrapper>
       <div className={styles.ContainerFluid}>
@@ -68,13 +67,14 @@ const AboutUs = ({ data }) => {
               text={data?.second_paragraph_text}
             />
           </Col>
-          <Col>
-            <div className="d-flex flex-column justify-content-center align-items-center h-100">
+          <Col md={6}>
+            <div className="d-flex justify-content-center align-items-center h-100">
               <Image
                 alt=" "
-                src={require("public/assets/RentaLogo.png")}
-                width={170}
-                height={300}
+                src={require("public/assets/aboutusIMGx2.png")}
+                layout="fixed"
+                // width={300}
+                height={400}
               />
             </div>
           </Col>

@@ -1,4 +1,3 @@
-
 export const ENDPOINTS = {
   // AUTH
   login: {
@@ -64,6 +63,10 @@ export const ENDPOINTS = {
   },
   footerImages: {
     url: `/footer-image/`,
+    method: "GET",
+  },
+  terms_privacy: {
+    url: "/terms-conditions/",
     method: "GET",
   },
 };
