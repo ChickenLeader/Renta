@@ -9,6 +9,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import styles from "./footer.module.css";
 import { Services } from "apis/Services/Services";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
 
 var settings = {
   dots: false,
@@ -47,7 +48,7 @@ export const Footer = () => {
     },
     {
       id: 2,
-      name: "ABOUT RENTA",
+      name: "About Renta",
       list: [
         { id: 1, name: "Contact us", navigateTo: "/ContactUs" },
         { id: 2, name: "About us", navigateTo: "/AboutUs" },
@@ -57,19 +58,31 @@ export const Footer = () => {
       id: 3,
       list: [
         { id: 1, name: "Terms & conditions", navigateTo: "/Terms&Conditions" },
-        { id: 2, name: "Privacy policy", navigateTo: "/Privacy_Policy" },
-      ],
-    },
-    {
-      id: 4,
-      name: "ABOUT RENTA",
-      list: [
-        { id: 1, name: "INSTAGRAM", navigateTo: "#" },
-        { id: 2, name: "YOUTUBE", navigateTo: "#" },
-        { id: 3, name: "FACEBOOK", navigateTo: "#" },
+        { id: 2, name: "Privacy policy", navigateTo: "#" },
       ],
     },
   ];
+  const social = {
+    id: 4,
+    name: "Social Media",
+    list: [
+      {
+        id: 1,
+        icon: <FaInstagram size={22} color={Colors.primary} />,
+        navigateTo: "#",
+      },
+      {
+        id: 2,
+        icon: <FaYoutube size={22} color={Colors.primary} />,
+        navigateTo: "#",
+      },
+      {
+        id: 3,
+        icon: <FaFacebookF size={22} color={Colors.primary} />,
+        navigateTo: "#",
+      },
+    ],
+  };
 
   const HomeVendors = [
     {
@@ -109,13 +122,6 @@ export const Footer = () => {
 
       {customFooterPages.includes(pathName) ? (
         <div className="w-100 ">
-          {/* <Row className="justify-content-between align-items-center">
-            {HomeVendors.map((item) => (
-              <Col key={item.id} md={2} xs={6} className={styles.vendorImage}>
-                <Image src={item.image} alt="vendor icon" objectFit="contain" />
-              </Col>
-            ))}
-          </Row> */}
           {images.length > 0 && (
             <Slider {...settings} className={"footerSlider"}>
               {images.map((item) => (
@@ -150,11 +156,7 @@ export const Footer = () => {
               <Row className="justify-content-end">
                 {BottomTabItems.map((item, index) => {
                   return (
-                    <Col
-                      key={item.id}
-                      lg={index == BottomTabItems.length - 1 ? 2 : 3}
-                      xs={6}
-                    >
+                    <Col key={item.id} lg={3} xs={6}>
                       <div className={styles.listColumn}>
                         {item.name && (
                           <Text
@@ -178,7 +180,7 @@ export const Footer = () => {
                                 color="white"
                                 style={{ cursor: "pointer" }}
                               >
-                                {sub_item.name}
+                                {sub_item?.name}
                               </Text>
                             </div>
                           </Link>
@@ -187,6 +189,29 @@ export const Footer = () => {
                     </Col>
                   );
                 })}
+                <Col>
+                  <div className={styles.listColumn}>
+                    <Text
+                      fontSize={12}
+                      className="mb-3"
+                      color={Colors.secondaryText}
+                    >
+                      {social?.name}
+                    </Text>
+
+                    <div className="d-flex align-items-center gap-3">
+                      {social?.list?.map((social) => (
+                        <div
+                          key={social.id}
+                          className="pointer"
+                          onClick={() => router.push(social.navigateTo + "")}
+                        >
+                          {social?.icon}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Col>
               </Row>
             </Col>
           </Row>

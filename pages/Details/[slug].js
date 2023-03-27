@@ -137,7 +137,7 @@ const PropertyDetails = ({ data }) => {
           </Row>
           {/* Details and contact Row */}
           <Row className="mb-4 align-items-center justify-content-center">
-            <Col>
+            <Col lg={6} md={12}>
               <div className="mb-2">
                 <Text fontSize={32} color={Colors.secondary}>
                   {data.title}
@@ -153,13 +153,15 @@ const PropertyDetails = ({ data }) => {
                           justifyContent: "flex-start",
                         }}
                       >
-                        <Image
-                          src={item.icon}
-                          alt="space icon"
-                          objectFit="contain"
-                          width={25}
-                          height={25}
-                        />
+                        <div>
+                          <Image
+                            src={item.icon}
+                            alt="space icon"
+                            objectFit="contain"
+                            width={25}
+                            height={25}
+                          />
+                        </div>
 
                         <Text
                           color={Colors.secondaryText}
@@ -177,7 +179,7 @@ const PropertyDetails = ({ data }) => {
                 })}
               </Row>
             </Col>
-            <Col className="mt-3">
+            <Col lg={6} md={12} className="mt-3">
               <div className={styles.detailCon}>
                 <div className="mb-2">
                   <Text
