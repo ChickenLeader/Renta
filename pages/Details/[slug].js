@@ -11,6 +11,7 @@ import { Services } from "apis/Services/Services";
 import { useRouter } from "next/router";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import dynamic from "next/dynamic";
+import { useTranslation } from "next-i18next";
 // import { Carousel } from "antd";
 
 const MapWithNoSSR = dynamic(
@@ -31,6 +32,7 @@ const images = [
 ];
 
 const PropertyDetails = ({ data }) => {
+  const { t } = useTranslation();
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(0);
   const Ref = useRef();
@@ -39,27 +41,27 @@ const PropertyDetails = ({ data }) => {
   let tempIcons = [
     {
       id: 1,
-      name: "Property type:",
+      name: t("Property type:"),
       icon: require("public/assets/spaceIcon.svg"),
       digit: data.property_type,
     },
     {
       id: 2,
-      name: "No of bedrooms:",
-      icon: require("public/assets/spaceIcon.svg"),
+      name: t("No of bedrooms:"),
+      icon: require("public/assets/bedsSvg.svg"),
       digit: data.Bedrooms,
     },
     {
       id: 3,
-      name: "Property area:",
-      icon: require("public/assets/spaceIcon.svg"),
-      digit: Math.floor(data.squared_area),
+      name: t("No of bathrooms:"),
+      icon: require("public/assets/bathSvg.svg"),
+      digit: data.Bathrooms,
     },
     {
       id: 4,
-      name: "No of bathrooms:",
+      name: t("area"),
       icon: require("public/assets/spaceIcon.svg"),
-      digit: data.Bathrooms,
+      digit: Math.floor(data.squared_area),
     },
   ];
 
@@ -243,7 +245,7 @@ const PropertyDetails = ({ data }) => {
                   color={Colors.secondaryText}
                   className="mb-2"
                 >
-                  Description:{" "}
+                  Description
                 </Text>
                 <Text color={Colors.secondary}>{data?.description}</Text>
               </div>
@@ -281,7 +283,7 @@ const PropertyDetails = ({ data }) => {
                 data={[
                   {
                     id: data?.id,
-                    name:data?.title,
+                    name: data?.title,
                     latitude: data?.latitude,
                     longitude: data?.longitude,
                   },

@@ -1,5 +1,5 @@
 {
-  "name": "@husam287/nextjs-template",
+  "name": "renta",
   "version": "0.0.5",
   "scripts": {
     "dev": "next dev",

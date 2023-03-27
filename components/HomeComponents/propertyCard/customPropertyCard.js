@@ -52,7 +52,6 @@ const CustomPropertyCard = ({ item }) => {
       sliderRef.current.next();
     }, 200);
   };
-  console.log(item, "itemememem");
 
   return (
     <Card
