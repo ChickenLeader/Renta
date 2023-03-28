@@ -18,11 +18,9 @@ export class Network {
     let promise;
     if (![204, 201, 200].includes(response.status)) {
       let promise = response.json().then((data) => {
-        // console.log(response,"ressasasasasasasasaassssssssssssssssssss");
         return Promise.reject(data);
       });
       return promise.catch((error) => {
-        // console.log(error,"22222222222222222222ressasasasasasasasaassssssssssssssssssss");
         return Promise.reject({ error: "error from Network" });
       });
     } else if (response.status == 204) promise = Promise.resolve({});

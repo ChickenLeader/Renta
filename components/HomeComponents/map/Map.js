@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, Tooltip } from "react-leaflet";
 import L from "leaflet";
 
 const MapComponent = (props) => {
@@ -10,6 +10,10 @@ const MapComponent = (props) => {
     iconSize: [50, 60],
   });
 
+  function openMap(latitude, longitude) {
+    const url = `https://www.google.com/maps?q=${latitude},${longitude}`;
+    window.open(url, "_blank");
+  }
   return (
     <>
       <MapContainer
@@ -41,8 +45,16 @@ const MapComponent = (props) => {
             key={index}
             position={[Number(location.latitude), Number(location.longitude)]}
             icon={newicon}
+            eventHandlers={{
+              click: (e) => {
+                openMap(location.latitude, location.longitude);
+              },
+            }}
           >
-            <Popup>{location.name}</Popup>
+            {/* <Popup>{location.name}</Popup> */}
+            <Tooltip direction="top" offset={[10, 0]}>
+              {location.name}
+            </Tooltip>
           </Marker>
         ))}
       </MapContainer>

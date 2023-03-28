@@ -26,25 +26,25 @@ const PropertyCard = ({ item }) => {
       id: 1,
       name: "space",
       icon: require("../../../public/assets/spaceIcon.svg"),
-      digit: item.squared_area,
+      digit: +item.squared_area,
     },
     {
       id: 2,
       name: "bedrooms",
       icon: require("../../../public/assets/bedsSvg.svg"),
-      digit: item.Bedrooms,
+      digit: +item.Bedrooms,
     },
     {
       id: 3,
       name: "bathrooms",
       icon: require("../../../public/assets/bathSvg.svg"),
-      digit: item.Bathrooms,
+      digit: +item.Bathrooms,
     },
     {
       id: 4,
-      name: "space",
+      name: "furnished",
       icon: require("../../../public/assets/furnished.svg"),
-      digit: item.is_furnished ? "Yes" : "No",
+      digit: item?.is_furnished ? "Yes" : "No",
     },
   ];
 
@@ -173,7 +173,9 @@ const PropertyCard = ({ item }) => {
                       className="d-inline"
                       style={{ width: 30, marginInlineStart: 5 }}
                     >
-                      {Math.floor(item.digit)}
+                      {typeof item.digit == "number"
+                        ? Math.floor(item.digit)
+                        : item.digit}
                     </Text>
                   </Col>
                 );

@@ -9,10 +9,9 @@
   bottom: 0;
   z-index: 100;
   color: var(--light);
-  transition: 0.4s;
+  transition: all 0.5s ease-in-out;
   padding: 1rem;
 }
-
 
 .sideNavContainerNX {
   width: 40px;
@@ -21,7 +20,7 @@
   top: 0;
   bottom: 0;
   z-index: 100;
-  transition: 0.4s;
+  transition: all 0.5s ease-in-out;
   background-color: #162137;
 }
 .navHeading {
@@ -45,7 +44,6 @@
   align-items: center;
   justify-content: space-between;
   width: 100px;
-  transition: 0.4s;
 }
 .hamburger {
   border: none;
@@ -59,17 +57,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: 0.4s;
-
-  /* width: 100px; */
 }
+
+.filters {
+  visibility: visible;
+  transition: all 0.2s ease-in-out;
+  transition-delay: 0.5s;
+}
+.filtersNX {
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
 .propertyView {
   width: auto;
   margin-bottom: 1rem;
   background-color: #fff;
   cursor: pointer;
   padding: 10px 20px;
-  transition: 0.4s;
 }
 .propertyViewSelected {
   width: auto;
@@ -77,11 +82,9 @@
   background-color: #5c6473;
   cursor: pointer;
   padding: 10px 20px;
-  transition: 0.4s;
 }
 .roomView {
   display: flex;
-  transition: 1s;
 }
 .room {
   padding: 5px;
@@ -89,7 +92,6 @@
   background-color: #5c6473;
   margin-inline: 0.5px;
   cursor: pointer;
-  transition: 1s;
 }
 .selectedRoom {
   padding: 5px;
@@ -110,8 +112,9 @@
   width: 80%;
   height: 45px;
   border: none;
+  transition: none !important;
 }
-.priceRange{
+.priceRange {
   padding-top: 2px;
   padding-inline: 20px;
   background-color: #5c6473;
