@@ -99,7 +99,7 @@ export const Footer = () => {
   const footerImages = () => {
     Services.footerImages()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setimages(res);
       })
       .catch((err) => console.log(err));
@@ -125,7 +125,7 @@ export const Footer = () => {
           {images.length > 0 && (
             <Slider {...settings} className={"footerSlider"}>
               {images.map((item) => (
-                <div key={item.id + ""} className="pointer">
+                <div key={item.id + ""}>
                   <Image
                     src={item?.image}
                     alt="vendor icon"

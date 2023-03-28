@@ -30,6 +30,13 @@ const Units = () => {
     logoutHandler();
     router.push("/");
   };
+
+  const handlePagination = (event, value) => {
+    const currentQuery = router.query;
+    currentQuery.page = value;
+    router.push({ query: currentQuery }, undefined, { shallow: false });
+  };
+
   useEffect(() => {
     getUnits();
   }, []);
@@ -82,7 +89,7 @@ const Units = () => {
                 className="pagination"
                 count={data?.pages_number}
                 color="primary"
-                // onChange={(x) => handlePagination(+x.target.innerText)}
+                onChange={handlePagination}
               />
             </div>
           )}

@@ -24,7 +24,6 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const router = useRouter();
   const selectedFilters = router.query;
   // const [page, setpage] = useState(router.query.page || 1);
-  const [mapTrigger, setmapTrigger] = useState(false);
   const [locations, setlocations] = useState([]);
   const sideNavData = {
     areas: areas,
@@ -35,14 +34,11 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
   const submitFilters = async (values) => {
     const Valu = { ...values, page: router.query.page || 1, page_size: 4 };
     router.push({ query: Valu }, undefined, { shallow: false });
-    setmapTrigger(!mapTrigger);
   };
 
-  const handlePagination = (page) => {
-    // console.log(page,"handlechange");
+  const handlePagination = (event, value) => {
     const currentQuery = router.query;
-    currentQuery.page = page;
-    setmapTrigger(!mapTrigger);
+    currentQuery.page = value;
     router.push({ query: currentQuery }, undefined, { shallow: false });
   };
 
@@ -56,13 +52,8 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
         longitude: item.longitude,
       })
     );
-    // console.log(router.query.page);
     setlocations(tempArr);
-  }, [mapTrigger]);
-
-  // useEffect(() => {
-  //   console.log(page,"paga");
-  // }, [page]);
+  }, [data]);
 
   return (
     <ScreenWrapper style={{ minHeight: 750 }}>
@@ -94,7 +85,9 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
               className="pagination"
               count={data.pages_number}
               color="primary"
-              onChange={(x) => handlePagination(+x.target.innerText)}
+              defaultPage={+router.query.page}
+              page={+router.query.page}
+              onChange={handlePagination}
             />
           </div>
         )}

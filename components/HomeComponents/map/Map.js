@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, Tooltip } from "react-leaflet";
 import L from "leaflet";
+import Item from "antd/lib/list/Item";
 
 const MapComponent = (props) => {
   // const [data, setLocations] = useState([])
@@ -42,7 +43,7 @@ const MapComponent = (props) => {
         />
         {props?.data.map((location, index) => (
           <Marker
-            key={index}
+            key={location.id}
             position={[Number(location.latitude), Number(location.longitude)]}
             icon={newicon}
             eventHandlers={{

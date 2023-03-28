@@ -160,7 +160,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
             <div className={styles.roomView}>
               {rooms.map((item) => (
                 <div
-                  key={item + ""}
+                  key={item.id + ""}
                   className={room == item ? styles.selectedRoom : styles.room}
                   onClick={() => setroom(item)}
                 >

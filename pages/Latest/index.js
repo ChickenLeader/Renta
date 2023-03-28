@@ -11,9 +11,9 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 const LatestSeen = ({ data }) => {
   const router = useRouter();
 
-  const handlePagination = (page) => {
+  const handlePagination = (event, value) => {
     const currentQuery = router.query;
-    currentQuery.page = page;
+    currentQuery.page = value;
     router.push({ query: currentQuery }, undefined, { shallow: false });
   };
   return (
@@ -32,8 +32,10 @@ const LatestSeen = ({ data }) => {
           <Pagination
             className="pagination"
             count={data.pages_number}
+            defaultPage={+router.query?.page || 1}
+            page={+router.query?.page}
             color="primary"
-            onChange={(x) => handlePagination(+x.target.innerText)}
+            onChange={handlePagination}
           />
         </div>
       )}
