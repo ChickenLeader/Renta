@@ -72,11 +72,6 @@ const Units = () => {
                   </Col>
                 );
               })}
-              {/* <Col lg={2}>
-              <div className={styles.arrowCon}>
-                <Image src={require("public/assets/UnitsArrow.svg")} />
-              </div>
-            </Col> */}
             </Row>
           ) : (
             <Text fontSize={20} className={"text-center mt-2"}>

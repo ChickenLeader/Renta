@@ -38,7 +38,6 @@ const UnitCard = ({ item }) => {
       digit: item.is_furnished ? "Yes" : "No",
     },
   ];
-
   const unitDetails = [
     { id: 1, title: "Renter name:", value: item.renter_name },
     {
@@ -61,11 +60,17 @@ const UnitCard = ({ item }) => {
       underline: true,
     },
   ];
+
+  const viewPhoto = (photo) => {
+    if (photo !== "No Photo") {
+      window.open(photo, "_blank");
+    }
+  };
   return (
     <Card
       hoverable
       className={styles.unitCardCon}
-      onClick={() => navigate.push(`/detail/${item.id}`)}
+      onClick={() => navigate.push(`/Details/${item.id}`)}
     >
       <div className={styles.cardHeader}>
         <Row
@@ -121,15 +126,25 @@ const UnitCard = ({ item }) => {
               <div className={"d-flex align-items-center my-5"}>
                 <div style={{ width: 8, height: 8, background: "#D6D7DB" }} />
                 <Text className={"mx-2"}>{detail.title}</Text>
-                <Text
-                  fontSize={18}
-                  fontFamily={FontFamily.medium}
-                  style={{
-                    textDecoration: detail.underline ? "underline" : "none",
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    [5, 6].includes(detail.id) && viewPhoto(detail.value);
                   }}
                 >
-                  {detail.value}
-                </Text>
+                  <Text
+                    fontSize={18}
+                    fontFamily={FontFamily.medium}
+                    style={{
+                      textDecoration: detail.underline ? "underline" : "none",
+                      maxWidth: "100%",
+                    }}
+                  >
+                    {detail.underline
+                      ? detail.value.slice(0, 35)
+                      : detail.value}
+                  </Text>
+                </div>
               </div>
             );
           })}
