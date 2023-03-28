@@ -111,7 +111,7 @@ const Navbar = () => {
       </Modal>
       <RNav collapseOnSelect expanded={expand} expand="lg" variant="light">
         <Container className={styles.subContainer}>
-          <Link href="/Home">
+          <Link href="/">
             <div className={styles.NavImage}>
               <Image alt=" " src={logo} layout="fill" />
             </div>

@@ -28,7 +28,7 @@ const Units = () => {
   };
   const logout = () => {
     logoutHandler();
-    router.push("/Home");
+    router.push("/");
   };
   useEffect(() => {
     getUnits();
