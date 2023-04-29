@@ -9,7 +9,13 @@ import Link from "next/link";
 import Slider from "react-slick";
 import styles from "./footer.module.css";
 import { Services } from "apis/Services/Services";
-import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaYoutube,
+  FaTwitter,
+  FaLinkedin,
+} from "react-icons/fa";
 
 var settings = {
   dots: false,
@@ -36,6 +42,18 @@ export const Footer = () => {
   const router = useRouter();
   const pathName = router.pathname;
   const [images, setimages] = useState([]);
+  const [socialMedia, setsocialMedia] = useState({});
+
+  const getSocialMedia = () => {
+    Services.social_media()
+      .then((res) => {
+        console.log(res);
+        setsocialMedia(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const BottomTabItems = [
     {
@@ -68,18 +86,23 @@ export const Footer = () => {
     list: [
       {
         id: 1,
-        icon: <FaInstagram size={22} color={Colors.primary} />,
-        navigateTo: "#",
+        icon: <FaFacebookF size={22} color={Colors.primary} />,
+        navigateTo: socialMedia.facebook,
       },
       {
         id: 2,
-        icon: <FaYoutube size={22} color={Colors.primary} />,
-        navigateTo: "#",
+        icon: <FaTwitter size={22} color={Colors.primary} />,
+        navigateTo: socialMedia.twitter,
       },
       {
         id: 3,
-        icon: <FaFacebookF size={22} color={Colors.primary} />,
-        navigateTo: "#",
+        icon: <FaInstagram size={22} color={Colors.primary} />,
+        navigateTo: socialMedia.instagram,
+      },
+      {
+        id: 4,
+        icon: <FaLinkedin size={22} color={Colors.primary} />,
+        navigateTo: socialMedia.linkedin,
       },
     ],
   };
@@ -106,6 +129,7 @@ export const Footer = () => {
   };
 
   useEffect(() => {
+    getSocialMedia();
     footerImages();
   }, []);
 
@@ -200,13 +224,15 @@ export const Footer = () => {
                     </Text>
 
                     <div className="d-flex align-items-center gap-3">
-                      {social?.list?.map((social) => (
+                      {social?.list?.map((social_item) => (
                         <div
-                          key={social.id}
+                          key={social_item.id}
                           className="pointer"
-                          onClick={() => router.push(social.navigateTo + "")}
+                          onClick={() =>
+                            window.open(social_item.navigateTo, "_blank")
+                          }
                         >
-                          {social?.icon}
+                          {social_item?.icon}
                         </div>
                       ))}
                     </div>

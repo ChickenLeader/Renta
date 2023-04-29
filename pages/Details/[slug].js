@@ -31,7 +31,7 @@ const images = [
   { id: 7, image: require("public/assets/housex2.png") },
 ];
 
-const PropertyDetails = ({ data }) => {
+const PropertyDetails = ({ data, amenities }) => {
   const { t } = useTranslation();
   const [showCarousel, setshowCarousel] = useState(false);
   const [index, setindex] = useState(0);
@@ -65,14 +65,6 @@ const PropertyDetails = ({ data }) => {
     },
   ];
 
-  const getPropertyById = () => {
-    console.log(router.query.slug);
-    Services.getPropertyByID(router.query.slug)
-      .then((res) => {
-        console.log("res", res);
-      })
-      .catch((err) => console.log(err));
-  };
   const openCarousel = () => {
     setshowCarousel(true);
   };
@@ -84,9 +76,6 @@ const PropertyDetails = ({ data }) => {
   const handleSelect = (selectedIndex, e) => {
     setindex(selectedIndex);
   };
-  useEffect(() => {
-    getPropertyById();
-  }, []);
 
   return (
     <ScreenWrapper>
@@ -241,44 +230,48 @@ const PropertyDetails = ({ data }) => {
           {/* Description and map Row */}
           <Row>
             <Col md={6}>
-              <div>
-                <Text
-                  fontSize={18}
-                  color={Colors.secondaryText}
-                  className="mb-2"
-                >
-                  Description
-                </Text>
-                <Text color={Colors.secondary}>{data?.description}</Text>
-              </div>
-              <div className="mt-5">
-                <Text
-                  color={Colors.secondaryText}
-                  fontSize={18}
-                  className="mb-4"
-                >
-                  Compound facilities
-                </Text>
+              {data?.description && (
                 <div>
-                  {tempIcons.map((item) => (
-                    <div
-                      key={item.id}
-                      className="d-flex flex-row align-self-center mb-3"
-                    >
-                      <Image
-                        src={item.icon}
-                        alt="space icon"
-                        objectFit="contain"
-                        width={25}
-                        height={25}
-                      />
-                      <Text color={Colors.secondary} className="mx-3">
-                        {item.name}
-                      </Text>
-                    </div>
-                  ))}
+                  <Text
+                    fontSize={18}
+                    color={Colors.secondaryText}
+                    className="mb-2"
+                  >
+                    Description
+                  </Text>
+                  <Text color={Colors.secondary}>{data?.description}</Text>
                 </div>
-              </div>
+              )}
+              {amenities?.length > 0 && (
+                <div className="mt-5">
+                  <Text
+                    color={Colors.secondaryText}
+                    fontSize={18}
+                    className="mb-4"
+                  >
+                    Amenities
+                  </Text>
+                  <div>
+                    {amenities?.map((item) => (
+                      <div
+                        key={item.id}
+                        className="d-flex flex-row align-items-center mb-3"
+                      >
+                        <Image
+                          src={item.image}
+                          alt="space icon"
+                          objectFit="contain"
+                          width={50}
+                          height={50}
+                        />
+                        <Text color={Colors.secondary} className="mx-3">
+                          {item.text || ""}
+                        </Text>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </Col>
             <Col md={6}>
               <MapWithNoSSR
@@ -300,8 +293,13 @@ const PropertyDetails = ({ data }) => {
 };
 export async function getServerSideProps({ query, locale }) {
   let data = await Services.getPropertyByID(query.slug, locale);
+  let amenities = await Services.amenities(locale);
   return {
-    props: { data, ...(await serverSideTranslations(locale, ["common"])) },
+    props: {
+      data,
+      amenities,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
   };
 }
 export default PropertyDetails;

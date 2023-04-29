@@ -113,6 +113,18 @@ export class Services {
     });
   }
 
+  static social_media(locale = "en") {
+    return Network.fetch(ENDPOINTS.social_media.url, {
+      method: ENDPOINTS.social_media.method,
+      locale: locale,
+    });
+  }
+  static amenities(locale = "en") {
+    return Network.fetch(ENDPOINTS.amenties.url, {
+      method: ENDPOINTS.amenties.method,
+      locale: locale,
+    });
+  }
   //   static individualInsurance(values) {
   //     return Network.fetch(ENDPOINTS.individualInsurance.url, {
   //       body: JSON.stringify(values),

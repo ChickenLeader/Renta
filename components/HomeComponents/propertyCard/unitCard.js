@@ -39,23 +39,23 @@ const UnitCard = ({ item }) => {
     },
   ];
   const unitDetails = [
-    { id: 1, title: "Renter name:", value: item.renter_name },
+    { id: 1, title: "Tenant :", value: item.renter_name },
     {
       id: 2,
-      title: "Rent amount per month:",
+      title: "Rent/month :",
       value: item.rent_amount_per_month,
     },
-    { id: 3, title: "Contract start:", value: item.contract_start },
-    { id: 4, title: "Contract end:", value: item.contract_end },
+    { id: 3, title: "Start date :", value: item.contract_start.toLocaleString() },
+    { id: 4, title: "End date :", value: item.contract_end },
     {
       id: 5,
-      title: "Contract photo:",
+      title: "Contract :",
       value: item.contract_photo || "No Photo",
       underline: true,
     },
     {
       id: 6,
-      title: "Renter id photo:",
+      title: "Tenant's ID :",
       value: item.renter_id_photo || "No Photo",
       underline: true,
     },
@@ -66,6 +66,10 @@ const UnitCard = ({ item }) => {
       window.open(photo, "_blank");
     }
   };
+
+  React.useEffect(()=> {
+    
+  },[])
   return (
     <Card
       hoverable

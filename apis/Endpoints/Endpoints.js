@@ -69,4 +69,12 @@ export const ENDPOINTS = {
     url: "/terms-conditions/",
     method: "GET",
   },
+  social_media: {
+    url: "/social-media/",
+    method: "GET",
+  },
+  amenties: {
+    url: "/amenties/",
+    method: "GET",
+  },
 };
