@@ -9,7 +9,6 @@ export class Network {
     let requestedUrl = url.includes("http")
       ? url
       : DomainUrl + `/${init?.locale || "en"}/api` + url;
-    console.log(requestedUrl);
     const response = await fetch(requestedUrl, {
       mode: "cors",
       ...init,

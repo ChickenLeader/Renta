@@ -16,10 +16,8 @@ export default function ContactForm() {
 
   const onSubmit = (data) => {
     setloader(true);
-    console.log(data);
     Services.postContactUs(data)
       .then((res) => {
-        console.log(res);
         toast.success("Your request has been submitted successfully.");
       })
       .catch((err) => {

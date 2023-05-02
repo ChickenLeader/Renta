@@ -47,7 +47,6 @@ export const Footer = () => {
   const getSocialMedia = () => {
     Services.social_media()
       .then((res) => {
-        console.log(res);
         setsocialMedia(res);
       })
       .catch((err) => {
@@ -60,7 +59,7 @@ export const Footer = () => {
       id: 1,
       name: "Navigation",
       list: [
-        { id: 1, name: "Latest seen", navigateTo: "/Latest" },
+        { id: 1, name: "Most viewed", navigateTo: "/Latest" },
         { id: 2, name: "Shortlist", navigateTo: "#" },
       ],
     },

@@ -42,7 +42,6 @@ function MyApp({ Component, pageProps }) {
   };
 
   useEffect(() => {
-    // router.replace("/Home");
     autoLogin();
     langAdjustment();
   }, []);
@@ -63,14 +62,5 @@ function MyApp({ Component, pageProps }) {
     </CacheProvider>
   );
 }
-
-// export async function getServerSideProps(cxt) {
-//   return {
-//     redirect: {
-//       destination: "/Home",
-//       permanent: true,
-//     },
-//   };
-// }
 
 export default appWithTranslation(MyApp);

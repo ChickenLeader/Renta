@@ -14,7 +14,7 @@ import { NavbarModal } from "./NavbarModal";
 import { useSelector } from "react-redux";
 
 const Nav_Items = [
-  { id: 1, name: "Latest seen", navigate: "/Latest" },
+  { id: 1, name: "Most viewed", navigate: "/Latest" },
   { id: 2, name: "Contact us", navigate: "/ContactUs" },
   { id: 3, name: "About us", navigate: "/AboutUs" },
 ];

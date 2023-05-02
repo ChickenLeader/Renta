@@ -29,7 +29,6 @@ export const NavbarModal = ({ closeModal }) => {
     } else {
       Services.login(valu)
         .then((res) => {
-          console.log(res, "ressssss");
           loginHandler(res.token.access_token);
           setTimeout(() => {
             closeModal();
@@ -56,7 +55,6 @@ export const NavbarModal = ({ closeModal }) => {
     } else {
       Services.send_reset_code(valu)
         .then((res) => {
-          console.log(res);
           toast.success("An OTP has been sent to your email");
           setmodalStatus("otp");
         })
@@ -75,7 +73,6 @@ export const NavbarModal = ({ closeModal }) => {
     };
     Services.reset_password(valu)
       .then((res) => {
-        console.log(res);
         setmodalStatus("success");
       })
       .catch((err) => {
@@ -93,11 +90,6 @@ export const NavbarModal = ({ closeModal }) => {
       newPasword: "",
     });
   };
-
-  useEffect(() => {
-    console.log(authValues);
-  }, [authValues]);
-
   return (
     <>
       {modalStatus == "signIn" ? (

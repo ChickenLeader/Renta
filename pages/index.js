@@ -134,11 +134,3 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-// export async function getServerSideProps(cxt) {
-//   return {
-//     redirect: {
-//       destination: "/Home",
-//       permanent: true,
-//     },
-//   };
-// }
