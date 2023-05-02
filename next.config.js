@@ -8,12 +8,11 @@ const nextConfig = {
   images: {
     domains: ["rentaserverbucket.s3.us-east-1.amazonaws.com"],
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/",
         destination: "/",
-        permanent: true,
       },
     ];
   },
