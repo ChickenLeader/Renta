@@ -43,18 +43,18 @@ export const ENDPOINTS = {
   },
   properties: {
     url: (
-      Bedrooms,
+      number_of_rooms,
       property_type__id,
-      area__name,
+      area__id,
       price_gte,
       price_lte,
       area_gte,
       area_lte,
-      most_visited,
+      most_viewed,
       page,
       page_size
     ) =>
-      `/property/?Bedrooms=${Bedrooms}&property_type__id=${property_type__id}&area__name=${area__name}&price_gte=${price_gte}&price_lte=${price_lte}&area_gte=${area_gte}&area_lte=${area_lte}&most_viewed=${most_visited}&page=${page}&page_size=${page_size}`,
+      `/property/?number_of_rooms=${number_of_rooms}&property_type__id=${property_type__id}&area__id=${area__id}&price_gte=${price_gte}&price_lte=${price_lte}&area_gte=${area_gte}&area_lte=${area_lte}&most_viewed=${most_viewed}&page=${page}&page_size=${page_size}`,
     method: "GET",
   },
   propertyByID: {

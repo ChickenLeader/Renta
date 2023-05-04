@@ -16,7 +16,7 @@ export default function Home({ areas, propertyType, monthlyRates }) {
   const [property, setproperty] = useState(1);
   const [monthlyRate, setmonthlyRate] = useState(1);
   const selectedFilters = {
-    area__name: areas[area - 1]["id"],
+    area__id: areas[area - 1]["id"],
     property_type__id: propertyType[property - 1]["id"],
     price_gte: +monthlyRates[monthlyRate - 1]["min_price_range"],
     price_lte: +monthlyRates[monthlyRate - 1]["max_price_range"],

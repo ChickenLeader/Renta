@@ -15,7 +15,7 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
   const { t } = useTranslation();
   // const filtersData = useSelector((state) => state.app.filtersData);
   const [isExpanded, setExpendState] = useState(false);
-  const [area, setarea] = useState(filters.area__name);
+  const [area, setarea] = useState(filters.area__id);
   const [property, setproperty] = useState(filters.property_type__id);
   const [areaRange, setareaRange] = useState([120, 250]);
   const [room, setroom] = useState(null);
@@ -43,13 +43,13 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
   const applyFilters = () => {
     setExpendState(false);
     let Valu = {
-      area__name: "DownTown",
+      area__id: area,
       area_gte: areaRange[0],
       area_lte: areaRange[1],
-      property_type__name: property,
+      property_type__id: property,
       price_gte: priceRange[0],
       price_lte: priceRange[1],
-      Bedrooms: room.value,
+      number_of_rooms: room?.value || 7,
     };
     submitFilters(Valu);
   };
@@ -161,11 +161,11 @@ const SideNavBar = ({ filters, submitFilters, sideNavData }) => {
               {rooms.map((item) => (
                 <div
                   key={item.id + ""}
-                  className={room == item ? styles.selectedRoom : styles.room}
+                  className={room?.id == item.id ? styles.selectedRoom : styles.room}
                   onClick={() => setroom(item)}
                 >
                   <Text
-                    color={room == item ? "black" : "white"}
+                    color={room?.id == item.id ? "black" : "white"}
                     style={{ textAlign: "center" }}
                   >
                     {item.name}

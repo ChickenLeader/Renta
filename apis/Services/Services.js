@@ -76,9 +76,9 @@ export class Services {
   static getProperties(values, locale = "en") {
     return Network.fetch(
       ENDPOINTS.properties.url(
-        values.Bedrooms || "",
+        values.number_of_rooms || "",
         values.property_type__id || "",
-        values.area__name || "",
+        values.area__id || "",
         values.price_gte || "",
         values.price_lte || "",
         values.area_gte || "",

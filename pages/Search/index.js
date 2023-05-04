@@ -31,7 +31,7 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
     monthlyRates: monthlyRates,
   };
 
-  const submitFilters = async (values) => {
+  const submitFilters = (values) => {
     const Valu = { ...values, page: router.query.page || 1, page_size: 4 };
     router.push({ query: Valu }, undefined, { shallow: false });
   };
@@ -85,8 +85,8 @@ const Search = ({ data, areas, propertyType, monthlyRates }) => {
               className="pagination"
               count={data.pages_number}
               color="primary"
-              defaultPage={+router.query.page}
-              page={+router.query.page}
+              defaultPage={+router.query.page || 1}
+              page={+router.query.page || 1}
               onChange={handlePagination}
             />
           </div>
