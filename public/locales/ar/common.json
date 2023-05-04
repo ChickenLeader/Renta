@@ -49,5 +49,12 @@
   "No of bedrooms:": "عدد غرف النوم:",
   "Property area:": "مساحة الوحدة:",
   "No of bathrooms:": "عدد الحمامات:",
-  "Amenities": "وسائل الراحة"
+  "Amenities": "وسائل الراحة",
+  "Tenant :": "مستأجر :",
+  "Rent/month :": "ايجار / شهر :",
+  "Start date :": "تاريخ البدء :",
+  "End date :": "تاريخ الانتهاء :",
+  "Contract :": "العقد :",
+  "Tenant's ID :": "هوية المستخدم :",
+  "No Photo": "لا توجد صوره"
 }

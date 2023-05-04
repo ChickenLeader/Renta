@@ -15,6 +15,8 @@ import Navbar from "components/HomeComponents/navbar/Navbar";
 import Footer from "components/HomeComponents/footer/Footer";
 import { store } from "../redux";
 import { Toaster } from "react-hot-toast";
+import { Services } from "apis/Services/Services";
+import { logoutHandler } from "hooks/logoutHandler";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -24,9 +26,17 @@ function MyApp({ Component, pageProps }) {
 
   const autoLogin = () => {
     let token = localStorage.getItem("token");
-    if (token) {
-      loginHandler(token);
-    }
+    Services.myUnits()
+      .then((res) => {
+        if (token) {
+          loginHandler(token);
+        }
+      })
+      .catch((err) => {
+        if (err.code == "token_not_valid") {
+          logoutHandler();
+        }
+      });
   };
 
   const langAdjustment = () => {
